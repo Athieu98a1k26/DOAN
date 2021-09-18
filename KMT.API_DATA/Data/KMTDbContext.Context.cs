@@ -28,5 +28,8 @@ namespace KMT.API_DATA.Data
         public virtual DbSet<MENUQUANTRI> MENUQUANTRIs { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<PERMISSION> PERMISSIONs { get; set; }
+        public virtual DbSet<ROLE_PERMISSON> ROLE_PERMISSON { get; set; }
+        public virtual DbSet<USER_ROLE> USER_ROLE { get; set; }
     }
 }

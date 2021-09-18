@@ -13,6 +13,19 @@
           <Property Name="URL" Type="nvarchar(max)" />
           <Property Name="NAME" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="PERMISSION">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MAQUYEN" Type="nvarchar(max)" />
+          <Property Name="TENQUYEN" Type="nvarchar(max)" />
+          <Property Name="NGUOITAO" Type="nvarchar(max)" />
+          <Property Name="NGAYTAO" Type="datetime" />
+          <Property Name="NGUOISUA" Type="nvarchar(max)" />
+          <Property Name="NGAYSUA" Type="datetime" />
+          <Property Name="IsDelete" Type="bit" />
+        </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
@@ -24,6 +37,20 @@
           <Property Name="NGAYTAO" Type="datetime" />
           <Property Name="NGUOISUA" Type="nvarchar(max)" />
           <Property Name="NGAYSUA" Type="datetime" />
+          <Property Name="IsDelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="ROLE_PERMISSON">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ROLEID" Type="int" />
+          <Property Name="PERMISSON" Type="nvarchar(max)" />
+          <Property Name="NGUOITAO" Type="nvarchar(max)" />
+          <Property Name="NGAYTAO" Type="datetime" />
+          <Property Name="NGUOISUA" Type="nvarchar(max)" />
+          <Property Name="NGAYSUA" Type="datetime" />
+          <Property Name="IsDelete" Type="bit" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -31,6 +58,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
           <Property Name="PassWord" Type="nvarchar(max)" />
           <Property Name="IsDelete" Type="bit" />
           <Property Name="NguoiTao" Type="nvarchar(max)" />
@@ -38,10 +66,26 @@
           <Property Name="NguoiSua" Type="nvarchar(max)" />
           <Property Name="NgaySua" Type="datetime" />
         </EntityType>
+        <EntityType Name="USER_ROLE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ROLE" Type="nvarchar(max)" />
+          <Property Name="USERID" Type="int" />
+          <Property Name="NGUOITAO" Type="nvarchar(max)" />
+          <Property Name="NGAYTAO" Type="datetime" />
+          <Property Name="NGUOISUA" Type="nvarchar(max)" />
+          <Property Name="NGAYSUA" Type="datetime" />
+          <Property Name="IsDelete" Type="bit" />
+        </EntityType>
         <EntityContainer Name="KTM_TESTModelStoreContainer">
           <EntitySet Name="MENUQUANTRI" EntityType="Self.MENUQUANTRI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PERMISSION" EntityType="Self.PERMISSION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROLE_PERMISSON" EntityType="Self.ROLE_PERMISSON" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_ROLE" EntityType="Self.USER_ROLE" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -51,6 +95,9 @@
           <EntitySet Name="MENUQUANTRIs" EntityType="KTM_TESTModel.MENUQUANTRI" />
           <EntitySet Name="Users" EntityType="KTM_TESTModel.User" />
           <EntitySet Name="Roles" EntityType="KTM_TESTModel.Role" />
+          <EntitySet Name="PERMISSIONs" EntityType="KTM_TESTModel.PERMISSION" />
+          <EntitySet Name="ROLE_PERMISSON" EntityType="KTM_TESTModel.ROLE_PERMISSON" />
+          <EntitySet Name="USER_ROLE" EntityType="KTM_TESTModel.USER_ROLE" />
         </EntityContainer>
         <EntityType Name="MENUQUANTRI">
           <Key>
@@ -72,6 +119,7 @@
           <Property Name="NgayTao" Type="DateTime" Precision="3" />
           <Property Name="NguoiSua" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NgaySua" Type="DateTime" Precision="3" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -84,6 +132,46 @@
           <Property Name="NGAYTAO" Type="DateTime" Precision="3" />
           <Property Name="NGUOISUA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NGAYSUA" Type="DateTime" Precision="3" />
+          <Property Name="IsDelete" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="PERMISSION">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MAQUYEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TENQUYEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NGUOITAO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYTAO" Type="DateTime" Precision="3" />
+          <Property Name="NGUOISUA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYSUA" Type="DateTime" Precision="3" />
+          <Property Name="IsDelete" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="ROLE_PERMISSON">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ROLEID" Type="Int32" />
+          <Property Name="PERMISSON" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NGUOITAO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYTAO" Type="DateTime" Precision="3" />
+          <Property Name="NGUOISUA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYSUA" Type="DateTime" Precision="3" />
+          <Property Name="IsDelete" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="USER_ROLE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ROLE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="USERID" Type="Int32" />
+          <Property Name="NGUOITAO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYTAO" Type="DateTime" Precision="3" />
+          <Property Name="NGUOISUA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYSUA" Type="DateTime" Precision="3" />
+          <Property Name="IsDelete" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -103,6 +191,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="KTM_TESTModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="NgaySua" ColumnName="NgaySua" />
                 <ScalarProperty Name="NguoiSua" ColumnName="NguoiSua" />
                 <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
@@ -117,12 +206,55 @@
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="KTM_TESTModel.Role">
               <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
                 <ScalarProperty Name="NGAYSUA" ColumnName="NGAYSUA" />
                 <ScalarProperty Name="NGUOISUA" ColumnName="NGUOISUA" />
                 <ScalarProperty Name="NGAYTAO" ColumnName="NGAYTAO" />
                 <ScalarProperty Name="NGUOITAO" ColumnName="NGUOITAO" />
                 <ScalarProperty Name="TEN" ColumnName="TEN" />
                 <ScalarProperty Name="MA" ColumnName="MA" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PERMISSIONs">
+            <EntityTypeMapping TypeName="KTM_TESTModel.PERMISSION">
+              <MappingFragment StoreEntitySet="PERMISSION">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="NGAYSUA" ColumnName="NGAYSUA" />
+                <ScalarProperty Name="NGUOISUA" ColumnName="NGUOISUA" />
+                <ScalarProperty Name="NGAYTAO" ColumnName="NGAYTAO" />
+                <ScalarProperty Name="NGUOITAO" ColumnName="NGUOITAO" />
+                <ScalarProperty Name="TENQUYEN" ColumnName="TENQUYEN" />
+                <ScalarProperty Name="MAQUYEN" ColumnName="MAQUYEN" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLE_PERMISSON">
+            <EntityTypeMapping TypeName="KTM_TESTModel.ROLE_PERMISSON">
+              <MappingFragment StoreEntitySet="ROLE_PERMISSON">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="NGAYSUA" ColumnName="NGAYSUA" />
+                <ScalarProperty Name="NGUOISUA" ColumnName="NGUOISUA" />
+                <ScalarProperty Name="NGAYTAO" ColumnName="NGAYTAO" />
+                <ScalarProperty Name="NGUOITAO" ColumnName="NGUOITAO" />
+                <ScalarProperty Name="PERMISSON" ColumnName="PERMISSON" />
+                <ScalarProperty Name="ROLEID" ColumnName="ROLEID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_ROLE">
+            <EntityTypeMapping TypeName="KTM_TESTModel.USER_ROLE">
+              <MappingFragment StoreEntitySet="USER_ROLE">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="NGAYSUA" ColumnName="NGAYSUA" />
+                <ScalarProperty Name="NGUOISUA" ColumnName="NGUOISUA" />
+                <ScalarProperty Name="NGAYTAO" ColumnName="NGAYTAO" />
+                <ScalarProperty Name="NGUOITAO" ColumnName="NGUOITAO" />
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="ROLE" ColumnName="ROLE" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

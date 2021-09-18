@@ -12,11 +12,11 @@ namespace KMT.API_DATA.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class USER_ROLE
     {
         public int Id { get; set; }
-        public string MA { get; set; }
-        public string TEN { get; set; }
+        public string ROLE { get; set; }
+        public Nullable<int> USERID { get; set; }
         public string NGUOITAO { get; set; }
         public Nullable<System.DateTime> NGAYTAO { get; set; }
         public string NGUOISUA { get; set; }

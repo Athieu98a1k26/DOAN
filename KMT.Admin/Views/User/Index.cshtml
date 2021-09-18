@@ -8,17 +8,25 @@
     <form>
         <input type="hidden" class="form-control" id="Id">
         <div class="form-group">
-            <label for="TEN">Tên chức vụ</label>
-            <input type="text" class="form-control" id="TEN" placeholder="Tên chức vụ">
+            <label for="Name">Tên người dùng</label>
+            <input type="text" class="form-control" id="Name" placeholder="Tên người dùng">
         </div>
         <div class="form-group">
-            <label for="MA">Mã chức vụ<span style="color:red">*</span></label>
-            <input type="text" class="form-control" id="MA" placeholder="Mã chức vụ">
+            <label for="UserName">Tên tài khoản<span style="color:red">*</span></label>
+            <input type="text" class="form-control" id="UserName" placeholder="Tên tài khoản">
+        </div>
+        <div class="form-group">
+            <label for="PassWord">Mật khẩu<span style="color:red">*</span></label>
+            <input type="password" class="form-control" id="PassWord" placeholder="Tên tài khoản">
+        </div>
+        <div class="form-group">
+            <label for="RePassWord">Nhập lại mật khẩu<span style="color:red">*</span></label>
+            <input type="password" class="form-control" id="RePassWord" placeholder="nhập lại mật khẩu">
         </div>
         <button type="button" class="btn btn-primary btnUpdate">Lưu</button>
         <button type="button" class="btn btn-primary btnRefresh">Làm mới</button>
     </form>
-    <div id="DataRoles" class="row">
+    <div id="DataPermission" class="row">
 
         
     </div>
@@ -36,19 +44,32 @@
     $(document).ready(function () {
         getDataPage(1);
         $('.btnUpdate').click(function () {
-            var TEN = $('#TEN').val();
+            var Name = $('#Name').val();
             var Id = $('#Id').val();
-            var MA = $('#MA').val();
-            if (MA == '') {
-                toastr.warning('Vui lòng mã chức vụ');
+            var UserName = $('#UserName').val();
+            var PassWord = $('#PassWord').val();
+            var RePassWord = $('#RePassWord').val();
+
+            if (UserName == '') {
+                toastr.warning('Vui lòng nhập tên tài khoản');
+                return false;
+            }
+            if (PassWord == '') {
+                toastr.warning('Vui lòng nhập mật khẩu');
+                return false;
+            }
+            if (PassWord != RePassWord) {
+                toastr.warning('Mật khẩu không trùng nhau, vui lòng nhập lại!');
                 return false;
             }
             var data = {
                 Id:Id,
-                TEN:TEN.trim(),
-                MA:MA.trim()
+                Name: Name.trim(),
+                UserName: UserName.trim(),
+                PassWord: PassWord.trim(),
+                RePassWord: RePassWord.trim(),
             }
-            $.post('Role/AddOrUpdate', data, function (data) {
+            $.post('/User/AddOrUpdate', data, function (data) {
                 if (data.status == 500) {
                     toastr.error(data.message);
                 }
@@ -122,8 +143,8 @@
             page: page,
             take:take
         }
-        $.post('/Role/search', data, function (data) {
-            RenderData(data, "#DataRoles");
+        $.post('/User/search', data, function (data) {
+            RenderData(data, "#DataPermission");
         })
     }
     function RenderData(response, strElement) {
@@ -133,8 +154,8 @@
             <thead>
                 <tr>
                     <th scope="col">STT</th>
-                    <th scope="col">MA</th>
-                    <th scope="col">TEN</th>
+                    <th scope="col">MAQUYEN</th>
+                    <th scope="col">TENQUYEN</th>
                 </tr>
             </thead>
 
@@ -142,8 +163,8 @@
         for (var i = 0; i < data.length; i++) {
             htmlRender += `<tr>
                     <th scope="row">`+(i+1)+`</th>
-                    <td>`+data[i].MA+`</td>
-                    <td>`+ data[i].TEN +`</td>
+                    <td>`+data[i].MAQUYEN+`</td>
+                    <td>`+ data[i].TENQUYEN +`</td>
                 </tr>`;
         }
         htmlRender += `</tbody>

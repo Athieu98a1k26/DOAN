@@ -128,7 +128,9 @@
     <Compile Include="Controllers\PermissionController.cs" />
     <Compile Include="Controllers\QuanTriController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\RolePermissionController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserRoleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -144,6 +146,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\sb-admin-2.css" />
+    <Content Include="Content\select2.min.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -163,6 +167,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\sb-admin-2.min.js" />
+    <Content Include="Scripts\select2.min.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.js" />
@@ -2000,11 +2006,13 @@
     <Content Include="vendor\jquery\jquery.slim.min.map" />
     <Content Include="Views\MenuViewComponent\Index.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Permission\Index.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\RolePermission\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Permission\" />
-    <Folder Include="Views\User\" />
+    <Folder Include="Views\UserRole\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

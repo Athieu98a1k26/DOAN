@@ -164,8 +164,11 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuQuanTriAPIController.cs" />
+    <Compile Include="Controllers\PermissonController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
-    <Compile Include="Controllers\UserAPIController.cs" />
+    <Compile Include="Controllers\RolePermissonController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserRoleController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Data\BaseRepository.cs" />
     <Compile Include="Data\KMTDbContext.Context.cs">
@@ -186,13 +189,24 @@
     <Compile Include="Data\MENUQUANTRI.cs">
       <DependentUpon>KMTDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\PERMISSION.cs">
+      <DependentUpon>KMTDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Repository\MenuQuanTriRepository.cs" />
+    <Compile Include="Data\Repository\PermissonRepository.cs" />
     <Compile Include="Data\Repository\RoleRepository.cs" />
+    <Compile Include="Data\Repository\RolePermissonRepository.cs" />
     <Compile Include="Data\Repository\UserRepository.cs" />
     <Compile Include="Data\Role.cs">
       <DependentUpon>KMTDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\ROLE_PERMISSON.cs">
+      <DependentUpon>KMTDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\User.cs">
+      <DependentUpon>KMTDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\USER_ROLE.cs">
       <DependentUpon>KMTDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -273,6 +287,7 @@
     <Folder Include="Models\" />
     <Folder Include="Views\Role\" />
     <Folder Include="Views\UserAPI\" />
+    <Folder Include="Views\UserRole\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -310,6 +325,10 @@
     <ProjectReference Include="..\KMT.DATA_MODEL\KMT.DATA_MODEL.csproj">
       <Project>{11C88469-5070-4CE9-940C-6D65F9AF82BB}</Project>
       <Name>KMT.DATA_MODEL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KMT.Libraly\KMT.Libraly.csproj">
+      <Project>{A9F2BF65-21A1-4283-B12C-9DC725406DA0}</Project>
+      <Name>KMT.Libraly</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

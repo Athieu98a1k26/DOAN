@@ -18,18 +18,18 @@ namespace KMT.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<MessageResponse> AddOrUpdate(RoleRequest model)
+        public async Task<JsonResult> AddOrUpdate(RoleRequest model)
         {
             if (string.IsNullOrEmpty(model.MA))
             {
-                return new MessageResponse(500, "Vui lòng nhập mã");
+                return Json(new MessageResponse(500, "Vui lòng nhập mã"), JsonRequestBehavior.AllowGet);
             }
             int count = await ApiService.roleService.AddOrUpdate(model);
             if (count==0)
             {
-                return new MessageResponse(500, "Cập nhật không thành công");
+                return Json(new MessageResponse(500, "Cập nhật không thành công"), JsonRequestBehavior.AllowGet);
             }
-            return new MessageResponse(200, "Cập nhật thành công");
+            return Json(new MessageResponse(200, "Cập nhật thành công"), JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public async Task<JsonResult> search(RoleRequest model)

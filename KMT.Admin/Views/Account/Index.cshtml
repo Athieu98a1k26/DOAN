@@ -28,25 +28,22 @@
     $(document).ready(function () {
 
         $('.btn-signin').click(function () {
-            var userName = $("#UserName").val();
-            var passWord = $('#PassWord').val();
-            var rePassWord = $('#RePassWord').val();
-            if (userName == '') {
+            var UserName = $("#UserName").val();
+            var PassWord = $('#PassWord').val();
+            var RePassWord = $('#RePassWord').val();
+            if (UserName == '') {
                 $('.Notification').text('Vui lòng nhập tên tài khoản!');
             }
-            if (passWord == '') {
+            if (PassWord == '') {
                 $('.Notification').text('Vui lòng nhập mật khẩu!');
             }
-            if (passWord != rePassWord) {
+            if (PassWord != RePassWord) {
                 $('.Notification').text('Mật khẩu không trùng!');
             }
-            userName = userName.trim();
-            passWord = passWord.trim();
-            rePassWord = rePassWord.trim();
             var data = {
-                userName: userName,
-                passWord: passWord,
-                rePassWord: rePassWord
+                UserName: UserName.trim(),
+                PassWord: PassWord.trim(),
+                RePassWord: RePassWord.trim()
             }
             $.post('Register', data, function (data) {
                 alert(data);

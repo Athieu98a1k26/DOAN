@@ -22,5 +22,6 @@ namespace KMT.API_DATA.Data
         public Nullable<System.DateTime> NgayTao { get; set; }
         public string NguoiSua { get; set; }
         public Nullable<System.DateTime> NgaySua { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using KMT.DATA_MODEL;
+using KMT.DATA_MODEL.Permisson;
 using KMT.DATA_MODEL.Role;
 using System;
 using System.Collections.Generic;
@@ -7,40 +8,40 @@ using System.Web;
 
 namespace KMT.API_DATA.Data.Repository
 {
-    public class RoleRepository: BaseRepository
+    public class PermissonRepository : BaseRepository
     {
-        public int AddOrUpdate(RoleRequest model)
+        public int AddOrUpdate(PermissonRequest model)
         {
-            if (IsDuplicate(model.MA))
+            if (IsDuplicate(model.MAQUYEN))
             {
                 return 0;
             }
             if (model.Id==0)
             {
                 //them mới
-                Role role = new Role();
-                role.TEN = model.TEN;
-                role.MA = model.MA;
-                role.NGAYTAO = DateTime.Now;
-                role.IsDelete = false;
-                DbContext.Roles.Add(role);
+                PERMISSION per = new PERMISSION();
+                per.TENQUYEN = model.TENQUYEN;
+                per.MAQUYEN = model.MAQUYEN;
+                per.NGAYTAO = DateTime.Now;
+                per.IsDelete = false;
+                DbContext.PERMISSIONs.Add(per);
                 return DbContext.SaveChanges();
             }
             else
             {
                 //cập nhật
                 var data = DbContext.Roles.FirstOrDefault(s => s.Id == model.Id);
-                data.TEN = model.TEN;
-                data.MA = model.MA;
-                data.NGAYSUA = DateTime.Now;
+                data.TEN = model.TENQUYEN;
+                data.MA = model.MAQUYEN;
                 data.IsDelete = false;
+                data.NGAYSUA = DateTime.Now;
                 return DbContext.SaveChanges();
             }
         }
 
-        public bool IsDuplicate(string MA)
+        public bool IsDuplicate(string MAQUYEN)
         {
-            int count = DbContext.Roles.Count(s => s.MA == MA && s.IsDelete==false);
+            int count = DbContext.PERMISSIONs.Count(s => s.MAQUYEN == MAQUYEN && s.IsDelete==false);
             if (count==0)
             {
                 return false;
@@ -48,17 +49,17 @@ namespace KMT.API_DATA.Data.Repository
             return true;
         }
 
-        public RoleResponse search(RoleRequest model)
+        public PermissonResponse search(PermissonRequest model)
         {
             int skip = (model.page * model.take) - model.take;
-            RoleResponse dt = new RoleResponse();
-            var q = (from x in DbContext.Roles
+            PermissonResponse dt = new PermissonResponse();
+            var q = (from x in DbContext.PERMISSIONs
                      where x.IsDelete==false
-                    select new RoleInfo() { 
+                    select new PermissonInfo() { 
                         Id=x.Id,
-                        TEN=x.TEN,
-                        MA=x.MA
-                    }).ToList()??new List<RoleInfo>();
+                        TENQUYEN=x.TENQUYEN,
+                        MAQUYEN=x.MAQUYEN
+                    }).ToList()??new List<PermissonInfo>();
 
             dt.total = q.Count();
             dt.data = q.Skip(skip).Take(model.take).ToList();
@@ -66,7 +67,5 @@ namespace KMT.API_DATA.Data.Repository
             dt.take = model.take;
             return dt;
         }
-
-        
     }
 }
