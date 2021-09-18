@@ -11,12 +11,13 @@ namespace KMT.API_DATA.Data.Repository
     {
         public int AddOrUpdate(RoleRequest model)
         {
-            if (IsDuplicate(model.MA))
-            {
-                return 0;
-            }
+            
             if (model.Id==0)
             {
+                if (IsDuplicate(model.MA))
+                {
+                    return 0;
+                }
                 //them mới
                 Role role = new Role();
                 role.TEN = model.TEN;
@@ -31,6 +32,14 @@ namespace KMT.API_DATA.Data.Repository
                 //cập nhật
                 var data = DbContext.Roles.FirstOrDefault(s => s.Id == model.Id);
                 data.TEN = model.TEN;
+                
+                if (data.MA!= model.MA)
+                {
+                    if (IsDuplicate(model.MA))
+                    {
+                        return 0;
+                    }
+                }
                 data.MA = model.MA;
                 data.NGAYSUA = DateTime.Now;
                 data.IsDelete = false;

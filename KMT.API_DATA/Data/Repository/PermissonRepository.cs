@@ -12,12 +12,13 @@ namespace KMT.API_DATA.Data.Repository
     {
         public int AddOrUpdate(PermissonRequest model)
         {
-            if (IsDuplicate(model.MAQUYEN))
-            {
-                return 0;
-            }
+            
             if (model.Id==0)
             {
+                if (IsDuplicate(model.MAQUYEN))
+                {
+                    return 0;
+                }
                 //them mới
                 PERMISSION per = new PERMISSION();
                 per.TENQUYEN = model.TENQUYEN;
@@ -32,6 +33,13 @@ namespace KMT.API_DATA.Data.Repository
                 //cập nhật
                 var data = DbContext.Roles.FirstOrDefault(s => s.Id == model.Id);
                 data.TEN = model.TENQUYEN;
+                if (data.MA!= model.MAQUYEN)
+                {
+                    if (IsDuplicate(model.MAQUYEN))
+                    {
+                        return 0;
+                    }
+                }
                 data.MA = model.MAQUYEN;
                 data.IsDelete = false;
                 data.NGAYSUA = DateTime.Now;

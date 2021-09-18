@@ -34,6 +34,13 @@ namespace KMT.API_DATA.Data.Repository
             {
                 //cập nhật
                 var data = DbContext.ROLE_PERMISSON.FirstOrDefault(s => s.Id == model.Id);
+                if (data.ROLEID != model.ROLEID)
+                {
+                    if (IsDuplicate(model.ROLEID))
+                    {
+                        return 0;
+                    }
+                }
                 data.ROLEID = model.ROLEID;
                 data.PERMISSON = model.PERMISSON;
                 data.NGAYSUA = DateTime.Now;
