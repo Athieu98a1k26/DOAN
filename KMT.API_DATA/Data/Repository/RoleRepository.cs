@@ -1,4 +1,5 @@
-﻿using KMT.DATA_MODEL.Role;
+﻿using KMT.DATA_MODEL;
+using KMT.DATA_MODEL.Role;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +49,16 @@ namespace KMT.API_DATA.Data.Repository
             return true;
         }
 
-        
+        //public DataResponse search(RoleRequest model)
+        //{
+        //    int skip = (model.page * model.take) - model.take;
+        //    DataResponse data = new DataResponse();
+        //    var q = from x in DbContext.Roles
+        //            select x;
+
+        //    var total = q.Count();
+        //    var cs = q.Skip(skip).Take(model.take);
+        //    var numberOnSelectedPage = cs.Count();
+        //}
     }
 }

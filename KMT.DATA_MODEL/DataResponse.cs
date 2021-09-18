@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace KMT.DATA_MODEL.Role
+namespace KMT.DATA_MODEL
 {
-    public class RoleRequest
+    public class DataResponse
     {
-        public int Id { get; set; }
-        public string TEN { get; set; }
-        public string MA { get; set; }
         public int page { get; set; }
         public int take { get; set; }
+        public int total { get; set; }
+        public object data { get; set; }
     }
 }
