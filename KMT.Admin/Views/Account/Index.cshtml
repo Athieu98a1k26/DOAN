@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = null;
+}
+<link href="~/Content/Account.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<div class="container">
+    <div class="card card-container">
+        <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+        <img id="profile-img" class="profile-img-card" src="~/Asset/avatar_2x.png" />
+        <p id="profile-name" class="profile-name-card"></p>
+        <form class="form-signin">
+            <span id="reauth-email" class="reauth-email"></span>
+            <input type="text" id="UserName" class="form-control" placeholder="Nhập tên tài khoản" required autofocus>
+            <input type="password" id="PassWord" class="form-control" placeholder="Nhập mật khẩu" required>
+            <input type="password" id="RePassWord" class="form-control" placeholder="Nhập lại mật khẩu" required>
+            <button class="btn btn-lg btn-primary btn-block btn-signin" type="button">Đăng ký</button>
+        </form><!-- /form -->
+        <a href="#" class="Notification error">
+            
+        </a>
+    </div><!-- /card-container -->
+</div><!-- /container -->
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $('.btn-signin').click(function () {
+            var userName = $("#UserName").val();
+            var passWord = $('#PassWord').val();
+            var rePassWord = $('#RePassWord').val();
+            if (userName == '') {
+                $('.Notification').text('Vui lòng nhập tên tài khoản!');
+            }
+            if (passWord == '') {
+                $('.Notification').text('Vui lòng nhập mật khẩu!');
+            }
+            if (passWord != rePassWord) {
+                $('.Notification').text('Mật khẩu không trùng!');
+            }
+            userName = userName.trim();
+            passWord = passWord.trim();
+            rePassWord = rePassWord.trim();
+            var data = {
+                userName: userName,
+                passWord: passWord,
+                rePassWord: rePassWord
+            }
+            $.post('Register', data, function (data) {
+                alert(data);
+            })
+        })
+    })
+</script>

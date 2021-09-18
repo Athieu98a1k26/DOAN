@@ -1,0 +1,16 @@
+﻿@using KMT.DATA_MODEL.MenuQuanTri
+@model List<MenuQuanTriInfo>
+@{
+    Layout = null;
+    //List<MenuQuanTriInfo> lst = (List<MenuQuanTriInfo>)ViewBag.LstMenuQuanTri;
+}
+@foreach (var item in Model)
+{
+    string url = item.URL + "?IDMENU=" + item.Id;
+    <li class="nav-item @Html.Raw(item.IsActive?"active":"")">
+        <a class="nav-link" href="@url">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>@item.NAME</span>
+        </a>
+    </li>
+}
