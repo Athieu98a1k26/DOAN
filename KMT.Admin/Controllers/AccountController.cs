@@ -14,6 +14,7 @@ namespace KMT.Admin.Controllers
         // GET: Account
         public ActionResult Index()
         {
+            //hello
             return View();
         }
         [HttpPost]
