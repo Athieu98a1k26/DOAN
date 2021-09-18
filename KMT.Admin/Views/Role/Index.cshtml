@@ -16,7 +16,7 @@
             <input type="text" class="form-control" id="MA" placeholder="Mã chức vụ">
         </div>
         <div class="form-group form-check">
-            <div class="alert alert-info Notification" role="alert">
+            <div class="Notification">
             </div>
         </div>
         <button type="button" class="btn btn-primary btnUpdate">Lưu</button>
@@ -24,7 +24,7 @@
     </form>
     <div id="DataRoles" class="row">
 
-
+        
     </div>
 </div>
 
@@ -38,21 +38,30 @@
 
 <script>
     $(document).ready(function () {
+        getDataPage(1);
         $('.btnUpdate').click(function () {
             var TEN = $('#TEN').val();
             var Id = $('#Id').val();
-            var MA = $('#ROLE').val();
+            var MA = $('#MA').val();
             if (MA == '') {
                 $('.Notification').text('Vui lòng mã chức vụ');
                 return false;
             }
             var data = {
-                Id=Id,
-                TEN=TEN.trim(),
-                MA=MA.trim()
+                Id:Id,
+                TEN:TEN.trim(),
+                MA:MA.trim()
             }
             $.post('Role/AddOrUpdate', data, function (data) {
-                alert(data);
+                if (data.status==500) {
+                    $('.Notification').css('color', 'red');
+                    $('.Notification').text(data.message);
+                }
+                else if (data.status == 200) {
+                    $('.Notification').css('color', 'green');
+                    $('.Notification').text(data.message);
+                }
+                getDataPage(1);
             })
         })
     })
@@ -111,38 +120,41 @@
 
     function getDataPage(page) {
         let take = 5;
-        let startdate = $('#startdate').val();
-        let enddate = $('#enddate').val();
-        let keyword = $('#keyword').val();
-        LoadDataImage(page, take, startdate, enddate, keyword);
+        LoadData(page, take);
     }
 
-
+    function LoadData(page, take) {
+        let data = {
+            page: page,
+            take:take
+        }
+        $.post('/Role/search', data, function (data) {
+            RenderData(data, "#DataRoles");
+        })
+    }
     function RenderData(response, strElement) {
         let data = response.data;
         $(strElement).empty();
-        let htmlRender = '';
+        let htmlRender = `<table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">MA</th>
+                    <th scope="col">TEN</th>
+                </tr>
+            </thead>
+
+            <tbody>`;
         for (var i = 0; i < data.length; i++) {
-            htmlRender += '<div class="col-md-2 pr_itemImg">' +
-                '<div class="card itemImg">' +
-                '<a data-fancybox="gallery" href="/assets/Image/' + data[i].nameImagePhysics + '">' +
-                '<img class="card-img-top imgProduct d-block" data-Id="' + data[i].id + '" src="/assets/Image/' + data[i].nameImagePhysics + '" />' +
-                '</a>' +
-                '<span class="editIcon">' +
-                '<i class="fas fa-edit"></i>' +
-                '</span>' +
-                '<span class="removeIcon">' +
-                '<i class="fas fa-trash-alt"></i>' +
-                '</span>' +
-                '<div class="card-body">' +
-                '<p class="card-text">' + data[i].nameImage + '</p>' +
-                '</div>' +
-                '</div>' +
-                '</div>';
+            htmlRender += `<tr>
+                    <th scope="row">`+(i+1)+`</th>
+                    <td>`+data[i].MA+`</td>
+                    <td>`+ data[i].TEN +`</td>
+                </tr>`;
         }
+        htmlRender += `</tbody>
+        </table>`;
         $(strElement).append(htmlRender);
-        $(".itemImg a").fancybox({
-        });
         PaginationData(response);
     } 
 </script>

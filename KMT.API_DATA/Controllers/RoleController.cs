@@ -1,4 +1,7 @@
-﻿using System;
+﻿using KMT.API_DATA.Data.Repository;
+using KMT.DATA_MODEL;
+using KMT.DATA_MODEL.Role;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +13,23 @@ namespace KMT.API_DATA.Controllers
     public class RoleController : ApiController
     {
         // GET: Role
-        
+        //AddOrUpdate
+        RoleRepository roleRepository = new RoleRepository();
+        // GET: UserAPI
+        [Route("AddOrUpdate")]
+        [HttpPost]
+        public int AddOrUpdate(RoleRequest model)
+        {
+            int count = roleRepository.AddOrUpdate(model);
+            return count;
+        }
+
+        [Route("search")]
+        [HttpPost]
+        public RoleResponse search(RoleRequest model)
+        {
+            var dt = roleRepository.search(model);
+            return dt;
+        }
     }
 }

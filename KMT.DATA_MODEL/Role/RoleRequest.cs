@@ -12,5 +12,6 @@ namespace KMT.DATA_MODEL.Role
         public string MA { get; set; }
         public int page { get; set; }
         public int take { get; set; }
+        
     }
 }

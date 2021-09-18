@@ -125,8 +125,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuViewComponentController.cs" />
     <Compile Include="Controllers\PermissionChecker.cs" />
+    <Compile Include="Controllers\PermissionController.cs" />
     <Compile Include="Controllers\QuanTriController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2001,6 +2003,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Permission\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

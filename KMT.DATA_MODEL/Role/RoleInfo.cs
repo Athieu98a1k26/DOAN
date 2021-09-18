@@ -7,8 +7,8 @@ namespace KMT.DATA_MODEL.Role
 {
     public class RoleInfo
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string TEN { get; set; }
-        public string Ma { get; set; }
+        public string MA { get; set; }
     }
 }

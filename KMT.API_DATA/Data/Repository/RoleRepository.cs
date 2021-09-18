@@ -49,16 +49,22 @@ namespace KMT.API_DATA.Data.Repository
             return true;
         }
 
-        //public DataResponse search(RoleRequest model)
-        //{
-        //    int skip = (model.page * model.take) - model.take;
-        //    DataResponse data = new DataResponse();
-        //    var q = from x in DbContext.Roles
-        //            select x;
+        public RoleResponse search(RoleRequest model)
+        {
+            int skip = (model.page * model.take) - model.take;
+            RoleResponse dt = new RoleResponse();
+            var q = (from x in DbContext.Roles
+                    select new RoleInfo() { 
+                        Id=x.Id,
+                        TEN=x.TEN,
+                        MA=x.MA
+                    }).ToList()??new List<RoleInfo>();
 
-        //    var total = q.Count();
-        //    var cs = q.Skip(skip).Take(model.take);
-        //    var numberOnSelectedPage = cs.Count();
-        //}
+            dt.total = q.Count();
+            dt.data = q.Skip(skip).Take(model.take).ToList();
+            dt.page = model.page;
+            dt.take = model.take;
+            return dt;
+        }
     }
 }

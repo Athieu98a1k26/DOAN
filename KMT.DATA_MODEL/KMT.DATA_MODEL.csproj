@@ -70,11 +70,11 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataResponse.cs" />
     <Compile Include="MenuQuanTri\MenuQuanTriInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role\RoleInfo.cs" />
     <Compile Include="Role\RoleRequest.cs" />
+    <Compile Include="Role\RoleResponse.cs" />
     <Compile Include="Users\UserRegisterRequest.cs" />
   </ItemGroup>
   <ItemGroup>
