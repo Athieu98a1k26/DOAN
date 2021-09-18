@@ -166,6 +166,7 @@
     <Compile Include="Controllers\MenuQuanTriAPIController.cs" />
     <Compile Include="Controllers\PermissonController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\PermissionMenuController.cs" />
     <Compile Include="Controllers\RolePermissonController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserRoleController.cs" />
@@ -189,11 +190,19 @@
     <Compile Include="Data\MENUQUANTRI.cs">
       <DependentUpon>KMTDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\MUAHANG.cs">
+      <DependentUpon>KMTDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\PERMISSION.cs">
+      <DependentUpon>KMTDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\PERMISSION_MENUQUANTRI.cs">
       <DependentUpon>KMTDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Repository\MenuQuanTriRepository.cs" />
     <Compile Include="Data\Repository\PermissonRepository.cs" />
+    <Compile Include="Data\Repository\PermissionMenuRepository.cs" />
+    <Compile Include="Data\Repository\UserRoleRepository.cs" />
     <Compile Include="Data\Repository\RoleRepository.cs" />
     <Compile Include="Data\Repository\RolePermissonRepository.cs" />
     <Compile Include="Data\Repository\UserRepository.cs" />
@@ -201,6 +210,12 @@
       <DependentUpon>KMTDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\ROLE_PERMISSON.cs">
+      <DependentUpon>KMTDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\SANPHAM.cs">
+      <DependentUpon>KMTDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\THONGTINDULICH.cs">
       <DependentUpon>KMTDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\User.cs">

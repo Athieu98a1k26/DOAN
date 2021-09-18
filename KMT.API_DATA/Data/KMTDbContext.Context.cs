@@ -31,5 +31,9 @@ namespace KMT.API_DATA.Data
         public virtual DbSet<PERMISSION> PERMISSIONs { get; set; }
         public virtual DbSet<ROLE_PERMISSON> ROLE_PERMISSON { get; set; }
         public virtual DbSet<USER_ROLE> USER_ROLE { get; set; }
+        public virtual DbSet<MUAHANG> MUAHANGs { get; set; }
+        public virtual DbSet<PERMISSION_MENUQUANTRI> PERMISSION_MENUQUANTRI { get; set; }
+        public virtual DbSet<SANPHAM> SANPHAMs { get; set; }
+        public virtual DbSet<THONGTINDULICH> THONGTINDULICHes { get; set; }
     }
 }

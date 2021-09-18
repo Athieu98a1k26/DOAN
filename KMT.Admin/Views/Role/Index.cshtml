@@ -58,7 +58,39 @@
                 getDataPage(1);
             })
         })
+
+        $('.btnRefresh').click(function () {
+            $('#Id').val('');
+            $('#TEN').val('');
+            $('#MA').attr('readonly', false);
+            $('#MA').val('');
+        })
     })
+
+    $("#DataRoles").on("click", '.btnXoa', function () {
+        let Id = $(this).attr('data-id');
+        $.get('/Role/Delete?Id=' + Id, function (data) {
+            if (data.status == 500) {
+                toastr.error(data.message);
+            }
+            else if (data.status == 200) {
+                toastr.success(data.message);
+            }
+            getDataPage(1);
+        })
+    });
+
+    $("#DataRoles").on("click", '.btnSua', function () {
+        let Id = $(this).attr('data-id');
+        $.get('/Role/GetById?Id=' + Id, function (data) {
+            $('#TEN').val(data.TEN);
+            $('#MA').val(data.MA);
+            $('#MA').attr('readonly', true);
+            $('#Id').val(data.Id);
+        })
+    });
+
+
     function PaginationData(response) {
         let page = response.page;
         let take = response.take;
@@ -135,6 +167,7 @@
                     <th scope="col">STT</th>
                     <th scope="col">MA</th>
                     <th scope="col">TEN</th>
+                    <th scope="col">Thao tác</th>
                 </tr>
             </thead>
 
@@ -144,6 +177,7 @@
                     <th scope="row">`+(i+1)+`</th>
                     <td>`+data[i].MA+`</td>
                     <td>`+ data[i].TEN +`</td>
+                    <td><button type="button" data-id='`+ data[i].Id + `' class="btn btn-primary btnSua">Sửa</button><button data-id='` + data[i].Id +`' type="button" class="btn btn-danger btnXoa">Xóa</button></td>
                 </tr>`;
         }
         htmlRender += `</tbody>

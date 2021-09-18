@@ -31,5 +31,20 @@ namespace KMT.API_DATA.Controllers
             var dt = roleRepository.search(model);
             return dt;
         }
+        [Route("Delete")]
+        [HttpGet]
+        public int Delete(int Id)
+        {
+            var dt = roleRepository.Delete(Id);
+            return dt;
+        }
+
+        [Route("GetById")]
+        [HttpGet]
+        public RoleInfo GetById(int Id)
+        {
+            var dt = roleRepository.GetById(Id);
+            return dt;
+        }
     }
 }

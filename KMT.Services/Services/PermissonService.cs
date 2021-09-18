@@ -45,5 +45,25 @@ namespace KMT.Services
             }
             return new PermissonResponse();
         }
+
+        public async Task<int> Delete(int Id)
+        {
+            var dataString =
+                await _apiClient.GetStringAsync(string.Format("{0}/Delete?Id={1}", _remoteServiceBaseUrl, Id));
+
+            var response = JsonConvert.DeserializeObject<int>(dataString);
+
+            return response;
+        }
+
+        public async Task<PermissonInfo> GetById(int Id)
+        {
+            var dataString =
+                await _apiClient.GetStringAsync(string.Format("{0}/GetById?Id={1}", _remoteServiceBaseUrl, Id));
+
+            var response = JsonConvert.DeserializeObject<PermissonInfo>(dataString);
+
+            return response;
+        }
     }
 }

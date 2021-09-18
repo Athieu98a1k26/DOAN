@@ -36,5 +36,23 @@ namespace KMT.Admin.Controllers
             var resutl = await ApiService.permissonService.search(model);
             return Json(resutl, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public async Task<JsonResult> Delete(int Id)
+        {
+            var count = await ApiService.permissonService.Delete(Id);
+            if (count == 0)
+            {
+                return Json(new MessageResponse(500, "Xóa không thành công"), JsonRequestBehavior.AllowGet);
+            }
+            return Json(new MessageResponse(200, "Xóa thành công"), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetById(int Id)
+        {
+            var resutl = await ApiService.permissonService.GetById(Id);
+            return Json(resutl, JsonRequestBehavior.AllowGet);
+        }
     }
 }

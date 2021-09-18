@@ -31,7 +31,44 @@ namespace KMT.Services
 
             }
         }
-        //RolePermissonService
+        //PermissonMenuService
+        private PermissonMenuService _permissonMenuService;
+
+        public PermissonMenuService permissonMenuService
+        {
+            get
+            {
+                if (_permissonMenuService == null)
+                    lock (SyncRoot)
+                    {
+                        if (_permissonMenuService == null)
+                            _permissonMenuService = new PermissonMenuService(Url, HttpClient);
+                    }
+                return _permissonMenuService;
+
+            }
+        }
+
+
+
+        private UserRoleService _userRoleService;
+
+        public UserRoleService userRoleService
+        {
+            get
+            {
+                if (_userRoleService == null)
+                    lock (SyncRoot)
+                    {
+                        if (_userRoleService == null)
+                            _userRoleService = new UserRoleService(Url, HttpClient);
+                    }
+                return _userRoleService;
+
+            }
+        }
+
+
 
         private RolePermissonService _rolePermissonService;
 

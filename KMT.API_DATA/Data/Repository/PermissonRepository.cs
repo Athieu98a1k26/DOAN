@@ -12,12 +12,13 @@ namespace KMT.API_DATA.Data.Repository
     {
         public int AddOrUpdate(PermissonRequest model)
         {
-            if (IsDuplicate(model.MAQUYEN))
-            {
-                return 0;
-            }
+            
             if (model.Id==0)
             {
+                if (IsDuplicate(model.MAQUYEN))
+                {
+                    return 0;
+                }
                 //them mới
                 PERMISSION per = new PERMISSION();
                 per.TENQUYEN = model.TENQUYEN;
@@ -30,9 +31,21 @@ namespace KMT.API_DATA.Data.Repository
             else
             {
                 //cập nhật
-                var data = DbContext.Roles.FirstOrDefault(s => s.Id == model.Id);
-                data.TEN = model.TENQUYEN;
-                data.MA = model.MAQUYEN;
+                var data = DbContext.PERMISSIONs.FirstOrDefault(s => s.Id == model.Id);
+                data.TENQUYEN = model.TENQUYEN;
+                if (data.MAQUYEN != model.MAQUYEN)
+                {
+                    if (IsDuplicate(model.MAQUYEN))
+                    {
+                        return 0;
+                    }
+                    int count = DbContext.ROLE_PERMISSON.Count(s => s.PERMISSON.Contains("," + model.Id + ",") && s.IsDelete == false);
+                    if (count > 0)
+                    {
+                        return 0;
+                    }
+                }
+                data.MAQUYEN = model.MAQUYEN;
                 data.IsDelete = false;
                 data.NGAYSUA = DateTime.Now;
                 return DbContext.SaveChanges();
@@ -66,6 +79,32 @@ namespace KMT.API_DATA.Data.Repository
             dt.page = model.page;
             dt.take = model.take;
             return dt;
+        }
+
+        public int Delete(int Id)
+        {
+            //kiểm tra có quyền xóa
+            int count = DbContext.ROLE_PERMISSON.Count(s => s.PERMISSON.Contains("," + Id + ",") && s.IsDelete==false);
+            if (count > 0)
+            {
+                return 0;
+            }
+            var data = DbContext.PERMISSIONs.FirstOrDefault(s => s.Id == Id);
+
+            data.IsDelete = true;
+            return DbContext.SaveChanges();
+        }
+
+        public PermissonInfo GetById(int Id)
+        {
+            var data = DbContext.PERMISSIONs.Where(s => s.Id == Id).Select(s => new PermissonInfo()
+            {
+                Id = s.Id,
+                TENQUYEN = s.TENQUYEN,
+                MAQUYEN = s.MAQUYEN,
+
+            }).FirstOrDefault();
+            return data;
         }
     }
 }

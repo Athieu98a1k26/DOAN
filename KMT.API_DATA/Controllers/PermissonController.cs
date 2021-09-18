@@ -32,5 +32,21 @@ namespace KMT.API_DATA.Controllers
             var dt = permissonRepository.search(model);
             return dt;
         }
+
+        [Route("Delete")]
+        [HttpGet]
+        public int Delete(int Id)
+        {
+            var dt = permissonRepository.Delete(Id);
+            return dt;
+        }
+
+        [Route("GetById")]
+        [HttpGet]
+        public PermissonInfo GetById(int Id)
+        {
+            var dt = permissonRepository.GetById(Id);
+            return dt;
+        }
     }
 }

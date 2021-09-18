@@ -11,12 +11,13 @@ namespace KMT.API_DATA.Data.Repository
     {
         public int AddOrUpdate(RoleRequest model)
         {
-            if (IsDuplicate(model.MA))
-            {
-                return 0;
-            }
+            
             if (model.Id==0)
             {
+                if (IsDuplicate(model.MA))
+                {
+                    return 0;
+                }
                 //them mới
                 Role role = new Role();
                 role.TEN = model.TEN;
@@ -31,6 +32,24 @@ namespace KMT.API_DATA.Data.Repository
                 //cập nhật
                 var data = DbContext.Roles.FirstOrDefault(s => s.Id == model.Id);
                 data.TEN = model.TEN;
+                
+                if (data.MA!= model.MA)
+                {
+                    if (IsDuplicate(model.MA))
+                    {
+                        return 0;
+                    }
+                    int count = DbContext.ROLE_PERMISSON.Count(s => s.ROLEID == model.Id && s.IsDelete == false);
+                    if (count > 0)
+                    {
+                        return 0;
+                    }
+                    count = DbContext.USER_ROLE.Count(s => s.ROLE.Contains("," + model.Id + ",") && s.IsDelete == false);
+                    if (count > 0)
+                    {
+                        return 0;
+                    }
+                }
                 data.MA = model.MA;
                 data.NGAYSUA = DateTime.Now;
                 data.IsDelete = false;
@@ -67,6 +86,36 @@ namespace KMT.API_DATA.Data.Repository
             return dt;
         }
 
-        
+        public int Delete(int Id)
+        {
+            //kiểm tra có quyền xóa
+            int count=DbContext.ROLE_PERMISSON.Count(s => s.ROLEID == Id && s.IsDelete == false);
+            if (count > 0)
+            {
+                return 0;
+            }
+            count = DbContext.USER_ROLE.Count(s => s.ROLE.Contains(","+ Id+",") && s.IsDelete == false);
+            if (count > 0)
+            {
+                return 0;
+            }
+            var data = DbContext.Roles.FirstOrDefault(s => s.Id == Id);
+
+            data.IsDelete = true;
+            return DbContext.SaveChanges();
+        }
+
+        public RoleInfo GetById(int Id)
+        {
+            var data = DbContext.Roles.Where(s => s.Id == Id).Select(s => new RoleInfo()
+            {
+                Id = s.Id,
+                TEN = s.TEN,
+                MA = s.MA,
+
+            }).FirstOrDefault();
+            return data;
+        }
+
     }
 }

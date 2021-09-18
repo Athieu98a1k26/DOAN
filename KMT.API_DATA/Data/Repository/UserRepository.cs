@@ -15,12 +15,13 @@ namespace KMT.API_DATA.Data.Repository
         }
         public int AddOrUpdate(UserRequest model)
         {
-            if (IsDuplicate(model.UserName))
-            {
-                return 0;
-            }
+            
             if (model.Id == 0)
             {
+                if (IsDuplicate(model.UserName))
+                {
+                    return 0;
+                }
                 //them mới
                 User user = new User();
                 user.UserName = model.UserName;
@@ -35,7 +36,20 @@ namespace KMT.API_DATA.Data.Repository
             {
                 //cập nhật
                 var data = DbContext.Users.FirstOrDefault(s => s.Id == model.Id);
+                if (data.UserName!= model.UserName)
+                {
+                    if (IsDuplicate(model.UserName))
+                    {
+                        return 0;
+                    }
+                    int count = DbContext.USER_ROLE.Count(s => s.USERID == model.Id && s.IsDelete == false);
+                    if (count > 0)
+                    {
+                        return 0;
+                    }
+                }
                 data.UserName = model.UserName;
+
                 data.Name = model.Name;
                 data.PassWord = Encryption.EncryptPassword(model.PassWord);
                 data.NgaySua = DateTime.Now;
@@ -64,7 +78,7 @@ namespace KMT.API_DATA.Data.Repository
                      {
                          Id = x.Id,
                          Name = x.Name,
-                         UserName = x.UserName
+                         UserName = x.UserName,
 
                      }).ToList() ?? new List<UserInfo>();
 
@@ -77,6 +91,11 @@ namespace KMT.API_DATA.Data.Repository
 
         public int Delete(int Id)
         {
+            int count = DbContext.USER_ROLE.Count(s => s.USERID == Id && s.IsDelete == false);
+            if (count > 0)
+            {
+                return 0;
+            }
             var data = DbContext.Users.FirstOrDefault(s => s.Id == Id);
             data.IsDelete = true;
             return DbContext.SaveChanges();
