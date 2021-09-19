@@ -85,6 +85,8 @@
     <Compile Include="SanPham\SanPhamRequest.cs" />
     <Compile Include="SanPham\SanPhamResponse.cs" />
     <Compile Include="ThongTinDuLich\ThongTinDuLichInfo.cs" />
+    <Compile Include="ThongTinDuLich\ThongTinDuLichRequest.cs" />
+    <Compile Include="ThongTinDuLich\ThongTinDuLichResponse.cs" />
     <Compile Include="Users\UserInfo.cs" />
     <Compile Include="Users\UserRegisterRequest.cs" />
     <Compile Include="Users\UserRequest.cs" />
