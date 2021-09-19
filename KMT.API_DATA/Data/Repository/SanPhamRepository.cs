@@ -6,7 +6,7 @@ using System.Web;
 
 namespace KMT.API_DATA.Data.Repository
 {
-    public class SanPhamRepositoryBaseRepository : BaseRepository
+    public class SanPhamRepository : BaseRepository
     {
         public List<SanPhamInfo> GetAll()
         {
