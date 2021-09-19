@@ -1,6 +1,5 @@
 ﻿using KMT.API_DATA.Data.Repository;
 using KMT.DATA_MODEL.SanPham;
-using KMT.DATA_MODEL.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +8,10 @@ using System.Web.Http;
 
 namespace KMT.API_DATA.Controllers
 {
-    [RoutePrefix("api/dfsd")]
+    [RoutePrefix("api/SanPham")]
     public class SanPhamController : ApiController
     {
-        SanPhamRepositoryBaseRepository sanPhamRepository = new SanPhamRepositoryBaseRepository();
+        SanPhamRepository sanPhamRepository = new SanPhamRepository();
 
 
         [Route("AddOrUpdate")]
