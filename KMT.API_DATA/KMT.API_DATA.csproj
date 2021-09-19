@@ -170,11 +170,14 @@
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\RolePermissonController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
-    <Compile Include="Controllers\TinTucController.cs" />
+    <Compile Include="Controllers\ThongTinDuLichController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserRoleController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Data\BaseRepository.cs" />
+    <Compile Include="Data\BINHLUAN.cs">
+      <DependentUpon>KMTDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\KMTDbContext.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -199,6 +202,10 @@
     <Compile Include="Data\PERMISSION.cs">
       <DependentUpon>KMTDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\PERMISSION_MENUQUANTRI.cs">
+      <DependentUpon>KMTDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Repository\BinhLuanRepository.cs" />
     <Compile Include="Data\Repository\MenuQuanTriRepository.cs" />
     <Compile Include="Data\Repository\PermissonRepository.cs" />
     <Compile Include="Data\Repository\RoleRepository.cs" />

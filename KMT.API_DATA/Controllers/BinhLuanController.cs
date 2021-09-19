@@ -1,5 +1,5 @@
 ﻿using KMT.API_DATA.Data.Repository;
-using KMT.DATA_MODEL.RolePermisson;
+using KMT.DATA_MODEL.BinhLuan;
 using KMT.DATA_MODEL.Users;
 using System;
 using System.Collections.Generic;
@@ -12,37 +12,37 @@ namespace KMT.API_DATA.Controllers
     [RoutePrefix("api/rolepermisson")]
     public class BinhLuanController : ApiController
     {
-        RolePermissonRepository rolePermissonRepository = new RolePermissonRepository();
+        BinhLuanRepository BinhLuanRepository = new BinhLuanRepository();
 
 
         [Route("AddOrUpdate")]
         [HttpPost]
-        public int AddOrUpdate(RolePermissonRequest model)
+        public int AddOrUpdate(BinhLuanInfo model)
         {
-            int count = rolePermissonRepository.AddOrUpdate(model);
+            int count = BinhLuanRepository.AddOrUpdate(model);
             return count;
         }
 
         [Route("search")]
         [HttpPost]
-        public RolePermissonResponse search(RolePermissonRequest model)
+        public BinhLuanResponse search(BinhLuanRequest model)
         {
-            var dt = rolePermissonRepository.search(model);
+            var dt = BinhLuanRepository.search(model);
             return dt;
         }
         [Route("Delete")]
         [HttpGet]
         public int Delete(int Id)
         {
-            var dt = rolePermissonRepository.Delete(Id);
+            var dt = BinhLuanRepository.Delete(Id);
             return dt;
         }
 
         [Route("GetById")]
         [HttpGet]
-        public RolePermissonInfo GetById(int Id)
+        public BinhLuanInfo GetById(int Id)
         {
-            var dt = rolePermissonRepository.GetById(Id);
+            var dt = BinhLuanRepository.GetById(Id);
             return dt;
         }
     }
