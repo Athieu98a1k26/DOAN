@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using KMT.DATA_MODEL.MenuQuanTri;
 namespace KMT.Admin.Controllers
 {
+    [Authorize]
+    [AuthenticateUser]
     public class MenuViewComponentController : BaseController
     {
         // GET: MenuViewComponent
