@@ -145,6 +145,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="BaseViewPage.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AuthenticateUser.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -1861,6 +1862,12 @@
     <Content Include="vendor\fontawesome-free\webfonts\fa-brands-400.svg" />
     <Content Include="vendor\fontawesome-free\webfonts\fa-regular-400.svg" />
     <Content Include="vendor\fontawesome-free\webfonts\fa-solid-900.svg" />
+    <Content Include="vendor\img\undraw_posting_photo.svg" />
+    <Content Include="vendor\img\undraw_profile.svg" />
+    <Content Include="vendor\img\undraw_profile_1.svg" />
+    <Content Include="vendor\img\undraw_profile_2.svg" />
+    <Content Include="vendor\img\undraw_profile_3.svg" />
+    <Content Include="vendor\img\undraw_rocket.svg" />
     <Content Include="vendor\jquery-easing\jquery.easing.compatibility.js" />
     <Content Include="vendor\jquery-easing\jquery.easing.js" />
     <Content Include="vendor\jquery-easing\jquery.easing.min.js" />
@@ -2046,8 +2053,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="dllreference\" />
     <Folder Include="Views\AuthenticateUser\" />
+    <Folder Include="Views\BaseViewPage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

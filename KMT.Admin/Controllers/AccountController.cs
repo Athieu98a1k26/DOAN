@@ -118,7 +118,6 @@ namespace KMT.Admin.Controllers
                    url.Length > 1 &&
                    url[0] == '~' && url[1] == '/'; // "~/" or "~/foo"
         }
-        [HttpPost]
         public ActionResult Logout()
         {
             AuthenticationManager().SignOut(DefaultAuthenticationTypes.ApplicationCookie);

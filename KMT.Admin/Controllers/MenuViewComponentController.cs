@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using KMT.DATA_MODEL.MenuQuanTri;
+using KMT.DATA_MODEL.Users;
+
 namespace KMT.Admin.Controllers
 {
     [Authorize]
@@ -14,8 +16,10 @@ namespace KMT.Admin.Controllers
         // GET: MenuViewComponent
         public PartialViewResult Index()
         {
-            List<MenuQuanTriInfo> data = Task.Run(()=> ApiService.menuQuanTriService.GetAll()).Result;
-            
+            UserIdentity  userIdentity = (UserIdentity)Session["UserIdentity"];
+            List<MenuQuanTriInfo> data = userIdentity.lstMenuQuanTri;
+
+
             if (string.IsNullOrEmpty(Request.QueryString["IDMENU"]))
             {
                 data[0].IsActive = true;
@@ -29,7 +33,10 @@ namespace KMT.Admin.Controllers
                     if (item.Id== Id)
                     {
                         item.IsActive = true;
-                        break;
+                    }
+                    else
+                    {
+                        item.IsActive = false;
                     }
                 }
             }
