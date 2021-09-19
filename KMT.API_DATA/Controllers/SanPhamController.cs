@@ -1,6 +1,5 @@
 ﻿using KMT.API_DATA.Data.Repository;
 using KMT.DATA_MODEL.SanPham;
-using KMT.DATA_MODEL.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
