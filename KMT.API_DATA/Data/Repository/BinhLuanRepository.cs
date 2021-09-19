@@ -88,7 +88,7 @@ namespace KMT.API_DATA.Data.Repository
         public int Delete(int Id)
         {
             var data = DbContext.BINHLUANs.FirstOrDefault(s => s.Id == Id);
-            data.IsDelete = 1;
+            data.IsDelete = true;
             return DbContext.SaveChanges();
         }
 
