@@ -156,6 +156,8 @@
     <Compile Include="Controllers\QuanTriController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\RolePermissionController.cs" />
+    <Compile Include="Controllers\SanPhamController.cs" />
+    <Compile Include="Controllers\ThongTinDuLichController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserRoleController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2039,6 +2041,8 @@
     <Content Include="Views\RolePermission\Index.cshtml" />
     <Content Include="Views\UserRole\Index.cshtml" />
     <Content Include="Views\PermissionMenu\Index.cshtml" />
+    <Content Include="Views\SanPham\Index.cshtml" />
+    <Content Include="Views\ThongTinDuLich\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -8,12 +8,20 @@
     <form>
         <input type="hidden" class="form-control" id="Id">
         <div class="form-group">
-            <label for="TENQUYEN">Tên Quyền</label>
-            <input type="text" class="form-control" id="TENQUYEN" placeholder="Tên quyền">
+            <label for="TIEUDE">Tiêu để</label>
+            <input type="text" class="form-control" id="TIEUDE" placeholder="Tiêu đề">
         </div>
         <div class="form-group">
-            <label for="MAQUYEN">Mã quyền<span style="color:red">*</span></label>
-            <input type="text" class="form-control" id="MAQUYEN" placeholder="Mã quyền">
+            <label for="MOTA">Mô tả<span style="color:red">*</span></label>
+            <input type="text" class="form-control" id="MOTA" placeholder="Mô tả">
+        </div>
+        <div class="form-group">
+            <label for="NOIDUNG">Nội dung<span style="color:red">*</span></label>
+            <textarea name="NOIDUNG" id="NOIDUNG"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="HINHANH">Chọn hình ảnh</label>
+            <input type="file"id="HINHANH" name="HINHANH" accept="image/png, image/jpeg">
         </div>
         <button type="button" class="btn btn-primary btnUpdate">Lưu</button>
         <button type="button" class="btn btn-primary btnRefresh">Làm mới</button>
@@ -31,22 +39,51 @@
     </nav>
 
 </div>
-
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+@*<script src="https://cdn.ckeditor.com/4.16.2/standard-all/ckeditor.js"></script>*@
 <script>
+
+    @* public int Id { get; set; }
+        public string TIEUDE { get; set; }
+        public string NOIDUNG { get; set; }
+        public string MOTA { get; set; }
+        public string HINHANH { get; set; }
+        public string NGUOITAO { get; set; }
+        public DateTime NGAYTAO { get; set; }
+        public string NGUOISUA { get; set; }
+        public DateTime NGAYSUA { get; set; }
+        public int TRANGTHAI { get; set; }*@
     $(document).ready(function () {
+
+        CKEDITOR.replace('NOIDUNG', {
+            height: 150,
+            width: '95%',
+            toolbar: 'Basic'
+        });
         getDataPage(1);
         $('.btnUpdate').click(function () {
-            var TENQUYEN = $('#TENQUYEN').val();
+            var TIEUDE = $('#TIEUDE').val();
             var Id = $('#Id').val();
-            var MAQUYEN = $('#MAQUYEN').val();
-            if (MAQUYEN == '') {
-                toastr.warning('Vui lòng nhập mã quyền');
+            var NOIDUNG = $('#NOIDUNG').val();
+            if (NOIDUNG == '') {
+                toastr.warning('Vui lòng nhập nội dung');
                 return false;
             }
+            var MOTA = $('#MOTA').val();
+            if (!MOTA) {
+                toastr.warning('Vui lòng nhập mô tả');
+                return false;
+            }
+            var HINHANH = $('#HINHANH').val();
+            if (HINHANH == '') {
+                toastr.warning('Chọn một hình ảnh')
+            }
             var data = {
-                Id:Id,
-                TENQUYEN: TENQUYEN.trim(),
-                MAQUYEN: MAQUYEN.trim()
+                Id: Id,
+                TIEUDE: TIEUDE.trim(),
+                MOTA: MOTA.trim(),
+                NOIDUNG: NOIDUNG.trim(),
+                HINHANH: HINHANH.trim()
             }
             $.post('/ThongTinDuLich/AddOrUpdate', data, function (data) {
                 if (data.status == 500) {
@@ -61,9 +98,10 @@
 
         $('.btnRefresh').click(function () {
             $('#Id').val('');
-            $('#MAQUYEN').val('');
-            $('#TENQUYEN').val('');
-            $('#MAQUYEN').attr('readonly', false);
+            $('#TIEUDE').val('');
+            $('#MOTA').val('');
+            $('#NOIDUNG').val('');
+            $('#HINHANH').val('');
         })
     })
 
@@ -83,10 +121,12 @@
     $("#DataThongTinDuLich").on("click", '.btnSua', function () {
         let Id = $(this).attr('data-id');
         $.get('/ThongTinDuLich/GetById?Id=' + Id, function (data) {
-            $('#MAQUYEN').val(data.MAQUYEN);
-            $('#TENQUYEN').val(data.TENQUYEN);
-            $('#MAQUYEN').attr('readonly', true);
+
+            $('#TIEUDE').val(data.TIEUDE);
             $('#Id').val(data.Id);
+            $('#NOIDUNG').val(data.NOIDUNG);
+            $('#MOTA').val(data.MOTA);
+            $('#HINHANH').val(data.HINHANH);
         })
     });
 
@@ -151,7 +191,7 @@
     function LoadData(page, take) {
         let data = {
             page: page,
-            take:take
+            take: take
         }
         $.post('/ThongTinDuLich/search', data, function (data) {
             RenderData(data, "#DataThongTinDuLich");
@@ -164,19 +204,19 @@
             <thead>
                 <tr>
                     <th scope="col">STT</th>
-                    <th scope="col">MAQUYEN</th>
-                    <th scope="col">TENQUYEN</th>
-                    <th scope="col">Thao tác</th>
+                    <th scope="col">TIEUDE</th>
+                    <th scope="col">MOTA</th>
+                    <th scope="col">HINHANH</th>
                 </tr>
             </thead>
 
             <tbody>`;
         for (var i = 0; i < data.length; i++) {
             htmlRender += `<tr>
-                    <th scope="row">`+(i+1)+`</th>
-                    <td>`+data[i].MAQUYEN+`</td>
-                    <td>`+ data[i].TENQUYEN +`</td>
-                    <td><button type="button" data-id='`+ data[i].Id + `' class="btn btn-primary btnSua">Sửa</button><button data-id='` + data[i].Id +`' type="button" class="btn btn-danger btnXoa">Xóa</button></td>
+                    <th scope="row">`+ (i + 1) + `</th>
+                    <td>`+ data[i].TIEUDE + `</td>
+                    <td>`+ data[i].MOTA + `</td>
+                    <td><button type="button" data-id='`+ data[i].Id + `' class="btn btn-primary btnSua">Sửa</button><button data-id='` + data[i].Id + `' type="button" class="btn btn-danger btnXoa">Xóa</button></td>
                 </tr>`;
         }
         htmlRender += `</tbody>
