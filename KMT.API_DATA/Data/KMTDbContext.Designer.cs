@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\codevisual\DOAN\DOAN\KMT.API_DATA\Data\KMTDbContext.edmx'. 
+﻿// T4 code generation is enabled for model 'E:\WEB_52KMT01\KMT.Admin\KMT.API_DATA\Data\KMTDbContext.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -22,6 +22,15 @@ namespace KMT.API_DATA.Controllers
             return count;
         }
 
+        [Route("GetByUserName")]
+        [HttpGet]
+        public UserInfo GetByUserName(string UserName)
+        {
+
+            UserInfo userInfo = userRepository.GetByUserName(UserName);
+            return userInfo;
+        }
+
         [Route("AddOrUpdate")]
         [HttpPost]
         public int AddOrUpdate(UserRequest model)
@@ -42,6 +51,14 @@ namespace KMT.API_DATA.Controllers
         public int Delete(int Id)
         {
             var dt = userRepository.Delete(Id);
+            return dt;
+        }
+        //getUserIdentity
+        [Route("getUserIdentity")]
+        [HttpGet]
+        public UserIdentity getUserIdentity(int Id)
+        {
+            var dt = userRepository.getUserIdentity(Id);
             return dt;
         }
 

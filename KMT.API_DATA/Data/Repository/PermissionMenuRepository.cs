@@ -94,7 +94,7 @@ namespace KMT.API_DATA.Data.Repository
 
         public int Delete(int Id)
         {
-            var data = DbContext.ROLE_PERMISSON.FirstOrDefault(s => s.Id == Id && s.IsDelete == false);
+            var data = DbContext.PERMISSION_MENUQUANTRI.FirstOrDefault(s => s.Id == Id && s.IsDelete == false);
             data.IsDelete = true;
             return DbContext.SaveChanges();
         }

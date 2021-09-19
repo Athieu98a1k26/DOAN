@@ -9,7 +9,7 @@ using System.Web.Http;
 
 namespace KMT.API_DATA.Controllers
 {
-    [RoutePrefix("api/rolepermisson")]
+    [RoutePrefix("api/sdfsdfdfsdf")]
     public class ThongTinDuLichController : ApiController
     {
         ThongTinDuLichRepository ThongTinDuLichRepository = new ThongTinDuLichRepository();

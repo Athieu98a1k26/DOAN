@@ -15,5 +15,6 @@ namespace KMT.DATA_MODEL.Users
         public string RePassWord { get; set; }
         public int page { get; set; }
         public int take { get; set; }
+        public string ReturnUrl { get; set; }
     }
 }

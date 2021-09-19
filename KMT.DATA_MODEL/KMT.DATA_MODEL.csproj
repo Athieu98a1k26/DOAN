@@ -99,6 +99,7 @@
     <Compile Include="UserRole\UserRoleInfo.cs" />
     <Compile Include="UserRole\UserRoleRequest.cs" />
     <Compile Include="UserRole\UserRoleResponse.cs" />
+    <Compile Include="Users\UserIdentity.cs" />
     <Compile Include="Users\UserInfo.cs" />
     <Compile Include="Users\UserRegisterRequest.cs" />
     <Compile Include="Users\UserRequest.cs" />

@@ -6,6 +6,8 @@ using System.Web.Mvc;
 
 namespace KMT.Admin.Controllers
 {
+    [Authorize]
+    [AuthenticateUser]
     public class QuanTriController : BaseController
     {
         // GET: QuanTri

@@ -1,11 +1,9 @@
-﻿@using KMT.DATA_MODEL.MenuQuanTri;
-@using KMT.DATA_MODEL.Permisson;
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/Base.cshtml";
-    List<PermissonInfo> lstPermisson = (List<PermissonInfo>)ViewBag.lstPermissonData;
-    List<MenuQuanTriInfo> lstMenuQuanTri = (List<MenuQuanTriInfo>)ViewBag.lstMenuQuanTri;
-}
+﻿@using KMT.DATA_MODEL.Permisson;
+@using KMT.DATA_MODEL.Role;
+@{ ViewBag.Title = "Index";
+                Layout = "~/Views/Shared/Base.cshtml";
+                List<RoleInfo> lstRole = (List<RoleInfo>)ViewBag.lstRoleData;
+                List<PermissonInfo> lstPermisson = (List<PermissonInfo>)ViewBag.lstPermissonData; }
 
 <div class="container-fluid">
     <form>
@@ -13,24 +11,18 @@
         <div class="form-group">
             <label for="ROLEID">Chức vụ</label>
             <select name="ROLEID" id="ROLEID" style="width:50%">
-                @{
-                    foreach (var item in lstPermisson)
-                    {
-                        <option value="@item.Id">@item.TEN</option>
-                    }
-                }
+                @{ foreach (var item in lstRole)
+                                {
+                    <option value="@item.Id">@item.TEN</option> } }
 
             </select>
         </div>
         <div class="form-group">
             <label for="PERMISSON">Quyền<span style="color:red">*</span></label>
             <select name="PERMISSON" id="PERMISSON" style="width:50%" multiple="multiple">
-                @{
-                    foreach (var item in lstPermisson)
-                    {
-                        <option value="@item.Id">@item.TENQUYEN</option>
-                    }
-                }
+                @{ foreach (var item in lstPermisson)
+                                {
+                    <option value="@item.Id">@item.TENQUYEN</option> } }
             </select>
         </div>
         <button type="button" class="btn btn-primary btnUpdate">Lưu</button>
@@ -59,16 +51,16 @@
             var ROLEID = $('#ROLEID').val();
             var Id = $('#Id').val();
             var PERMISSON = $('#PERMISSON').val();
-            if (PERMISSON.length==0) {
+            if (PERMISSON.length == 0) {
                 toastr.warning('Vui lòng nhập quyền');
                 return false;
             }
             var data = {
                 Id: Id,
                 ROLEID: ROLEID,
-                PERMISSON: ','+PERMISSON.join(',')+','
+                PERMISSON: ',' + PERMISSON.join(',') + ','
             }
-            
+
             $.post('/RolePermission/AddOrUpdate', data, function (data) {
                 if (data.status == 500) {
                     toastr.error(data.message);
@@ -83,7 +75,7 @@
             $('#Id').val('');
             $('#PERMISSON').val([]).trigger('change');
         })
-        
+
 
     })
     //add event
@@ -165,7 +157,7 @@
     }
 
     function getDataPage(page) {
-        let take = 5;
+        let take = 20;
         LoadData(page, take);
     }
 
@@ -206,7 +198,7 @@
                     <th scope="row">`+ (i + 1) + `</th>
                     <td>`+ role.TEN + `</td>
                     <td>`+ permisson + `</td>
-                    <td><button type="button" data-id='`+ data[i].Id + `' class="btn btn-primary btnSua">Sửa</button><button data-id='` + data[i].Id +`' type="button" class="btn btn-danger btnXoa">Xóa</button></td>
+                    <td><button type="button" data-id='`+ data[i].Id + `' class="btn btn-primary btnSua">Sửa</button><button data-id='` + data[i].Id + `' type="button" class="btn btn-danger btnXoa">Xóa</button></td>
                 </tr>`;
         }
         htmlRender += `</tbody>

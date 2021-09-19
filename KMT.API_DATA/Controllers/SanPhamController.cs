@@ -9,10 +9,10 @@ using System.Web.Http;
 
 namespace KMT.API_DATA.Controllers
 {
-    [RoutePrefix("api/rolepermisson")]
+    [RoutePrefix("api/dfsd")]
     public class SanPhamController : ApiController
     {
-        SanPhamRepository sanPhamRepository = new SanPhamRepository();
+        SanPhamRepositoryBaseRepository sanPhamRepository = new SanPhamRepositoryBaseRepository();
 
 
         [Route("AddOrUpdate")]
