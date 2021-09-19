@@ -26,6 +26,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="URL" Type="nvarchar(max)" />
           <Property Name="NAME" Type="nvarchar(max)" />
+          <Property Name="TYPE" Type="int" />
         </EntityType>
         <EntityType Name="MUAHANG">
           <Key>
@@ -185,6 +186,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TYPE" Type="Int32" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -330,6 +332,7 @@
           <EntitySetMapping Name="MENUQUANTRIs">
             <EntityTypeMapping TypeName="KTM_TESTModel.MENUQUANTRI">
               <MappingFragment StoreEntitySet="MENUQUANTRI">
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
                 <ScalarProperty Name="URL" ColumnName="URL" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

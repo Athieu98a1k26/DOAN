@@ -1,0 +1,78 @@
+﻿@{
+    Layout = null;
+}
+
+<script type="text/javascript">
+                        //<![CDATA[
+                        nv_DigitalClock('digclock');
+                        $(document).ready(function () {
+                            $('#menu-site-default .dropdown').hover(function () {
+                                $(this).addClass('open');
+                            }, function () {
+                                $(this).removeClass('open');
+                            });
+                            $('#menu-site-default a').hover(function () {
+                                $(this).attr("rel", $(this).attr("title"));
+                                $(this).removeAttr("title");
+                            }, function () {
+                                $(this).attr("title", $(this).attr("rel"));
+                                $(this).removeAttr("rel");
+                            });
+                        });
+                        //]]>
+</script>
+<script type="text/javascript" src="/themes/default/js/global.slide_roundabout/jquery.roundabout.min.js?t=19">
+</script>
+<script type="text/javascript">
+                        //<![CDATA[
+                        //global.slide_roundabout
+                        $(window).load(function () {
+                            $('ul#sample').roundabout({
+                                autoplay: true,
+                                autoplayDuration: 1800,         //3000  1800
+                                autoplayPauseOnHover: true,
+                                /**/
+                                enableDrag: true
+                            });
+                        });
+                        //]]>
+</script>
+<div id="slide_roundabout">
+    <ul id="sample">
+        <li class="thaotrinh">
+            <img src="~/CỔNG DU LỊCH THÁI NGUYÊN_files/thaihai.jpg" />
+            <div class="toBottom posA opaH01 traA15e w100">
+                <h3><a href="http://festivaltrathainguyen.vn/Home/Gioi-thieu/190/THAI-NGUYEN-DE-NHAT-DANH-TRA" target="_top">Thái Nguyên Đệ nhất danh Trà</a></h3>
+                <p>Trà Thái Nguyên là sự kết tinh của những búp chè non tươi “một tôm hai lá” được trồng trên mảnh đất tiểu khí hậu dưới chân Tam Đảo, nơi dòng sông Công ngọt mát chảy qua, và qua bàn tay khéo léo của người dân nơi đây đã kết tinh nên thương hiệu Trà Thái Nguyên</p>
+            </div>
+        </li>
+        <li class="thaotrinh">
+            <img src="~/CỔNG DU LỊCH THÁI NGUYÊN_files/thaihai.jpg" />
+            <div class="toBottom posA opaH01 traA15e w100">
+                <h3><a href="http://thainguyentourism.vn/vi/du-khach/Khoi-hanh/Diem-nhanh-cac-diem-du-lich-chinh-o-Thai-Nguyen-2.html" target="_top">Hồ Núi Cốc</a></h3>
+                <p>Bồng bềnh, chòng trành, một vùng núi cao nước sâu, thuyền trôi dưới chân Tam Đảo, một màu xanh huyền huyền thoại!</p>
+            </div>
+        </li>
+        <li class="thaotrinh">
+            <img src="~/CỔNG DU LỊCH THÁI NGUYÊN_files/thaihai.jpg" />
+            <div class="toRight posA opaH01 traA15e w100">
+                <h3><a href="http://thainguyentourism.vn/vi/about/Di-tich-lich-su-ATK-Dinh-Hoa.html" target="_top">Nhà tưởng niệm Chủ tịch Hồ Chí Minh tại ATK Định Hoá</a></h3>
+                <p>Nhà tưởng niệm Chủ tịch Hồ Chí Minh và các nhà lãnh đạo Đảng, Nhà nước đã sống và làm việc từ 1947-1954 để lãnh đạo cuộc kháng chiến 9 năm chống thực dân Pháp</p>
+            </div>
+        </li>
+        <li class="thaotrinh">
+            <img src="~/CỔNG DU LỊCH THÁI NGUYÊN_files/thaihai.jpg" />
+            <div class="toLeft posA opaH01 traA15e w100">
+                <h3><a href="http://thaihai.vn/" target="_blank">Khu bảo tồn làng nhà sàn dân tộc sinh thái</a></h3>
+                <p>THÁI HẢI</p>
+            </div>
+        </li>
+        <li class="thaotrinh">
+            <img src="~/CỔNG DU LỊCH THÁI NGUYÊN_files/thaihai.jpg" />
+            <div class="fixedBot posA opaH01 traA15e w100">
+                <h3><a href="thainguyentourism.vn" target="_top">Di tích lịch sử Quốc gia 60 liệt sỹ TNXP Đại đội 915 , Đội 91 Bắc Thái</a></h3>
+                <p>Thể hiện sự tri ân với lịch sử và tiếp nối truyền thống hào hùng của thế hệ đi trước, Khu di tích lịch sử TNXP 915 đã được khởi công xây dựng để lưu niệm các liệt sĩ TNXP đại đội 915 đã anh dũng hy sinh trong cuộc tập kích của không quân đế quốc Mỹ vào đêm 24/12/1972.</p>
+            </div>
+        </li>
+    </ul>
+</div>

@@ -155,6 +155,7 @@
     <Compile Include="Controllers\PermissionController.cs" />
     <Compile Include="Controllers\PermissionMenuController.cs" />
     <Compile Include="Controllers\QuanTriController.cs" />
+    <Compile Include="Controllers\RoleChecker.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\RolePermissionController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
@@ -2055,6 +2056,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\AuthenticateUser\" />
     <Folder Include="Views\BaseViewPage\" />
+    <Folder Include="Views\RoleChecker\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

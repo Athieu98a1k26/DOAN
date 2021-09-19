@@ -27,5 +27,15 @@ namespace KMT.Services
 
             return response;
         }
+        public async Task<List<MenuQuanTriInfo>> GetListMenuByType(int type)
+        {
+            var dataString =
+                await _apiClient.GetStringAsync(string.Format("{0}/GetListMenuByType?type={1}", _remoteServiceBaseUrl,type));
+
+            var response = JsonConvert.DeserializeObject<List<MenuQuanTriInfo>>(dataString);
+
+            return response;
+        }
+        // public List<MenuQuanTriInfo> GetListMenuByType(int type)
     }
 }

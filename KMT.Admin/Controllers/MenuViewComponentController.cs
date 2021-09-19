@@ -13,10 +13,9 @@ namespace KMT.Admin.Controllers
     [AuthenticateUser]
     public class MenuViewComponentController : BaseController
     {
-        // GET: MenuViewComponent
         public PartialViewResult Index()
         {
-            UserIdentity  userIdentity = (UserIdentity)Session["UserIdentity"];
+            UserIdentity  userIdentity = (UserIdentity)Session["userIdentity"];
             List<MenuQuanTriInfo> data = userIdentity.lstMenuQuanTri;
 
 

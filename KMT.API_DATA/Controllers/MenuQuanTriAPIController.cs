@@ -20,5 +20,14 @@ namespace KMT.API_DATA.Controllers
            
             return menuQuanTriRepository.GetAll();
         }
+        //List<MenuQuanTriInfo> GetListMenuByType(int type)
+
+        [Route("GetListMenuByType")]
+        [HttpGet]
+        public List<MenuQuanTriInfo> GetListMenuByType(int type)
+        {
+
+            return menuQuanTriRepository.GetListMenuByType(type);
+        }
     }
 }

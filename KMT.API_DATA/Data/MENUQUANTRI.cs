@@ -17,5 +17,6 @@ namespace KMT.API_DATA.Data
         public int Id { get; set; }
         public string URL { get; set; }
         public string NAME { get; set; }
+        public Nullable<int> TYPE { get; set; }
     }
 }
