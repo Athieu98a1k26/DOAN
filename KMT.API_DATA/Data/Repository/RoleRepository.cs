@@ -39,6 +39,16 @@ namespace KMT.API_DATA.Data.Repository
                     {
                         return 0;
                     }
+                    int count = DbContext.ROLE_PERMISSON.Count(s => s.ROLEID == model.Id && s.IsDelete == false);
+                    if (count > 0)
+                    {
+                        return 0;
+                    }
+                    count = DbContext.USER_ROLE.Count(s => s.ROLE.Contains("," + model.Id + ",") && s.IsDelete == false);
+                    if (count > 0)
+                    {
+                        return 0;
+                    }
                 }
                 data.MA = model.MA;
                 data.NGAYSUA = DateTime.Now;
@@ -76,6 +86,36 @@ namespace KMT.API_DATA.Data.Repository
             return dt;
         }
 
-        
+        public int Delete(int Id)
+        {
+            //kiểm tra có quyền xóa
+            int count=DbContext.ROLE_PERMISSON.Count(s => s.ROLEID == Id && s.IsDelete == false);
+            if (count > 0)
+            {
+                return 0;
+            }
+            count = DbContext.USER_ROLE.Count(s => s.ROLE.Contains(","+ Id+",") && s.IsDelete == false);
+            if (count > 0)
+            {
+                return 0;
+            }
+            var data = DbContext.Roles.FirstOrDefault(s => s.Id == Id);
+
+            data.IsDelete = true;
+            return DbContext.SaveChanges();
+        }
+
+        public RoleInfo GetById(int Id)
+        {
+            var data = DbContext.Roles.Where(s => s.Id == Id).Select(s => new RoleInfo()
+            {
+                Id = s.Id,
+                TEN = s.TEN,
+                MA = s.MA,
+
+            }).FirstOrDefault();
+            return data;
+        }
+
     }
 }

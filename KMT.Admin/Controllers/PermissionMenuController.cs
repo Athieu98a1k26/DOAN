@@ -1,7 +1,5 @@
 ﻿using KMT.Admin.Models;
-using KMT.DATA_MODEL.Permisson;
-using KMT.DATA_MODEL.Role;
-using KMT.DATA_MODEL.RolePermisson;
+using KMT.DATA_MODEL.PermissionMenu;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,40 +9,35 @@ using System.Web.Mvc;
 
 namespace KMT.Admin.Controllers
 {
-    public class RolePermissionController : BaseController
+    public class PermissionMenuController : BaseController
     {
-        // GET: RolePermission
-        public async Task<ActionResult> Index()
+        // GET: PermissionMenu
+        public ActionResult Index()
         {
-            RoleResponse lstRoleData = await ApiService.roleService.search(new RoleRequest() { page = 1, take = int.MaxValue });
-            PermissonResponse lstPermissonData = await ApiService.permissonService.search(new PermissonRequest() { page = 1, take = int.MaxValue });
-            ViewBag.lstRoleData = lstRoleData.data;
-            ViewBag.lstPermissonData = lstPermissonData.data;
+
             return View();
         }
         [HttpPost]
-        public async Task<JsonResult> AddOrUpdate(RolePermissonRequest model)
+        public async Task<JsonResult> AddOrUpdate(PermissionMenuRequest model)
         {
-            
-            int count = await ApiService.rolePermissonService.AddOrUpdate(model);
+            int count = await ApiService.permissonMenuService.AddOrUpdate(model);
             if (count == 0)
             {
                 return Json(new MessageResponse(500, "Cập nhật không thành công"), JsonRequestBehavior.AllowGet);
             }
             return Json(new MessageResponse(200, "Cập nhật thành công"), JsonRequestBehavior.AllowGet);
         }
-
         [HttpPost]
-        public async Task<JsonResult> search(RolePermissonRequest model)
+        public async Task<JsonResult> search(PermissionMenuRequest model)
         {
-            var resutl = await ApiService.rolePermissonService.search(model);
+            var resutl = await ApiService.permissonMenuService.search(model);
             return Json(resutl, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public async Task<JsonResult> Delete(int Id)
         {
-            var count = await ApiService.rolePermissonService.Delete(Id);
+            var count = await ApiService.permissonMenuService.Delete(Id);
             if (count == 0)
             {
                 return Json(new MessageResponse(500, "Xóa không thành công"), JsonRequestBehavior.AllowGet);
@@ -55,9 +48,8 @@ namespace KMT.Admin.Controllers
         [HttpGet]
         public async Task<JsonResult> GetById(int Id)
         {
-            var resutl = await ApiService.rolePermissonService.GetById(Id);
+            var resutl = await ApiService.permissonMenuService.GetById(Id);
             return Json(resutl, JsonRequestBehavior.AllowGet);
         }
-
     }
 }

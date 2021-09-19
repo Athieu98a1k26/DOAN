@@ -4,18 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7640ea8042014fdc949c076e96d6ebb1" Name="Diagram1" ZoomLevel="55">
-        <EntityTypeShape EntityType="KTM_TESTModel.MENUQUANTRI" Width="1.5" PointX="0.5" PointY="0.5" />
-        <EntityTypeShape EntityType="KTM_TESTModel.User" Width="1.5" PointX="0.5" PointY="2.5" />
-        <EntityTypeShape EntityType="KTM_TESTModel.Role" Width="1.5" PointX="2.5" PointY="0.5" />
-        <EntityTypeShape EntityType="KTM_TESTModel.PERMISSION" Width="1.5" PointX="2.25" PointY="3.25" />
-        <EntityTypeShape EntityType="KTM_TESTModel.ROLE_PERMISSON" Width="1.5" PointX="4.375" PointY="0.5" />
-        <EntityTypeShape EntityType="KTM_TESTModel.USER_ROLE" Width="1.5" PointX="4.125" PointY="3.375" />
-        <EntityTypeShape EntityType="KTM_TESTModel.MUAHANG" Width="1.5" PointX="8.5" PointY="0.5" />
-        <EntityTypeShape EntityType="KTM_TESTModel.SANPHAM" Width="1.5" PointX="8.5" PointY="3.625" />
-        <EntityTypeShape EntityType="KTM_TESTModel.THONGTINDULICH" Width="1.5" PointX="6.5" PointY="0.5" />
-        <EntityTypeShape EntityType="KTM_TESTModel.PERMISSION_MENUQUANTRI" Width="1.5" PointX="6.25" PointY="3.875" />
-        <EntityTypeShape EntityType="KTM_TESTModel.BINHLUAN" Width="1.5" PointX="10.5" PointY="0.5" />
+      <Diagram DiagramId="7640ea8042014fdc949c076e96d6ebb1" Name="Diagram1">
+        <EntityTypeShape EntityType="KTM_TESTModel.MENUQUANTRI" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="KTM_TESTModel.User" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="KTM_TESTModel.Role" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="KTM_TESTModel.PERMISSION" Width="1.5" PointX="3.5" PointY="3.5" />
+        <EntityTypeShape EntityType="KTM_TESTModel.ROLE_PERMISSON" Width="1.5" PointX="6.125" PointY="0.75" />
+        <EntityTypeShape EntityType="KTM_TESTModel.USER_ROLE" Width="1.5" PointX="6.375" PointY="4.75" />
+        <EntityTypeShape EntityType="KTM_TESTModel.MUAHANG" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="KTM_TESTModel.PERMISSION_MENUQUANTRI" Width="1.5" PointX="2.75" PointY="7.75" />
+        <EntityTypeShape EntityType="KTM_TESTModel.SANPHAM" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="KTM_TESTModel.THONGTINDULICH" Width="1.5" PointX="8.75" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

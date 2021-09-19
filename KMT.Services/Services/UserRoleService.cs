@@ -1,5 +1,6 @@
-﻿using KMT.DATA_MODEL;
-using KMT.DATA_MODEL.Role;
+﻿using KMT.DATA_MODEL.RolePermisson;
+using KMT.DATA_MODEL.UserRole;
+using KMT.DATA_MODEL.Users;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,17 +10,17 @@ using System.Web;
 
 namespace KMT.Services
 {
-    public class RoleService
+    public class UserRoleService
     {
         private readonly IHttpClient _apiClient;
         private readonly string _remoteServiceBaseUrl;
-        public RoleService(string remoteService, IHttpClient httpClient)
+        public UserRoleService(string remoteService, IHttpClient httpClient)
         {
-            _remoteServiceBaseUrl = string.Format("{0}/api/role", remoteService);
+            _remoteServiceBaseUrl = string.Format("{0}/api/userRole", remoteService);
 
             _apiClient = httpClient;
         }
-        public async Task<int> AddOrUpdate(RoleRequest model)
+        public async Task<int> AddOrUpdate(UserRoleRequest model)
         {
             var dataString =
                 await _apiClient.PostAsync(string.Format("{0}/AddOrUpdate", _remoteServiceBaseUrl), model);
@@ -32,17 +33,17 @@ namespace KMT.Services
             return 0;
         }
 
-        public async Task<RoleResponse> search(RoleRequest model)
+        public async Task<UserRoleResponse> search(UserRoleRequest model)
         {
             var dataString =
                 await _apiClient.PostAsync(string.Format("{0}/search", _remoteServiceBaseUrl), model);
             if (dataString.IsSuccessStatusCode)
             {
-                var response = JsonConvert.DeserializeObject<RoleResponse>(await dataString.Content.ReadAsStringAsync());
+                var response = JsonConvert.DeserializeObject<UserRoleResponse>(await dataString.Content.ReadAsStringAsync());
 
                 return response;
             }
-            return new RoleResponse();
+            return new UserRoleResponse();
         }
 
         public async Task<int> Delete(int Id)
@@ -55,12 +56,12 @@ namespace KMT.Services
             return response;
         }
 
-        public async Task<RoleInfo> GetById(int Id)
+        public async Task<UserRoleInfo> GetById(int Id)
         {
             var dataString =
                 await _apiClient.GetStringAsync(string.Format("{0}/GetById?Id={1}", _remoteServiceBaseUrl, Id));
 
-            var response = JsonConvert.DeserializeObject<RoleInfo>(dataString);
+            var response = JsonConvert.DeserializeObject<UserRoleInfo>(dataString);
 
             return response;
         }

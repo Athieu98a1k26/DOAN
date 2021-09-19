@@ -42,6 +42,11 @@ namespace KMT.API_DATA.Data.Repository
                     {
                         return 0;
                     }
+                    int count = DbContext.USER_ROLE.Count(s => s.USERID == model.Id && s.IsDelete == false);
+                    if (count > 0)
+                    {
+                        return 0;
+                    }
                 }
                 data.UserName = model.UserName;
 
@@ -73,7 +78,7 @@ namespace KMT.API_DATA.Data.Repository
                      {
                          Id = x.Id,
                          Name = x.Name,
-                         UserName = x.UserName
+                         UserName = x.UserName,
 
                      }).ToList() ?? new List<UserInfo>();
 
@@ -86,6 +91,11 @@ namespace KMT.API_DATA.Data.Repository
 
         public int Delete(int Id)
         {
+            int count = DbContext.USER_ROLE.Count(s => s.USERID == Id && s.IsDelete == false);
+            if (count > 0)
+            {
+                return 0;
+            }
             var data = DbContext.Users.FirstOrDefault(s => s.Id == Id);
             data.IsDelete = true;
             return DbContext.SaveChanges();

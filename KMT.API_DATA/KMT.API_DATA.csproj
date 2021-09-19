@@ -162,22 +162,16 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\BinhLuanController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuQuanTriAPIController.cs" />
-    <Compile Include="Controllers\MuaHangController.cs" />
     <Compile Include="Controllers\PermissonController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\PermissionMenuController.cs" />
     <Compile Include="Controllers\RolePermissonController.cs" />
-    <Compile Include="Controllers\SanPhamController.cs" />
-    <Compile Include="Controllers\ThongTinDuLichController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserRoleController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Data\BaseRepository.cs" />
-    <Compile Include="Data\BINHLUAN.cs">
-      <DependentUpon>KMTDbContext.tt</DependentUpon>
-    </Compile>
     <Compile Include="Data\KMTDbContext.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -205,14 +199,13 @@
     <Compile Include="Data\PERMISSION_MENUQUANTRI.cs">
       <DependentUpon>KMTDbContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\Repository\BinhLuanRepository.cs" />
     <Compile Include="Data\Repository\MenuQuanTriRepository.cs" />
     <Compile Include="Data\Repository\MuaHangRepository.cs" />
     <Compile Include="Data\Repository\PermissonRepository.cs" />
+    <Compile Include="Data\Repository\PermissionMenuRepository.cs" />
+    <Compile Include="Data\Repository\UserRoleRepository.cs" />
     <Compile Include="Data\Repository\RoleRepository.cs" />
     <Compile Include="Data\Repository\RolePermissonRepository.cs" />
-    <Compile Include="Data\Repository\SanPhamRepository.cs" />
-    <Compile Include="Data\Repository\ThongTinDuLichRepository.cs" />
     <Compile Include="Data\Repository\UserRepository.cs" />
     <Compile Include="Data\Role.cs">
       <DependentUpon>KMTDbContext.tt</DependentUpon>
@@ -308,11 +301,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\BinhLuan\" />
-    <Folder Include="Views\MuaHang\" />
     <Folder Include="Views\Role\" />
-    <Folder Include="Views\SanPham\" />
-    <Folder Include="Views\TinTuc\" />
     <Folder Include="Views\UserAPI\" />
     <Folder Include="Views\UserRole\" />
   </ItemGroup>

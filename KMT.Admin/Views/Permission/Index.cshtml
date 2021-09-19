@@ -58,7 +58,38 @@
                 getDataPage(1);
             })
         })
+
+        $('.btnRefresh').click(function () {
+            $('#Id').val('');
+            $('#MAQUYEN').val('');
+            $('#TENQUYEN').val('');
+            $('#MAQUYEN').attr('readonly', false);
+        })
     })
+
+    $("#DataPermission").on("click", '.btnXoa', function () {
+        let Id = $(this).attr('data-id');
+        $.get('/Permission/Delete?Id=' + Id, function (data) {
+            if (data.status == 500) {
+                toastr.error(data.message);
+            }
+            else if (data.status == 200) {
+                toastr.success(data.message);
+            }
+            getDataPage(1);
+        })
+    });
+
+    $("#DataPermission").on("click", '.btnSua', function () {
+        let Id = $(this).attr('data-id');
+        $.get('/Permission/GetById?Id=' + Id, function (data) {
+            $('#MAQUYEN').val(data.MAQUYEN);
+            $('#TENQUYEN').val(data.TENQUYEN);
+            $('#MAQUYEN').attr('readonly', true);
+            $('#Id').val(data.Id);
+        })
+    });
+
     function PaginationData(response) {
         let page = response.page;
         let take = response.take;
@@ -135,6 +166,7 @@
                     <th scope="col">STT</th>
                     <th scope="col">MAQUYEN</th>
                     <th scope="col">TENQUYEN</th>
+                    <th scope="col">Thao tác</th>
                 </tr>
             </thead>
 
@@ -144,6 +176,7 @@
                     <th scope="row">`+(i+1)+`</th>
                     <td>`+data[i].MAQUYEN+`</td>
                     <td>`+ data[i].TENQUYEN +`</td>
+                    <td><button type="button" data-id='`+ data[i].Id + `' class="btn btn-primary btnSua">Sửa</button><button data-id='` + data[i].Id +`' type="button" class="btn btn-danger btnXoa">Xóa</button></td>
                 </tr>`;
         }
         htmlRender += `</tbody>

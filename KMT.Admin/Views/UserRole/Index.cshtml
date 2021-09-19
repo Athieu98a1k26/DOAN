@@ -1,34 +1,43 @@
-﻿
+﻿@using KMT.DATA_MODEL.Users;
+@using KMT.DATA_MODEL.Role;
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/Base.cshtml";
+Layout = "~/Views/Shared/Base.cshtml";
+List<RoleInfo> lstRole = (List<RoleInfo>)ViewBag.lstRoleData;
+List<UserInfo> lstUserData = (List<UserInfo>)ViewBag.lstUserData;
 }
 
 <div class="container-fluid">
     <form>
         <input type="hidden" class="form-control" id="Id">
         <div class="form-group">
-            <label for="Name">Tên người dùng</label>
-            <input type="text" class="form-control" id="Name" placeholder="Tên người dùng">
+            <label  style="width:7%" for="USERID">Người dùng</label>
+            <select name="USERID" id="USERID" style="width:50%">
+                @{
+                    foreach (var item in lstUserData)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                }
+
+            </select>
         </div>
         <div class="form-group">
-            <label for="UserName">Tên tài khoản<span style="color:red">*</span></label>
-            <input type="text" class="form-control" id="UserName" placeholder="Tên tài khoản">
-        </div>
-        <div class="form-group">
-            <label for="PassWord">Mật khẩu<span style="color:red">*</span></label>
-            <input type="password" class="form-control" id="PassWord" placeholder="Mật khẩu">
-        </div>
-        <div class="form-group">
-            <label for="RePassWord">Nhập lại mật khẩu<span style="color:red">*</span></label>
-            <input type="password" class="form-control" id="RePassWord" placeholder="nhập lại mật khẩu">
+            <label style="width:7%" for="ROLE">Chức vụ<span style="color:red">*</span></label>
+            <select name="ROLE" id="ROLE" style="width:50%" multiple="multiple">
+                @{
+                    foreach (var item in lstRole)
+                    {
+                        <option value="@item.Id">@item.TEN</option>
+                    }
+                }
+            </select>
         </div>
         <button type="button" class="btn btn-primary btnUpdate">Lưu</button>
         <button type="button" class="btn btn-primary btnRefresh">Làm mới</button>
     </form>
     <div id="DataPermission" class="row">
 
-        
     </div>
 </div>
 
@@ -42,34 +51,25 @@
 
 <script>
     $(document).ready(function () {
+        $('#USERID').select2();
+        $('#ROLE').select2();
+
         getDataPage(1);
         $('.btnUpdate').click(function () {
-            var Name = $('#Name').val();
+            var USERID = $('#USERID').val();
             var Id = $('#Id').val();
-            var UserName = $('#UserName').val();
-            var PassWord = $('#PassWord').val();
-            var RePassWord = $('#RePassWord').val();
-
-            if (UserName == '') {
-                toastr.warning('Vui lòng nhập tên tài khoản');
-                return false;
-            }
-            if (PassWord == '') {
-                toastr.warning('Vui lòng nhập mật khẩu');
-                return false;
-            }
-            if (PassWord != RePassWord) {
-                toastr.warning('Mật khẩu không trùng nhau, vui lòng nhập lại!');
+            var ROLE = $('#ROLE').val();
+            if (ROLE.length == 0) {
+                toastr.warning('Vui lòng chọn chức vụ');
                 return false;
             }
             var data = {
-                Id:Id,
-                Name: Name.trim(),
-                UserName: UserName.trim(),
-                PassWord: PassWord.trim(),
-                RePassWord: RePassWord.trim(),
+                Id: Id,
+                USERID: USERID,
+                ROLE: ',' + ROLE.join(',') + ','
             }
-            $.post('/User/AddOrUpdate', data, function (data) {
+
+            $.post('/UserRole/AddOrUpdate', data, function (data) {
                 if (data.status == 500) {
                     toastr.error(data.message);
                 }
@@ -79,20 +79,17 @@
                 getDataPage(1);
             })
         })
-
         $('.btnRefresh').click(function () {
             $('#Id').val('');
-            $('#Name').val('');
-            $('#PassWord').val('');
-            $('#RePassWord').val('');
-            $('#UserName').attr('readonly', false);
-            $('#UserName').val('');
+            $('#ROLE').val([]).trigger('change');
         })
-    })
 
+
+    })
+    //add event
     $("#DataPermission").on("click", '.btnXoa', function () {
         let Id = $(this).attr('data-id');
-        $.get('/User/Delete?Id=' + Id, function (data) {
+        $.get('/UserRole/Delete?Id=' + Id, function (data) {
             if (data.status == 500) {
                 toastr.error(data.message);
             }
@@ -105,14 +102,11 @@
 
     $("#DataPermission").on("click", '.btnSua', function () {
         let Id = $(this).attr('data-id');
-        $.get('/User/GetById?Id=' + Id, function (data) {
-            $('#Name').val(data.Name);
-            $('#UserName').val(data.UserName);
-            $('#PassWord').val('');
-            $('#RePassWord').val('');
-            $('#UserName').attr('readonly', true);
+        $.get('/UserRole/GetById?Id=' + Id, function (data) {
+            let lstRole = data.ROLE.split(',');
+            $('#ROLE').val(lstRole).trigger('change');
+            $('#USERID').val(data.USERID).trigger('change');
             $('#Id').val(data.Id);
-
         })
     });
 
@@ -178,10 +172,13 @@
     function LoadData(page, take) {
         let data = {
             page: page,
-            take:take
+            take: take
         }
-        $.post('/User/search', data, function (data) {
-            RenderData(data, "#DataPermission");
+        $.post('/UserRole/search', data, function (data) {
+            if (data.data!=null) {
+                RenderData(data, "#DataPermission");
+            }
+            
         })
     }
     function RenderData(response, strElement) {
@@ -191,24 +188,31 @@
             <thead>
                 <tr>
                     <th scope="col">STT</th>
-                    <th scope="col">NAME</th>
-                    <th scope="col">USERNAME</th>
-                    <th scope="col">Thao tác</th>
+                    <th scope="col">Chức vụ</th>
+                    <th scope="col">Danh sách quyền</th>
+                     <th scope="col">Thao tác</th>
                 </tr>
             </thead>
 
             <tbody>`;
         for (var i = 0; i < data.length; i++) {
+            let lstRoleInfo = data[i].lstRoleInfo;
+            let role = '';
+            for (var j = 0; j < lstRoleInfo.length; j++) {
+                role += lstRoleInfo[j].TEN + ',';
+            }
+
+            let user = data[i].UserInfo;
             htmlRender += `<tr>
-                    <th scope="row">`+(i+1)+`</th>
-                    <td>`+ data[i].Name+`</td>
-                    <td>`+ data[i].UserName +`</td>
-                    <td><button type="button" data-id='`+ data[i].Id + `' class="btn btn-primary btnSua">Sửa</button><button data-id='` + data[i].Id +`' type="button" class="btn btn-danger btnXoa">Xóa</button></td>
+                    <th scope="row">`+ (i + 1) + `</th>
+                    <td>`+ user.Name + `</td>
+                    <td>`+ role + `</td>
+                    <td><button type="button" data-id='`+ data[i].Id + `' class="btn btn-primary btnSua">Sửa</button><button data-id='` + data[i].Id + `' type="button" class="btn btn-danger btnXoa">Xóa</button></td>
                 </tr>`;
         }
         htmlRender += `</tbody>
         </table>`;
         $(strElement).append(htmlRender);
         PaginationData(response);
-    } 
+    }
 </script>

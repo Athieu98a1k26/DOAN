@@ -81,7 +81,7 @@
         })
         $('.btnRefresh').click(function () {
             $('#Id').val('');
-            $('#PERMISSON').val('');
+            $('#PERMISSON').val([]).trigger('change');
         })
         
 
@@ -175,7 +175,9 @@
             take: take
         }
         $.post('/RolePermission/search', data, function (data) {
-            RenderData(data, "#DataPermission");
+            if (data.data != null) {
+                RenderData(data, "#DataPermission");
+            }
         })
     }
     function RenderData(response, strElement) {

@@ -5,20 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="KTM_TESTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'KTM_TEST.dbo.BINHLUAN' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="BINHLUAN">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" />
           <Property Name="IDSANPHAM" Type="int" />
           <Property Name="NOIDUNG" Type="nvarchar(max)" />
           <Property Name="IDUSER" Type="int" />
-          <Property Name="NGUOITAO" Type="nvarchar(max)" />
-          <Property Name="NGAYTAO" Type="datetime" />
-          <Property Name="NGUOISUA" Type="nvarchar(max)" />
-          <Property Name="NGAYSUA" Type="datetime" />
-          <Property Name="IsDelete" Type="bit" />
-        </EntityType>
+        </EntityType>-->
         <EntityType Name="MENUQUANTRI">
           <Key>
             <PropertyRef Name="Id" />
@@ -149,7 +143,6 @@
           <Property Name="IsDelete" Type="bit" />
         </EntityType>
         <EntityContainer Name="KTM_TESTModelStoreContainer">
-          <EntitySet Name="BINHLUAN" EntityType="Self.BINHLUAN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MENUQUANTRI" EntityType="Self.MENUQUANTRI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MUAHANG" EntityType="Self.MUAHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PERMISSION" EntityType="Self.PERMISSION" Schema="dbo" store:Type="Tables" />
@@ -173,10 +166,9 @@
           <EntitySet Name="ROLE_PERMISSON" EntityType="KTM_TESTModel.ROLE_PERMISSON" />
           <EntitySet Name="USER_ROLE" EntityType="KTM_TESTModel.USER_ROLE" />
           <EntitySet Name="MUAHANGs" EntityType="KTM_TESTModel.MUAHANG" />
+          <EntitySet Name="PERMISSION_MENUQUANTRI" EntityType="KTM_TESTModel.PERMISSION_MENUQUANTRI" />
           <EntitySet Name="SANPHAMs" EntityType="KTM_TESTModel.SANPHAM" />
           <EntitySet Name="THONGTINDULICHes" EntityType="KTM_TESTModel.THONGTINDULICH" />
-          <EntitySet Name="PERMISSION_MENUQUANTRI" EntityType="KTM_TESTModel.PERMISSION_MENUQUANTRI" />
-          <EntitySet Name="BINHLUANs" EntityType="KTM_TESTModel.BINHLUAN" />
         </EntityContainer>
         <EntityType Name="MENUQUANTRI">
           <Key>
@@ -264,6 +256,19 @@
           <Property Name="NGUOISUA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NGAYSUA" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="PERMISSION_MENUQUANTRI">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PERMISSIONID" Type="Int32" />
+          <Property Name="MENU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NGUOITAO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYTAO" Type="DateTime" Precision="3" />
+          <Property Name="NGUOISUA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYSUA" Type="DateTime" Precision="3" />
+          <Property Name="IsDelete" Type="Boolean" />
+        </EntityType>
         <EntityType Name="SANPHAM">
           <Key>
             <PropertyRef Name="Id" />
@@ -293,33 +298,6 @@
           <Property Name="NGUOISUA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NGAYSUA" Type="DateTime" Precision="3" />
           <Property Name="TRANGTHAI" Type="Int32" />
-        </EntityType>
-        <EntityType Name="PERMISSION_MENUQUANTRI">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PERMISSIONID" Type="Int32" />
-          <Property Name="MENU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NGUOITAO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NGAYTAO" Type="DateTime" Precision="3" />
-          <Property Name="NGUOISUA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NGAYSUA" Type="DateTime" Precision="3" />
-          <Property Name="IsDelete" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="BINHLUAN">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IDSANPHAM" Type="Int32" />
-          <Property Name="NOIDUNG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IDUSER" Type="Int32" />
-          <Property Name="NGUOITAO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NGAYTAO" Type="DateTime" Precision="3" />
-          <Property Name="NGUOISUA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NGAYSUA" Type="DateTime" Precision="3" />
-          <Property Name="IsDelete" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -420,6 +398,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PERMISSION_MENUQUANTRI">
+            <EntityTypeMapping TypeName="KTM_TESTModel.PERMISSION_MENUQUANTRI">
+              <MappingFragment StoreEntitySet="PERMISSION_MENUQUANTRI">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="NGAYSUA" ColumnName="NGAYSUA" />
+                <ScalarProperty Name="NGUOISUA" ColumnName="NGUOISUA" />
+                <ScalarProperty Name="NGAYTAO" ColumnName="NGAYTAO" />
+                <ScalarProperty Name="NGUOITAO" ColumnName="NGUOITAO" />
+                <ScalarProperty Name="MENU" ColumnName="MENU" />
+                <ScalarProperty Name="PERMISSIONID" ColumnName="PERMISSIONID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="SANPHAMs">
             <EntityTypeMapping TypeName="KTM_TESTModel.SANPHAM">
               <MappingFragment StoreEntitySet="SANPHAM">
@@ -448,35 +440,6 @@
                 <ScalarProperty Name="MOTA" ColumnName="MOTA" />
                 <ScalarProperty Name="NOIDUNG" ColumnName="NOIDUNG" />
                 <ScalarProperty Name="TIEUDE" ColumnName="TIEUDE" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PERMISSION_MENUQUANTRI">
-            <EntityTypeMapping TypeName="KTM_TESTModel.PERMISSION_MENUQUANTRI">
-              <MappingFragment StoreEntitySet="PERMISSION_MENUQUANTRI">
-                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="NGAYSUA" ColumnName="NGAYSUA" />
-                <ScalarProperty Name="NGUOISUA" ColumnName="NGUOISUA" />
-                <ScalarProperty Name="NGAYTAO" ColumnName="NGAYTAO" />
-                <ScalarProperty Name="NGUOITAO" ColumnName="NGUOITAO" />
-                <ScalarProperty Name="MENU" ColumnName="MENU" />
-                <ScalarProperty Name="PERMISSIONID" ColumnName="PERMISSIONID" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BINHLUANs">
-            <EntityTypeMapping TypeName="KTM_TESTModel.BINHLUAN">
-              <MappingFragment StoreEntitySet="BINHLUAN">
-                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="NGAYSUA" ColumnName="NGAYSUA" />
-                <ScalarProperty Name="NGUOISUA" ColumnName="NGUOISUA" />
-                <ScalarProperty Name="NGAYTAO" ColumnName="NGAYTAO" />
-                <ScalarProperty Name="NGUOITAO" ColumnName="NGUOITAO" />
-                <ScalarProperty Name="IDUSER" ColumnName="IDUSER" />
-                <ScalarProperty Name="NOIDUNG" ColumnName="NOIDUNG" />
-                <ScalarProperty Name="IDSANPHAM" ColumnName="IDSANPHAM" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
