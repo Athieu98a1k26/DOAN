@@ -176,7 +176,9 @@
     <Compile Include="Controllers\UserRoleController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Data\BaseRepository.cs" />
-    <Compile Include="Data\BINHLUAN.cs" />
+    <Compile Include="Data\BINHLUAN.cs">
+      <DependentUpon>KMTDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\KMTDbContext.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
