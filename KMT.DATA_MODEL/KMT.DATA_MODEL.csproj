@@ -74,6 +74,9 @@
     <Compile Include="BinhLuan\BinhLuanRequest.cs" />
     <Compile Include="BinhLuan\BinhLuanResponse.cs" />
     <Compile Include="MenuQuanTri\MenuQuanTriInfo.cs" />
+    <Compile Include="MuaHang\MuaHangInfo.cs" />
+    <Compile Include="MuaHang\MuaHangRequest.cs" />
+    <Compile Include="MuaHang\MuaHangResponse.cs" />
     <Compile Include="Permisson\PermissonInfo.cs" />
     <Compile Include="Permisson\PermissonRequest.cs" />
     <Compile Include="Permisson\PermissonResponse.cs" />
