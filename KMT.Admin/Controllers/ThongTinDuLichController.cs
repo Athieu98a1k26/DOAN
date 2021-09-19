@@ -17,8 +17,26 @@ namespace KMT.Admin.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public async Task<JsonResult> AddOrUpdate(ThongTinDuLichInfo model)
+        [HttpPost, ValidateInput(false)]
+        public async Task<JsonResult> Update(ThongTinDuLichInfo model)
+        {
+            if (string.IsNullOrEmpty(model.TIEUDE))
+            {
+                return Json(new MessageResponse(500, "Vui lòng nhập tiêu đề"), JsonRequestBehavior.AllowGet);
+            }
+            if (string.IsNullOrEmpty(model.HINHANH))
+            {
+                return Json(new MessageResponse(500, "Vui lòng chọn hình ảnh"), JsonRequestBehavior.AllowGet);
+            }
+            int count = await ApiService.thongTinDuLichService.AddOrUpdate(model);
+            if (count == 0)
+            {
+                return Json(new MessageResponse(500, "Cập nhật không thành công"), JsonRequestBehavior.AllowGet);
+            }
+            return Json(new MessageResponse(200, "Cập nhật thành công"), JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost, ValidateInput(false)]
+        public async Task<JsonResult> Add(ThongTinDuLichInfo model)
         {
             if (string.IsNullOrEmpty(model.TIEUDE))
             {
