@@ -11,9 +11,12 @@
         <div class="form-group">
             <label for="ROLEID">Chức vụ</label>
             <select name="ROLEID" id="ROLEID" style="width:50%">
-                @{ foreach (var item in lstRole)
-                                {
-                    <option value="@item.Id">@item.TEN</option> } }
+                @{
+                    foreach (var item in lstPermisson)
+                    {
+                        <option value="@item.Id">@item.TEN</option>
+                    }
+                }
 
             </select>
         </div>

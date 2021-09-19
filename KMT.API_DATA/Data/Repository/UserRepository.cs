@@ -106,7 +106,7 @@ namespace KMT.API_DATA.Data.Repository
         //GetByUserName
         public UserInfo GetByUserName(string UserName)
         {
-            var data = DbContext.Users.Where(s => s.UserName == UserName).Select(s => new UserInfo()
+            var data = DbContext.Users.Where(s => s.UserName == UserName && s.IsDelete==false).Select(s => new UserInfo()
             {
                 Id = s.Id,
                 Name = s.Name,
