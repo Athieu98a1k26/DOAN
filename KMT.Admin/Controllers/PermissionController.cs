@@ -1,4 +1,5 @@
 ﻿using KMT.Admin.Models;
+using KMT.DATA_MODEL.MenuQuanTri;
 using KMT.DATA_MODEL.Permisson;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace KMT.Admin.Controllers
         // GET: Permission
         public ActionResult Index()
         {
+            
             return View();
         }
         [HttpPost]

@@ -1,5 +1,7 @@
 ﻿using KMT.Admin.Models;
+using KMT.DATA_MODEL.MenuQuanTri;
 using KMT.DATA_MODEL.PermissionMenu;
+using KMT.DATA_MODEL.Permisson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +14,12 @@ namespace KMT.Admin.Controllers
     public class PermissionMenuController : BaseController
     {
         // GET: PermissionMenu
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-
+            List<MenuQuanTriInfo> lstMenuQuanTri = await ApiService.menuQuanTriService.GetAll();
+            PermissonResponse lstPermissonData = await ApiService.permissonService.search(new PermissonRequest() { page = 1, take = int.MaxValue });
+            ViewBag.lstMenuQuanTri = lstMenuQuanTri;
+            ViewBag.lstPermissonData = lstPermissonData.data;
             return View();
         }
         [HttpPost]

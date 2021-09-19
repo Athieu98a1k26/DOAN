@@ -2011,10 +2011,10 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\RolePermission\Index.cshtml" />
     <Content Include="Views\UserRole\Index.cshtml" />
+    <Content Include="Views\PermissionMenu\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\PermissionMenu\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

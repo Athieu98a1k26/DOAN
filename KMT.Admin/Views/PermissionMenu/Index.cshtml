@@ -1,10 +1,10 @@
-﻿@using KMT.DATA_MODEL.MenuQuanTri;
-@using KMT.DATA_MODEL.Permisson;
+﻿@using KMT.DATA_MODEL.Permisson;
+@using KMT.DATA_MODEL.Role;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/Base.cshtml";
+    List<RoleInfo> lstRole = (List<RoleInfo>)ViewBag.lstRoleData;
     List<PermissonInfo> lstPermisson = (List<PermissonInfo>)ViewBag.lstPermissonData;
-    List<MenuQuanTriInfo> lstMenuQuanTri = (List<MenuQuanTriInfo>)ViewBag.lstMenuQuanTri;
 }
 
 <div class="container-fluid">
