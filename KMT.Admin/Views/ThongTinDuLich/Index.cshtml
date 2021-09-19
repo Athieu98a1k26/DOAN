@@ -43,16 +43,6 @@
 @*<script src="https://cdn.ckeditor.com/4.16.2/standard-all/ckeditor.js"></script>*@
 <script>
 
-    @* public int Id { get; set; }
-        public string TIEUDE { get; set; }
-        public string NOIDUNG { get; set; }
-        public string MOTA { get; set; }
-        public string HINHANH { get; set; }
-        public string NGUOITAO { get; set; }
-        public DateTime NGAYTAO { get; set; }
-        public string NGUOISUA { get; set; }
-        public DateTime NGAYSUA { get; set; }
-        public int TRANGTHAI { get; set; }*@
     $(document).ready(function () {
 
         CKEDITOR.replace('NOIDUNG', {
@@ -64,7 +54,7 @@
         $('.btnUpdate').click(function () {
             var TIEUDE = $('#TIEUDE').val();
             var Id = $('#Id').val();
-            var NOIDUNG = $('#NOIDUNG').val();
+            var NOIDUNG = CKEDITOR.instances['NOIDUNG'].getData();;
             if (NOIDUNG == '') {
                 toastr.warning('Vui lòng nhập nội dung');
                 return false;
@@ -100,7 +90,7 @@
             $('#Id').val('');
             $('#TIEUDE').val('');
             $('#MOTA').val('');
-            $('#NOIDUNG').val('');
+            CKEDITOR.instances['NOIDUNG'].setData("");
             $('#HINHANH').val('');
         })
     })
@@ -124,7 +114,7 @@
 
             $('#TIEUDE').val(data.TIEUDE);
             $('#Id').val(data.Id);
-            $('#NOIDUNG').val(data.NOIDUNG);
+            CKEDITOR.instances['NOIDUNG'].setData(data.NOIDUNG);
             $('#MOTA').val(data.MOTA);
             $('#HINHANH').val(data.HINHANH);
         })

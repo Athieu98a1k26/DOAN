@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KMT.Services.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -45,6 +46,38 @@ namespace KMT.Services
                             _permissonMenuService = new PermissonMenuService(Url, HttpClient);
                     }
                 return _permissonMenuService;
+
+            }
+        }
+        private ThongTinDuLichService _thongTinDuLichService;
+
+        public ThongTinDuLichService thongTinDuLichService
+        {
+            get
+            {
+                if (_thongTinDuLichService == null)
+                    lock (SyncRoot)
+                    {
+                        if (_thongTinDuLichService == null)
+                            _thongTinDuLichService = new ThongTinDuLichService(Url, HttpClient);
+                    }
+                return _thongTinDuLichService;
+
+            }
+        }
+        private SanPhamService _sanPhamService;
+
+        public SanPhamService sanPhamService
+        {
+            get
+            {
+                if (_sanPhamService == null)
+                    lock (SyncRoot)
+                    {
+                        if (_sanPhamService == null)
+                            _sanPhamService = new SanPhamService(Url, HttpClient);
+                    }
+                return _sanPhamService;
 
             }
         }

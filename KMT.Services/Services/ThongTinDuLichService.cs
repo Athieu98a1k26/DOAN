@@ -18,7 +18,7 @@ namespace KMT.Services.Services
 
             _apiClient = httpClient;
         }
-        public async Task<int> AddOrUpdate(ThongTinDuLichRequest model)
+        public async Task<int> AddOrUpdate(ThongTinDuLichInfo model)
         {
             var dataString =
                 await _apiClient.PostAsync(string.Format("{0}/AddOrUpdate", _remoteServiceBaseUrl), model);

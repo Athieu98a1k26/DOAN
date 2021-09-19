@@ -1,6 +1,6 @@
 ﻿using KMT.Admin.Models;
 using KMT.DATA_MODEL;
-using KMT.DATA_MODEL.Role;
+using KMT.DATA_MODEL.ThongTinDuLich;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,13 +18,17 @@ namespace KMT.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<JsonResult> AddOrUpdate(RoleRequest model)
+        public async Task<JsonResult> AddOrUpdate(ThongTinDuLichInfo model)
         {
-            if (string.IsNullOrEmpty(model.MA))
+            if (string.IsNullOrEmpty(model.TIEUDE))
             {
-                return Json(new MessageResponse(500, "Vui lòng nhập mã"), JsonRequestBehavior.AllowGet);
+                return Json(new MessageResponse(500, "Vui lòng nhập tiêu đề"), JsonRequestBehavior.AllowGet);
             }
-            int count = await ApiService.roleService.AddOrUpdate(model);
+            if (string.IsNullOrEmpty(model.HINHANH))
+            {
+                return Json(new MessageResponse(500, "Vui lòng chọn hình ảnh"), JsonRequestBehavior.AllowGet);
+            }
+            int count = await ApiService.thongTinDuLichService.AddOrUpdate(model);
             if (count == 0)
             {
                 return Json(new MessageResponse(500, "Cập nhật không thành công"), JsonRequestBehavior.AllowGet);
@@ -32,16 +36,16 @@ namespace KMT.Admin.Controllers
             return Json(new MessageResponse(200, "Cập nhật thành công"), JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
-        public async Task<JsonResult> search(RoleRequest model)
+        public async Task<JsonResult> search(ThongTinDuLichRequest model)
         {
-            var resutl = await ApiService.roleService.search(model);
+            var resutl = await ApiService.thongTinDuLichService.search(model);
             return Json(resutl, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public async Task<JsonResult> Delete(int Id)
         {
-            var count = await ApiService.roleService.Delete(Id);
+            var count = await ApiService.thongTinDuLichService.Delete(Id);
             if (count == 0)
             {
                 return Json(new MessageResponse(500, "Xóa không thành công"), JsonRequestBehavior.AllowGet);
@@ -52,7 +56,7 @@ namespace KMT.Admin.Controllers
         [HttpGet]
         public async Task<JsonResult> GetById(int Id)
         {
-            var resutl = await ApiService.roleService.GetById(Id);
+            var resutl = await ApiService.thongTinDuLichService.GetById(Id);
             return Json(resutl, JsonRequestBehavior.AllowGet);
         }
     }
