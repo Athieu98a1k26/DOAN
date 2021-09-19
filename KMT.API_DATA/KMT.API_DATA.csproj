@@ -207,6 +207,7 @@
     </Compile>
     <Compile Include="Data\Repository\BinhLuanRepository.cs" />
     <Compile Include="Data\Repository\MenuQuanTriRepository.cs" />
+    <Compile Include="Data\Repository\MuaHangRepository.cs" />
     <Compile Include="Data\Repository\PermissonRepository.cs" />
     <Compile Include="Data\Repository\RoleRepository.cs" />
     <Compile Include="Data\Repository\RolePermissonRepository.cs" />

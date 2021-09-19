@@ -1,5 +1,5 @@
 ﻿using KMT.API_DATA.Data.Repository;
-using KMT.DATA_MODEL.RolePermisson;
+using KMT.DATA_MODEL.SanPham;
 using KMT.DATA_MODEL.Users;
 using System;
 using System.Collections.Generic;
@@ -12,37 +12,37 @@ namespace KMT.API_DATA.Controllers
     [RoutePrefix("api/rolepermisson")]
     public class SanPhamController : ApiController
     {
-        RolePermissonRepository rolePermissonRepository = new RolePermissonRepository();
+        SanPhamRepository sanPhamRepository = new SanPhamRepository();
 
 
         [Route("AddOrUpdate")]
         [HttpPost]
-        public int AddOrUpdate(RolePermissonRequest model)
+        public int AddOrUpdate(SanPhamInfo model)
         {
-            int count = rolePermissonRepository.AddOrUpdate(model);
+            int count = sanPhamRepository.AddOrUpdate(model);
             return count;
         }
 
         [Route("search")]
         [HttpPost]
-        public RolePermissonResponse search(RolePermissonRequest model)
+        public SanPhamResponse search(SanPhamRequest model)
         {
-            var dt = rolePermissonRepository.search(model);
+            var dt = sanPhamRepository.search(model);
             return dt;
         }
         [Route("Delete")]
         [HttpGet]
         public int Delete(int Id)
         {
-            var dt = rolePermissonRepository.Delete(Id);
+            var dt = sanPhamRepository.Delete(Id);
             return dt;
         }
 
         [Route("GetById")]
         [HttpGet]
-        public RolePermissonInfo GetById(int Id)
+        public SanPhamInfo GetById(int Id)
         {
-            var dt = rolePermissonRepository.GetById(Id);
+            var dt = sanPhamRepository.GetById(Id);
             return dt;
         }
     }
