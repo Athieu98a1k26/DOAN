@@ -2,51 +2,66 @@
 @{
     ViewBag.Title = "Đăng nhập";
     Layout = null;
+    string ReturnUrl = (string)ViewBag.ReturnUrl;
 }
 <link href="~/Content/Account.css" rel="stylesheet" />
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+<link href="~/Content/select2.min.css" rel="stylesheet" />
+<!-- Bootstrap core JavaScript-->
+<script src="~/vendor/jquery/jquery.min.js"></script>
+<script src="~/Scripts/select2.min.js"></script>
+<script src="~/Scripts/toastr.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
 <div class="container">
     <div class="card card-container">
         <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
         <img id="profile-img" class="profile-img-card" src="~/Asset/avatar_2x.png" />
         <p id="profile-name" class="profile-name-card"></p>
         <form class="form-signin">
+            <input type="hidden" id="ReturnUrl" value="@ReturnUrl">
             <span id="reauth-email" class="reauth-email"></span>
             <input type="text" id="UserName" class="form-control" placeholder="Nhập tên tài khoản" required autofocus>
             <input type="password" id="PassWord" class="form-control" placeholder="Nhập mật khẩu" required>
-            <input type="password" id="RePassWord" class="form-control" placeholder="Nhập lại mật khẩu" required>
-            <button class="btn btn-lg btn-primary btn-block btn-signin" type="button">Đăng ký</button>
+            <button class="btn btn-lg btn-primary btn-block btn-signin" type="button">Đăng Nhập</button>
         </form><!-- /form -->
-        <a href="#" class="Notification error">
-            
-        </a>
     </div><!-- /card-container -->
 </div><!-- /container -->
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<script src="~/Scripts/bootstrap.min.js"></script>
+
 <script>
     $(document).ready(function () {
 
         $('.btn-signin').click(function () {
             var UserName = $("#UserName").val();
             var PassWord = $('#PassWord').val();
-            var RePassWord = $('#RePassWord').val();
+            var ReturnUrl = $('#ReturnUrl').val();
             if (UserName == '') {
-                $('.Notification').text('Vui lòng nhập tên tài khoản!');
+                toastr.warning('Vui lòng nhập tên tài khoản!');
+                return false;
             }
             if (PassWord == '') {
-                $('.Notification').text('Vui lòng nhập mật khẩu!');
-            }
-            if (PassWord != RePassWord) {
-                $('.Notification').text('Mật khẩu không trùng!');
+                toastr.warning('Vui lòng nhập mật khẩu!');
+                return false;
             }
             var data = {
                 UserName: UserName.trim(),
                 PassWord: PassWord.trim(),
-                RePassWord: RePassWord.trim()
+                ReturnUrl: ReturnUrl.trim()
             }
-            $.post('Register', data, function (data) {
-                alert(data);
+            $.post('/Account/Login', data, function (data) {
+                if (data.status == 500) {
+                    toastr.error(data.message);
+                }
+                else {
+                    if (data.mesage == null || data.mesage=='/') {
+                        window.location ='/QuanTri?IDMENU=1';
+                    }
+                    else {
+                        window.location = data.mesage;
+                    }
+                    
+                    //toastr.success(data.message);
+                }
             })
         })
     })

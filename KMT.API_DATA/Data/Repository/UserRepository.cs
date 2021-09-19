@@ -1,4 +1,7 @@
-﻿using KMT.DATA_MODEL.Users;
+﻿using KMT.DATA_MODEL.MenuQuanTri;
+using KMT.DATA_MODEL.Permisson;
+using KMT.DATA_MODEL.Role;
+using KMT.DATA_MODEL.Users;
 using KMT.Libraly.Helper;
 using System;
 using System.Collections.Generic;
@@ -100,10 +103,24 @@ namespace KMT.API_DATA.Data.Repository
             data.IsDelete = true;
             return DbContext.SaveChanges();
         }
+        //GetByUserName
+        public UserInfo GetByUserName(string UserName)
+        {
+            var data = DbContext.Users.Where(s => s.UserName == UserName).Select(s => new UserInfo()
+            {
+                Id = s.Id,
+                Name = s.Name,
+                UserName = s.UserName,
+                PassWord=s.PassWord
+
+            }).FirstOrDefault();
+            return data;
+        }
+
 
         public UserInfo GetById(int Id)
         {
-            var data = DbContext.Users.Where(s => s.Id == Id).Select(s=>new UserInfo() { 
+            var data = DbContext.Users.Where(s => s.Id == Id && s.IsDelete==false).Select(s=>new UserInfo() { 
                 Id=s.Id,
                 Name=s.Name,
                 UserName=s.UserName,
@@ -111,5 +128,69 @@ namespace KMT.API_DATA.Data.Repository
             }).FirstOrDefault();
             return data;
         }
+
+        public UserIdentity getUserIdentity(int Id)
+        {
+            UserIdentity userIdentity = new UserIdentity();
+            userIdentity.userInfo = GetById(Id);
+
+            USER_ROLE user_Role = DbContext.USER_ROLE.FirstOrDefault(s => s.USERID == Id && s.IsDelete==false);
+            if (user_Role==null)
+            {
+                userIdentity.lstRole = null;
+            }
+            List<int> LstIdRole = user_Role.ROLE.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(s=>int.Parse(s)).ToList();
+            userIdentity.lstRole = DbContext.Roles.Where(s => LstIdRole.Contains(s.Id) && s.IsDelete == false).Select(s => new RoleInfo()
+            {
+                Id = s.Id,
+                MA = s.MA,
+                TEN = s.TEN
+            }).ToList() ?? new List<RoleInfo>();
+
+            if (userIdentity.lstRole.Count>0)
+            {
+                //lấy danh sách quyền
+                List<ROLE_PERMISSON> LstRolePermission = DbContext.ROLE_PERMISSON.Where(s => LstIdRole.Contains(s.ROLEID.Value) && s.IsDelete == false).ToList();
+                if (LstRolePermission!=null && LstRolePermission.Count>0)
+                {
+                    List<int> LstPermisson = new List<int>();
+                    foreach (var item in LstRolePermission)
+                    {
+                        foreach (var per in item.PERMISSON.Split(new char[] { ','},StringSplitOptions.RemoveEmptyEntries))
+                        {
+                            LstPermisson.Add(int.Parse(per));
+                        }
+                    }
+
+                    userIdentity.lstPermission = DbContext.PERMISSIONs.Where(s => LstPermisson.Contains(s.Id) && s.IsDelete == false).Select(s => new PermissonInfo()
+                    {
+                        Id = s.Id,
+                        MAQUYEN = s.MAQUYEN,
+                        TENQUYEN = s.TENQUYEN
+                    }).ToList() ?? new List<PermissonInfo>();
+
+
+                    List<int> LstMenu = new List<int>();
+                    var ListPermissionMenu = DbContext.PERMISSION_MENUQUANTRI.Where(s => LstPermisson.Contains(s.PERMISSIONID.Value) && s.IsDelete == false).ToList();
+                    foreach (var item in ListPermissionMenu)
+                    {
+                        foreach (var menu in item.MENU.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                        {
+                            LstMenu.Add(int.Parse(menu));
+                        }
+                    }
+
+                    userIdentity.lstMenuQuanTri = DbContext.MENUQUANTRIs.Where(s => LstMenu.Contains(s.Id) ).Select(s => new MenuQuanTriInfo()
+                    {
+                        Id = s.Id,
+                        URL = s.URL,
+                        NAME = s.NAME
+                    }).ToList() ?? new List<MenuQuanTriInfo>();
+
+                }
+            }
+
+            return userIdentity;
+        }    
     }
 }

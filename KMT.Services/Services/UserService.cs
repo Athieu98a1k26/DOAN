@@ -73,5 +73,28 @@ namespace KMT.Services
 
             return response;
         }
+
+        public async Task<UserIdentity> getUserIdentity(int Id)
+        {
+            var dataString =
+                await _apiClient.GetStringAsync(string.Format("{0}/getUserIdentity?Id={1}", _remoteServiceBaseUrl, Id));
+
+            var response = JsonConvert.DeserializeObject<UserIdentity>(dataString);
+
+            return response;
+        }
+
+
+        public async Task<UserInfo> GetByUserName(string UserName)
+        {
+            var dataString =
+                await _apiClient.GetStringAsync(string.Format("{0}/GetByUserName?UserName={1}", _remoteServiceBaseUrl, UserName));
+
+            var response = JsonConvert.DeserializeObject<UserInfo>(dataString);
+
+            return response;
+        }
+
+
     }
 }
