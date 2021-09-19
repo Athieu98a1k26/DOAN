@@ -23,9 +23,6 @@ namespace KMT.Admin.Controllers
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
 
-            
-            
-
             base.OnActionExecuting(filterContext);
         }
     }

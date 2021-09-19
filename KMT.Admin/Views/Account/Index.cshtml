@@ -31,6 +31,12 @@
 <script>
     $(document).ready(function () {
 
+        $('.form-signin').on('keypress', function (e) {
+            if (e.which == 13) {
+                $('.btn-signin').click();
+            }
+        });
+
         $('.btn-signin').click(function () {
             var UserName = $("#UserName").val();
             var PassWord = $('#PassWord').val();
