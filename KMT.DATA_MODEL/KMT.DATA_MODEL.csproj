@@ -82,6 +82,8 @@
     <Compile Include="Role\RoleRequest.cs" />
     <Compile Include="Role\RoleResponse.cs" />
     <Compile Include="SanPham\SanPhamInfo.cs" />
+    <Compile Include="SanPham\SanPhamRequest.cs" />
+    <Compile Include="SanPham\SanPhamResponse.cs" />
     <Compile Include="ThongTinDuLich\ThongTinDuLichInfo.cs" />
     <Compile Include="Users\UserInfo.cs" />
     <Compile Include="Users\UserRegisterRequest.cs" />
