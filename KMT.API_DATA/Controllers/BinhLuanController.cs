@@ -9,7 +9,7 @@ using System.Web.Http;
 
 namespace KMT.API_DATA.Controllers
 {
-    [RoutePrefix("api/rolepermisson")]
+    [RoutePrefix("api/BinhLuan")]
     public class BinhLuanController : ApiController
     {
         BinhLuanRepository BinhLuanRepository = new BinhLuanRepository();

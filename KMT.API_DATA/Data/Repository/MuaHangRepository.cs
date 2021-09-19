@@ -10,14 +10,14 @@ namespace KMT.API_DATA.Data.Repository
     {
         public List<MuaHangInfo> GetAll()
         {
-            List<MuaHangInfo> dataReturn = (from a in DbContext.BINHLUANs
+            List<MuaHangInfo> dataReturn = (from a in DbContext.MUAHANGs
                                              select new MuaHangInfo
                                              {
                                                  Id = a.Id,
                                                  IDSANPHAM = a.IDSANPHAM.Value,
                                                  IDUSER = a.IDUSER.Value,
                                                  NGUOITAO = a.NGUOITAO,
-                                                 NGAYTAO = a.NGAYTAO.Value,
+                                                 NGAYTAO = a.NGAYTAO,
                                                  NGUOISUA = a.NGUOISUA,
                                                  NGAYSUA = a.NGAYSUA.Value
                                              }).ToList() ?? new List<MuaHangInfo>();
@@ -30,24 +30,22 @@ namespace KMT.API_DATA.Data.Repository
             if (model.Id == 0)
             {
                 //them mới
-                BINHLUAN oBINHLUANs = new BINHLUAN();
-                oBINHLUANs.IDSANPHAM = model.IDSANPHAM;
-                oBINHLUANs.NGUOITAO = model.NGUOITAO;
-                oBINHLUANs.IDUSER = model.IDUSER;
-                oBINHLUANs.NGAYTAO = model.NGAYTAO;
-                oBINHLUANs.IsDelete = false;
-                DbContext.BINHLUANs.Add(oBINHLUANs);
+                MUAHANG oMUAHANGs = new MUAHANG();
+                oMUAHANGs.IDSANPHAM = model.IDSANPHAM;
+                oMUAHANGs.NGUOITAO = model.NGUOITAO;
+                oMUAHANGs.IDUSER = model.IDUSER;
+                oMUAHANGs.NGAYTAO = model.NGAYTAO;
+                DbContext.MUAHANGs.Add(oMUAHANGs);
                 return DbContext.SaveChanges();
             }
             else
             {
                 //cập nhật
-                var data = DbContext.BINHLUANs.FirstOrDefault(s => s.Id == model.Id);
+                var data = DbContext.MUAHANGs.FirstOrDefault(s => s.Id == model.Id);
                 data.IDSANPHAM = model.IDSANPHAM;
                 data.NGUOISUA = model.NGUOISUA;
                 data.IDUSER = model.IDUSER;
                 data.NGAYSUA = model.NGAYSUA;
-                data.IsDelete = false;
                 return DbContext.SaveChanges();
             }
         }
@@ -56,7 +54,7 @@ namespace KMT.API_DATA.Data.Repository
         {
             int skip = (model.page * model.take) - model.take;
             MuaHangResponse dt = new MuaHangResponse();
-            List<MuaHangInfo> q = (from a in DbContext.BINHLUANs.Where(s => s.IsDelete == false)
+            List<MuaHangInfo> q = (from a in DbContext.MUAHANGs
                                     where
                                     (!model.IDSanPham.HasValue || a.IDSANPHAM == model.IDSanPham) &&
                                     (!model.IDUSER.HasValue || a.IDUSER == model.IDUSER)
@@ -65,7 +63,7 @@ namespace KMT.API_DATA.Data.Repository
                                         Id = a.Id,
                                         IDSANPHAM = a.IDSANPHAM.Value,
                                         NGUOITAO = a.NGUOITAO,
-                                        NGAYTAO = a.NGAYTAO.Value,
+                                        NGAYTAO = a.NGAYTAO,
                                         NGUOISUA = a.NGUOISUA,
                                         NGAYSUA = a.NGAYSUA.Value,
                                         IDUSER = a.IDUSER.Value
@@ -80,14 +78,13 @@ namespace KMT.API_DATA.Data.Repository
 
         public int Delete(int Id)
         {
-            var data = DbContext.BINHLUANs.FirstOrDefault(s => s.Id == Id);
-            data.IsDelete = true;
+            var data = DbContext.MUAHANGs.FirstOrDefault(s => s.Id == Id);
             return DbContext.SaveChanges();
         }
 
         public MuaHangInfo GetById(int Id)
         {
-            MuaHangInfo data = (from a in DbContext.BINHLUANs.Where(s => s.IsDelete == false)
+            MuaHangInfo data = (from a in DbContext.MUAHANGs
                                  where a.Id == Id
                                  select new MuaHangInfo()
                                  {
@@ -95,11 +92,10 @@ namespace KMT.API_DATA.Data.Repository
                                      IDSANPHAM = a.IDSANPHAM.Value,
                                      IDUSER = a.IDUSER.Value,
                                      NGUOITAO = a.NGUOITAO,
-                                     NGAYTAO = a.NGAYTAO.Value,
+                                     NGAYTAO = a.NGAYTAO,
                                      NGUOISUA = a.NGUOISUA,
                                      NGAYSUA = a.NGAYSUA.Value
-                                 }
-                        ).FirstOrDefault();
+                                 }).FirstOrDefault();
             return data;
         }
     }

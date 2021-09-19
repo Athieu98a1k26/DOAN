@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace KMT.API_DATA.Controllers
 {
-    [RoutePrefix("api/rolepermisson")]
+    [RoutePrefix("api/SanPham")]
     public class SanPhamController : ApiController
     {
         SanPhamRepository sanPhamRepository = new SanPhamRepository();
