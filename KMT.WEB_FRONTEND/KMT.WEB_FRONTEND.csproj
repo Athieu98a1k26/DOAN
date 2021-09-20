@@ -118,8 +118,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BookingController.cs" />
+    <Compile Include="Controllers\ChiTietTinTucController.cs" />
+    <Compile Include="Controllers\GioiThieuController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HeaderLandingController.cs" />
+    <Compile Include="Controllers\SanPhamController.cs" />
     <Compile Include="Controllers\TrangChuController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -143,6 +147,8 @@
     <Content Include="Content\style.css" />
     <Content Include="Content\StyleSheet1.css" />
     <Content Include="Content\themify-icons.css" />
+    <Content Include="cssDatPhong\937af88e1c6af296f5fa8cd19616839d.opt.css" />
+    <Content Include="cssSanPham\115412a366cccbd694c76421cd50a42c.opt.css" />
     <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\1%281%29.png" />
     <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\1.jpg" />
     <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\1.png" />
@@ -285,6 +291,10 @@
     <Content Include="Views\Banner\Index.cshtml" />
     <Content Include="Views\MenuRight\Index.cshtml" />
     <Content Include="Views\Footer\Index.cshtml" />
+    <Content Include="Views\Booking\Index.cshtml" />
+    <Content Include="Views\SanPham\Index.cshtml" />
+    <Content Include="Views\ChiTietTinTuc\Index.cshtml" />
+    <Content Include="Views\GioiThieu\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

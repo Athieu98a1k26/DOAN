@@ -1,0 +1,127 @@
+﻿@{
+    ViewBag.Title = "Trang chủ";
+    Layout = "~/Views/Shared/Base.cshtml";
+    ViewBag.Page = "BOOKING";
+}
+<link href="~/cssDatPhong/937af88e1c6af296f5fa8cd19616839d.opt.css" rel="stylesheet" />
+<div class="col-sm-8 col-md-8 col-sm-3">
+    <form id="fcontact" method="post" action="http://thainguyentourism.vn/vi/booking/">
+        <div class="content clearfix">
+            <div class="fname"><label for="fname"><strong>Họ và tên: <font color="#CF1818">(*)</font></strong></label> <input style="width: 250px;" type="text" maxlength="100" value="" id="fname" name="fname" class="txtInput"></div>
+            <div class="femail"><label for="femail_iavim"><strong>Địa chỉ email: <font color="#CF1818">(*)</font></strong></label> <input style="width: 250px;" type="text" maxlength="60" value="" id="femail_iavim" name="femail" class="txtInput"></div>
+            <div class="add"><label for="femail_iavim"><strong>Địa chỉ:</strong></label> <input style="width: 420px;" type="text" maxlength="100" value="" id="add_iavim" name="add" class="txtInput"></div>
+            <div class="phone"><label for="phone_iavim">Số Điện Thoại:</label> <input style="width: 180px;" type="text" maxlength="20" value="" id="fphone_iavim" name="fphone" class="txtInput"></div>
+            <div class="cmt"><label for="cmt_iavim">Chứng minh Thư:</label> <input style="width: 180px;" type="text" maxlength="20" value="" id="cmt_iavim" name="cmt" class="txtInput"></div>
+            <div class="type">
+                <label for="type_iavim">Loại Phòng:</label> <select name="type">
+                    <option value="Phòng đơn">Phòng đơn</option>
+                    <option value="Phòng đôi">Phòng đôi</option>
+                    <option value="Phòng 3 giường">Phòng 3 giường</option>
+                    <option value="Phòng VIP">Phòng VIP</option>
+                </select>
+            </div>
+            <div class="quantity"><label for="quantity_iavim">Số khách:</label> <input type="text" style="width: 90px;" maxlength="10" value="" id="quantity" name="quantity" class="txtInput"></div>
+            <div class="checkin"><label for="checkin_iavim">Ngày Đến: <font color="#CF1818"><strong>(*)</strong></font></label> <input type="text" style="width: 90px;" maxlength="10" readonly="readonly" value="" id="checkin" name="checkin" class="datepicker txtInput hasDatepicker"><img class="ui-datepicker-trigger" src="./Đặt phòng - CỔNG DU LỊCH THÁI NGUYÊN_files/calendar.gif" alt="..." title="..."></div>
+            <div class="checkout"><label for="checkout_iavim">Ngày Đi: <font color="#CF1818"><strong>(*)</strong></font></label> <input type="text" style="width: 90px;" maxlength="10" readonly="readonly" value="" id="checkout" name="checkout" class="datepicker txtInput hasDatepicker"><img class="ui-datepicker-trigger" src="./Đặt phòng - CỔNG DU LỊCH THÁI NGUYÊN_files/calendar.gif" alt="..." title="..."></div>
+            <div class="nationality"><label for="nationality_iavim">Quốc tịch:</label> <input style="width: 80px;" type="text" maxlength="60" value="" id="nationality_iavim" name="nationality" class="txtInput"></div>
+            <div class="gender">
+                <label for="gender_iavim">Giới Tính:</label> <select name="gender">
+                    <option value="0">Select</option>
+                    <option value="Nam">Nam</option>
+                    <option value="Nữ">Nữ</option>
+                </select>
+            </div>
+            <table width="150px" border="0">
+                <tbody>
+                    <tr>
+                        <td><label for="room">Số phòng(s)</label></td>
+                        <td><label for="adult">Người lớn(s)</label></td>
+                        <td><label for="children">Trẻ em(s)</label></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select name="room">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <label for="fpart">Gửi đến bộ phận:</label> <select class="sl2" id="fpart" name="fpart">
+                    <option value="1">thainguyentourism.vn</option>
+                </select>
+            </div>
+            <div>
+                <label for="fcon">Nội dung: <font color="#CF1818"><strong>(*)</strong></font></label>
+<textarea cols="8" rows="8" id="fcon" name="fcon" style="overflow: auto;" class="txttextArea" onkeyup="return nv_ismaxlength(this, 1000);"></textarea>
+            </div>
+            <div class="capcha1"><label for="fcode_iavim">Mã chống spam: <font color="#CF1818"><strong>(*)</strong></font></label> <input type="text" maxlength="6" value="" id="fcode_iavim" name="fcode" class="txtCaptcha"> <img height="22" src="./Đặt phòng - CỔNG DU LỊCH THÁI NGUYÊN_files/index.php" title="Mã chống spam" alt="Mã chống spam" id="vimg"> <img alt="Thay mới" src="./Đặt phòng - CỔNG DU LỊCH THÁI NGUYÊN_files/refresh.png" width="16" height="16" class="refresh" onclick="nv_change_captcha(&#39;vimg&#39;,&#39;fcode_iavim&#39;);"></div>
+            <div style="clear:both"></div>
+            <div style=" padding-top:5px;"><input type="hidden" name="checkss" value="fc6f013f6b91b08bfda195efc3c5c965"><input type="reset" value="Hủy" class="bt1">&nbsp;&nbsp;<input type="submit" value="Đặt phòng" id="btsend" name="btsend" class="bt1"></div>
+        </div>
+    </form>
+</div>
+  
