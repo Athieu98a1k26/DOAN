@@ -36,5 +36,6 @@ namespace KMT.API_DATA.Data
         public virtual DbSet<SANPHAM> SANPHAMs { get; set; }
         public virtual DbSet<THONGTINDULICH> THONGTINDULICHes { get; set; }
         public virtual DbSet<BINHLUAN> BINHLUANs { get; set; }
+        public virtual DbSet<PHONG> PHONGs { get; set; }
     }
 }

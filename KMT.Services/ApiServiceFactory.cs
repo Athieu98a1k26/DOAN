@@ -81,6 +81,23 @@ namespace KMT.Services
 
             }
         }
+        
+        private PhongService _phongService;
+
+        public PhongService phongService
+        {
+            get
+            {
+                if (_phongService == null)
+                    lock (SyncRoot)
+                    {
+                        if (_phongService == null)
+                            _phongService = new PhongService(Url, HttpClient);
+                    }
+                return _phongService;
+
+            }
+        }
 
 
 

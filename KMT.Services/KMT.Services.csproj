@@ -103,6 +103,7 @@
     <Compile Include="Services\MuaHangService.cs" />
     <Compile Include="Services\PermissonService.cs" />
     <Compile Include="Services\PermissonMenuService.cs" />
+    <Compile Include="Services\PhongService.cs" />
     <Compile Include="Services\SanPhamService.cs" />
     <Compile Include="Services\ThongTinDuLichService.cs" />
     <Compile Include="Services\UserRoleService.cs" />

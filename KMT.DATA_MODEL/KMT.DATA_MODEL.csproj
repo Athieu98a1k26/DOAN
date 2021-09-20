@@ -80,6 +80,9 @@
     <Compile Include="Permisson\PermissonInfo.cs" />
     <Compile Include="Permisson\PermissonRequest.cs" />
     <Compile Include="Permisson\PermissonResponse.cs" />
+    <Compile Include="Phong\PhongInfo.cs" />
+    <Compile Include="Phong\PhongRequest.cs" />
+    <Compile Include="Phong\PhongResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PermissionMenu\PermissionMenuInfo.cs" />
     <Compile Include="PermissionMenu\PermissionMenuRequest.cs" />

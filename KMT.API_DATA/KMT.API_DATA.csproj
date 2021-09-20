@@ -167,6 +167,7 @@
     <Compile Include="Controllers\MenuQuanTriAPIController.cs" />
     <Compile Include="Controllers\MuaHangController.cs" />
     <Compile Include="Controllers\PermissonController.cs" />
+    <Compile Include="Controllers\PhongController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\PermissionMenuController.cs" />
     <Compile Include="Controllers\RolePermissonController.cs" />
@@ -206,11 +207,15 @@
     <Compile Include="Data\PERMISSION_MENUQUANTRI.cs">
       <DependentUpon>KMTDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\PHONG.cs">
+      <DependentUpon>KMTDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Repository\BinhLuanRepository.cs" />
     <Compile Include="Data\Repository\MenuQuanTriRepository.cs" />
     <Compile Include="Data\Repository\MuaHangRepository.cs" />
     <Compile Include="Data\Repository\PermissonRepository.cs" />
     <Compile Include="Data\Repository\PermissionMenuRepository.cs" />
+    <Compile Include="Data\Repository\PhongRepository.cs" />
     <Compile Include="Data\Repository\SanPhamRepository.cs" />
     <Compile Include="Data\Repository\ThongTinDuLichRepository.cs" />
     <Compile Include="Data\Repository\UserRoleRepository.cs" />
@@ -311,6 +316,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Phong\" />
     <Folder Include="Views\Role\" />
     <Folder Include="Views\UserAPI\" />
     <Folder Include="Views\UserRole\" />

@@ -26,6 +26,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="URL" Type="nvarchar(max)" />
           <Property Name="NAME" Type="nvarchar(max)" />
+          <Property Name="TYPE" Type="int" />
         </EntityType>
         <EntityType Name="MUAHANG">
           <Key>
@@ -64,6 +65,25 @@
           <Property Name="NGUOISUA" Type="nvarchar(max)" />
           <Property Name="NGAYSUA" Type="datetime" />
           <Property Name="IsDelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="PHONG">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HOTEN" Type="nvarchar(max)" />
+          <Property Name="EMAIL" Type="nvarchar(max)" />
+          <Property Name="DIACHI" Type="nvarchar(max)" />
+          <Property Name="SODIENTHOAI" Type="nvarchar(max)" />
+          <Property Name="CHUNGMINHTHUNHANDAN" Type="nvarchar(max)" />
+          <Property Name="LOAIPHONG" Type="int" />
+          <Property Name="SOKHACH" Type="int" />
+          <Property Name="NGAYDEN" Type="datetime" />
+          <Property Name="NGAYDI" Type="datetime" />
+          <Property Name="QUOCTICH" Type="nvarchar(max)" />
+          <Property Name="GIOITINH" Type="nvarchar(max)" />
+          <Property Name="BOPHANGUIDEN" Type="int" />
+          <Property Name="NOIDUNG" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -154,6 +174,7 @@
           <EntitySet Name="MUAHANG" EntityType="Self.MUAHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PERMISSION" EntityType="Self.PERMISSION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PERMISSION_MENUQUANTRI" EntityType="Self.PERMISSION_MENUQUANTRI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHONG" EntityType="Self.PHONG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ROLE_PERMISSON" EntityType="Self.ROLE_PERMISSON" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
@@ -177,6 +198,7 @@
           <EntitySet Name="SANPHAMs" EntityType="KTM_TESTModel.SANPHAM" />
           <EntitySet Name="THONGTINDULICHes" EntityType="KTM_TESTModel.THONGTINDULICH" />
           <EntitySet Name="BINHLUANs" EntityType="KTM_TESTModel.BINHLUAN" />
+          <EntitySet Name="PHONGs" EntityType="KTM_TESTModel.PHONG" />
         </EntityContainer>
         <EntityType Name="MENUQUANTRI">
           <Key>
@@ -185,6 +207,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TYPE" Type="Int32" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -321,6 +344,25 @@
           <Property Name="NGAYSUA" Type="DateTime" Precision="3" />
           <Property Name="IsDelete" Type="Boolean" />
         </EntityType>
+        <EntityType Name="PHONG">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HOTEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DIACHI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SODIENTHOAI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CHUNGMINHTHUNHANDAN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LOAIPHONG" Type="Int32" />
+          <Property Name="SOKHACH" Type="Int32" />
+          <Property Name="NGAYDEN" Type="DateTime" Precision="3" />
+          <Property Name="NGAYDI" Type="DateTime" Precision="3" />
+          <Property Name="QUOCTICH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GIOITINH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BOPHANGUIDEN" Type="Int32" />
+          <Property Name="NOIDUNG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -330,6 +372,7 @@
           <EntitySetMapping Name="MENUQUANTRIs">
             <EntityTypeMapping TypeName="KTM_TESTModel.MENUQUANTRI">
               <MappingFragment StoreEntitySet="MENUQUANTRI">
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
                 <ScalarProperty Name="URL" ColumnName="URL" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -477,6 +520,26 @@
                 <ScalarProperty Name="IDUSER" ColumnName="IDUSER" />
                 <ScalarProperty Name="NOIDUNG" ColumnName="NOIDUNG" />
                 <ScalarProperty Name="IDSANPHAM" ColumnName="IDSANPHAM" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHONGs">
+            <EntityTypeMapping TypeName="KTM_TESTModel.PHONG">
+              <MappingFragment StoreEntitySet="PHONG">
+                <ScalarProperty Name="NOIDUNG" ColumnName="NOIDUNG" />
+                <ScalarProperty Name="BOPHANGUIDEN" ColumnName="BOPHANGUIDEN" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+                <ScalarProperty Name="QUOCTICH" ColumnName="QUOCTICH" />
+                <ScalarProperty Name="NGAYDI" ColumnName="NGAYDI" />
+                <ScalarProperty Name="NGAYDEN" ColumnName="NGAYDEN" />
+                <ScalarProperty Name="SOKHACH" ColumnName="SOKHACH" />
+                <ScalarProperty Name="LOAIPHONG" ColumnName="LOAIPHONG" />
+                <ScalarProperty Name="CHUNGMINHTHUNHANDAN" ColumnName="CHUNGMINHTHUNHANDAN" />
+                <ScalarProperty Name="SODIENTHOAI" ColumnName="SODIENTHOAI" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
