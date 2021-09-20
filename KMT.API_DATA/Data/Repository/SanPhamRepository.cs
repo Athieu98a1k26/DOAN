@@ -15,13 +15,9 @@ namespace KMT.API_DATA.Data.Repository
                               {
                                   Id = a.Id,
                                   TENMATHANG = a.TENMATHANG,
-                                  GIA = (int)a.GIA,
+                                  GIA = a.GIA.Value,
                                   MOTA = a.MOTA,
                                   HINHANH = a.HINHANH,
-                                  NGUOITAO = a.NGUOITAO,
-                                  NGAYTAO = (DateTime)a.NGAYTAO,
-                                  NGUOISUA = a.NGUOISUA,
-                                  NGAYSUA = (DateTime)a.NGAYSUA,
                                   IsDelete = false
                               }).ToList() ?? new List<SanPhamInfo>();
             return dataReturn;
@@ -34,6 +30,7 @@ namespace KMT.API_DATA.Data.Repository
             {
                 //them mới
                 SANPHAM oSANPHAMs = new SANPHAM();
+                oSANPHAMs.TENMATHANG = model.TENMATHANG;
                 oSANPHAMs.MOTA = model.MOTA;
                 oSANPHAMs.GIA = model.GIA;
                 oSANPHAMs.NGAYTAO = DateTime.Now;
@@ -45,6 +42,7 @@ namespace KMT.API_DATA.Data.Repository
             {
                 //cập nhật
                 var data = DbContext.SANPHAMs.FirstOrDefault(s => s.Id == model.Id);
+                data.TENMATHANG = model.TENMATHANG;
                 data.MOTA = model.MOTA;
                 data.GIA = model.GIA;
                 data.NGAYSUA = DateTime.Now;
@@ -71,11 +69,7 @@ namespace KMT.API_DATA.Data.Repository
                                        GIA = a.GIA.Value,
                                        HINHANH = a.HINHANH,
                                        MOTA = a.MOTA,
-                                       NGAYSUA = (DateTime)a.NGAYSUA,
-                                       NGAYTAO = (DateTime)a.NGAYTAO,
-                                       IsDelete = (bool)a.IsDelete,
-                                       NGUOISUA = a.NGUOISUA,
-                                       NGUOITAO = a.NGUOITAO
+                                       IsDelete = a.IsDelete.Value,
                                    }).ToList() ?? new List<SanPhamInfo>();
 
             dt.total = q.Count();
@@ -103,11 +97,7 @@ namespace KMT.API_DATA.Data.Repository
                             GIA = a.GIA.Value,
                             HINHANH = a.HINHANH,
                             MOTA = a.MOTA,
-                            NGAYSUA = (DateTime)a.NGAYSUA,
-                            NGAYTAO = (DateTime)a.NGAYTAO,
-                            IsDelete = (bool)a.IsDelete,
-                            NGUOISUA = a.NGUOISUA,
-                            NGUOITAO = a.NGUOITAO
+                            IsDelete = a.IsDelete.Value
                         }
                         ).FirstOrDefault();
             return data;

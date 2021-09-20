@@ -21,7 +21,7 @@
         </div>
         <div class="form-group">
             <label for="HINHANH">Chọn hình ảnh</label>
-            <input type="file"id="HINHANH" name="HINHANH" accept="image/png, image/jpeg">
+            <input type="file" id="HINHANH" name="HINHANH" accept="image/png, image/jpeg">
         </div>
         <button type="button" class="btn btn-primary btnUpdate">Lưu</button>
         <button type="button" class="btn btn-primary btnRefresh">Làm mới</button>
@@ -43,16 +43,6 @@
 @*<script src="https://cdn.ckeditor.com/4.16.2/standard-all/ckeditor.js"></script>*@
 <script>
 
-    @* public int Id { get; set; }
-        public string TIEUDE { get; set; }
-        public string NOIDUNG { get; set; }
-        public string MOTA { get; set; }
-        public string HINHANH { get; set; }
-        public string NGUOITAO { get; set; }
-        public DateTime NGAYTAO { get; set; }
-        public string NGUOISUA { get; set; }
-        public DateTime NGAYSUA { get; set; }
-        public int TRANGTHAI { get; set; }*@
     $(document).ready(function () {
 
         CKEDITOR.replace('NOIDUNG', {
@@ -64,11 +54,14 @@
         $('.btnUpdate').click(function () {
             var TIEUDE = $('#TIEUDE').val();
             var Id = $('#Id').val();
-            var NOIDUNG = $('#NOIDUNG').val();
+            var NOIDUNG = CKEDITOR.instances['NOIDUNG'].getData();;
             if (NOIDUNG == '') {
                 toastr.warning('Vui lòng nhập nội dung');
                 return false;
             }
+            var NOIDUNG = NOIDUNG.replace(/[\u00A0-\u9999<>\&]/g, function (i) {
+                return '&#' + i.charCodeAt(0) + ';';
+            });
             var MOTA = $('#MOTA').val();
             if (!MOTA) {
                 toastr.warning('Vui lòng nhập mô tả');
@@ -85,22 +78,43 @@
                 NOIDUNG: NOIDUNG.trim(),
                 HINHANH: HINHANH.trim()
             }
-            $.post('/ThongTinDuLich/AddOrUpdate', data, function (data) {
-                if (data.status == 500) {
-                    toastr.error(data.message);
-                }
-                else if (data.status == 200) {
-                    toastr.success(data.message);
-                }
-                getDataPage(1);
-            })
+            if (Id == '0' || !Id)
+                $.post('/ThongTinDuLich/Add', data, function (data) {
+                    if (data.status == 500) {
+                        toastr.error(data.message);
+                    }
+                    else if (data.status == 200) {
+                        toastr.success(data.message);
+                        $('#Id').val('');
+                        $('#TIEUDE').val('');
+                        $('#MOTA').val('');
+                        CKEDITOR.instances['NOIDUNG'].setData("");
+                        $('#HINHANH').val('');
+                    }
+                    getDataPage(1);
+                })
+            else
+                $.post('/ThongTinDuLich/Update', data, function (data) {
+                    if (data.status == 500) {
+                        toastr.error(data.message);
+                    }
+                    else if (data.status == 200) {
+                        toastr.success(data.message);
+                        $('#Id').val('');
+                        $('#TIEUDE').val('');
+                        $('#MOTA').val('');
+                        CKEDITOR.instances['NOIDUNG'].setData("");
+                        $('#HINHANH').val('');
+                    }
+                    getDataPage(1);
+                })
         })
 
         $('.btnRefresh').click(function () {
             $('#Id').val('');
             $('#TIEUDE').val('');
             $('#MOTA').val('');
-            $('#NOIDUNG').val('');
+            CKEDITOR.instances['NOIDUNG'].setData("");
             $('#HINHANH').val('');
         })
     })
@@ -124,11 +138,16 @@
 
             $('#TIEUDE').val(data.TIEUDE);
             $('#Id').val(data.Id);
-            $('#NOIDUNG').val(data.NOIDUNG);
+            CKEDITOR.instances['NOIDUNG'].setData(htmlDecode(data.NOIDUNG));
+            //$('#NOIDUNG').val(data.NOIDUNG);
             $('#MOTA').val(data.MOTA);
             $('#HINHANH').val(data.HINHANH);
         })
     });
+    function htmlDecode(input) {
+        var doc = new DOMParser().parseFromString(input, "text/html");
+        return doc.documentElement.textContent;
+    }
 
     function PaginationData(response) {
         let page = response.page;
