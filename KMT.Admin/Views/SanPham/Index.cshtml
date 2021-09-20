@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "IndexSanPham";
     Layout = "~/Views/Shared/Base.cshtml";
 }
@@ -9,12 +8,20 @@
     <form>
         <input type="hidden" class="form-control" id="Id">
         <div class="form-group">
-            <label for="TENQUYEN">Tên Quyền</label>
-            <input type="text" class="form-control" id="TENQUYEN" placeholder="Tên quyền">
+            <label for="TENMATHANG">Tên hàng<span style="color:red">*</span></label>
+            <input type="text" class="form-control" id="TENMATHANG" placeholder="Tên hàng">
         </div>
         <div class="form-group">
-            <label for="MAQUYEN">Mã quyền<span style="color:red">*</span></label>
-            <input type="text" class="form-control" id="MAQUYEN" placeholder="Mã quyền">
+            <label for="GIA">Giá thành<span style="color:red">*</span></label>
+            <input type="text" class="form-control" id="GIA" placeholder="Giá thành">
+        </div>
+        <div class="form-group">
+            <label for="MOTA">Mô tả<span style="color:red">*</span></label>
+            <input type="text" class="form-control" id="MOTA" placeholder="Mô tả">
+        </div>
+        <div class="form-group">
+            <label for="HINHANH">Chọn hình ảnh</label>
+            <input type="file" id="HINHANH" name="HINHANH" accept="image/png, image/jpeg">
         </div>
         <button type="button" class="btn btn-primary btnUpdate">Lưu</button>
         <button type="button" class="btn btn-primary btnRefresh">Làm mới</button>
@@ -37,17 +44,18 @@
     $(document).ready(function () {
         getDataPage(1);
         $('.btnUpdate').click(function () {
-            var TENQUYEN = $('#TENQUYEN').val();
+            //TENMATHANG, GIA, MOTA, HINHANH
             var Id = $('#Id').val();
-            var MAQUYEN = $('#MAQUYEN').val();
-            if (MAQUYEN == '') {
-                toastr.warning('Vui lòng nhập mã quyền');
-                return false;
-            }
+            var TENMATHANG = $('#TENMATHANG').val();
+            var GIA = $('#GIA').val();
+            var MOTA = $('#MOTA').val();
+            var HINHANH = $('#HINHANH').val();
             var data = {
                 Id:Id,
-                TENQUYEN: TENQUYEN.trim(),
-                MAQUYEN: MAQUYEN.trim()
+                TENMATHANG: TENMATHANG.trim(),
+                GIA: GIA.trim(),
+                MOTA: MOTA.trim(),
+                HINHANH: HINHANH.trim()
             }
             $.post('/SanPham/AddOrUpdate', data, function (data) {
                 if (data.status == 500) {
@@ -55,6 +63,11 @@
                 }
                 else if (data.status == 200) {
                     toastr.success(data.message);
+                    $('#Id').val('');
+                    $('#TENMATHANG').val('');
+                    $('#GIA').val('');
+                    $('#MOTA').val('');
+                    $('#HINHANH').val('');
                 }
                 getDataPage(1);
             })
@@ -62,9 +75,10 @@
 
         $('.btnRefresh').click(function () {
             $('#Id').val('');
-            $('#MAQUYEN').val('');
-            $('#TENQUYEN').val('');
-            $('#MAQUYEN').attr('readonly', false);
+            $('#TENMATHANG').val('');
+            $('#GIA').val('');
+            $('#MOTA').val('');
+            $('#HINHANH').val('');
         })
     })
 
@@ -84,10 +98,11 @@
     $("#DataSanPham").on("click", '.btnSua', function () {
         let Id = $(this).attr('data-id');
         $.get('/SanPham/GetById?Id=' + Id, function (data) {
-            $('#MAQUYEN').val(data.MAQUYEN);
-            $('#TENQUYEN').val(data.TENQUYEN);
-            $('#MAQUYEN').attr('readonly', true);
             $('#Id').val(data.Id);
+            $('#TENMATHANG').val(data.TENMATHANG);
+            $('#GIA').val(data.GIA);
+            $('#MOTA').val(data.MOTA);
+            $('#HINHANH').val(data.HINHANH);
         })
     });
 
@@ -161,12 +176,14 @@
     function RenderData(response, strElement) {
         let data = response.data;
         $(strElement).empty();
+            //TENMATHANG, GIA, MOTA, HINHANH
         let htmlRender = `<table class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col">STT</th>
-                    <th scope="col">MAQUYEN</th>
-                    <th scope="col">TENQUYEN</th>
+                    <th scope="col">Tên mặt hàng</th>
+                    <th scope="col">Giá thành</th>
+                    <th scope="col">Mô tả</th>
                     <th scope="col">Thao tác</th>
                 </tr>
             </thead>
@@ -175,8 +192,9 @@
         for (var i = 0; i < data.length; i++) {
             htmlRender += `<tr>
                     <th scope="row">`+(i+1)+`</th>
-                    <td>`+data[i].MAQUYEN+`</td>
-                    <td>`+ data[i].TENQUYEN +`</td>
+                    <td>`+ data[i].TENMATHANG+`</td>
+                    <td>`+ data[i].GIA +`</td>
+                    <td>`+ data[i].MOTA +`</td>
                     <td><button type="button" data-id='`+ data[i].Id + `' class="btn btn-primary btnSua">Sửa</button><button data-id='` + data[i].Id +`' type="button" class="btn btn-danger btnXoa">Xóa</button></td>
                 </tr>`;
         }
