@@ -18,10 +18,8 @@ namespace KMT.API_DATA.Data.Repository
                                   MOTA = a.MOTA,
                                   HINHANH = a.HINHANH,
                                   NGUOITAO = a.NGUOITAO,
-                                  NGAYTAO = (DateTime) a.NGAYTAO,
                                   NGUOISUA = a.NGUOISUA,
-                                  NGAYSUA = (DateTime)a.NGAYSUA,
-                                  TRANGTHAI = (int)a.TRANGTHAI
+                                  TRANGTHAI = a.TRANGTHAI.Value
                               }).ToList() ?? new List<ThongTinDuLichInfo>();
             return dataReturn;
         }
@@ -38,8 +36,9 @@ namespace KMT.API_DATA.Data.Repository
                 oTHONGTINDULICHes.NOIDUNG = model.NOIDUNG;
                 oTHONGTINDULICHes.MOTA = model.MOTA;
                 oTHONGTINDULICHes.HINHANH = model.HINHANH;
-                oTHONGTINDULICHes.NGUOITAO = model.NGUOITAO;
-                oTHONGTINDULICHes.NGAYTAO = (DateTime)model.NGAYTAO;
+                oTHONGTINDULICHes.NGUOITAO = "test";
+                oTHONGTINDULICHes.NGAYTAO = DateTime.Now;
+                oTHONGTINDULICHes.NGUOISUA = string.Empty;
                 oTHONGTINDULICHes.TRANGTHAI = 0;
                 DbContext.THONGTINDULICHes.Add(oTHONGTINDULICHes);
                 return DbContext.SaveChanges();
@@ -74,10 +73,8 @@ namespace KMT.API_DATA.Data.Repository
                                        MOTA = a.MOTA,
                                        HINHANH = a.HINHANH,
                                        NGUOITAO = a.NGUOITAO,
-                                       NGAYTAO = (DateTime)a.NGAYTAO,
                                        NGUOISUA = a.NGUOISUA,
-                                       NGAYSUA = (DateTime)a.NGAYSUA,
-                                       TRANGTHAI = (int)a.TRANGTHAI
+                                       TRANGTHAI = a.TRANGTHAI.Value
                                    }).ToList() ?? new List<ThongTinDuLichInfo>();
 
             dt.total = q.Count();
@@ -106,10 +103,8 @@ namespace KMT.API_DATA.Data.Repository
                                     MOTA = a.MOTA,
                                     HINHANH = a.HINHANH,
                                     NGUOITAO = a.NGUOITAO,
-                                    NGAYTAO = (DateTime)a.NGAYTAO,
                                     NGUOISUA = a.NGUOISUA,
-                                    NGAYSUA = (DateTime)a.NGAYSUA,
-                                    TRANGTHAI = (int)a.TRANGTHAI
+                                    TRANGTHAI = a.TRANGTHAI.Value
                                 }
                         ).FirstOrDefault();
             return data;
