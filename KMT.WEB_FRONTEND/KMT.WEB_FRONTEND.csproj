@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1B0E5DF9-04B0-45D1-BA7C-CFBF18D4771D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KMT.WEB_FRONTEND</RootNamespace>
+    <AssemblyName>KMT.WEB_FRONTEND</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HeaderLandingController.cs" />
+    <Compile Include="Controllers\TrangChuController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\all.css" />
+    <Content Include="Content\animate.min.css" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\ce2ef6deb98210c34d168c454170101b.css" />
+    <Content Include="Content\jquery.mb.YTPlayer.min.css" />
+    <Content Include="Content\magnific-popup.css" />
+    <Content Include="Content\nivo-slider.css" />
+    <Content Include="Content\owl.carousel.min.css" />
+    <Content Include="Content\owl.theme.default.min.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\StyleSheet1.css" />
+    <Content Include="Content\themify-icons.css" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\1%281%29.png" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\1.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\1.png" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\11120101_1612841885596622_1347414994_n.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\113.png" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\129940466_3812647482136318_3480461580970653150_n.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\136201710052logotuafchuan.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\14-copy.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\15800111_1365573223510435_7162385043229102715_o.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\1b.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\1_1%281%29.png" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\1_1%282%29.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\1_1.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\1_1.png" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\1_4.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\2-d.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\2.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\2015-8.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\2_1%281%29.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\2_1.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\3%281%29.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\3.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\3.png" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\3_1%281%29.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\3_1.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\4X1Ua0cs_je.css" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\915.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\a.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\atk1.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\bando.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\banner-du-lich.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\banner.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\c.png" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\cam-nang-du-lich-thai-nguyen-09.09.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\ce2ef6deb98210c34d168c454170101b.opt.css" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\che-dep.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\chua-ha.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\cong-ty.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\cong_bao_thai_nguyen.png" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\d4.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\da-huong.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\dai-dien-py.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\dulich.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\fanpage.png" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\FPdNN1TK3wJ.css" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\giaiphong.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\hang.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\hnc.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\hoi-dulich.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\ichdv.png" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\img-_6855_1.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\img20210701082742.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\img_0581-j.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\img_0647.png" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\img_8383.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\img_8909.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\img_8938.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\index.php" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\likebox.html" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\logo-2.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\logo-copy.png" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\logo-dong-a1.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\logo-monaco.png" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\logo.png" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\logo1.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\mcve.org.vn_300_299.png" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\phone-icon.png" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\quy-tung.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\sovhttdl.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\support-online1.png" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\support-online2.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\tap-gap-10x20-diem-den-an-tuong-15.04.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\tap-gap-ho-nui-coc-20x20-15.04.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\thaihai.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\theme_default_0.css" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\thong-tin-chay.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\thong-tin.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\tnportal.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\tongcuc.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\trangbia.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\traviet_ok.jpg" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\untitled.png" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\you-tube.png" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\1kDejkRJZe8.js.download" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\bootstrap.min.js" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\css" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\e2osLY84fpI.js.download" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\GG1Y0sYc7My.js.download" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\global.js" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\GxF2P_ZcK8F.js.download" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\jquery.easing.1.3.js.download" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\jquery.eislideshow.js" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\jquery.metisMenu.js" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\jquery.min.js" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\jquery.roundabout.min.js" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\LaSaGFy1cqz.js.download" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\main.js" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\mudim.js" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\responsiveCarousel.min.js" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\shadowbox.js" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\user1.js" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\user.js" />
+    <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\vi.js" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\common.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\TrangChu\Index.cshtml" />
+    <Content Include="Views\Shared\Base.cshtml" />
+    <Content Include="Views\HeaderLanding\Index.cshtml" />
+    <Content Include="Views\Header_Top\Index.cshtml" />
+    <Content Include="Views\Banner\Index.cshtml" />
+    <Content Include="Views\MenuRight\Index.cshtml" />
+    <Content Include="Views\Footer\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Assets\Banner\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KMT.DATA_MODEL\KMT.DATA_MODEL.csproj">
+      <Project>{11C88469-5070-4CE9-940C-6D65F9AF82BB}</Project>
+      <Name>KMT.DATA_MODEL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KMT.Services\KMT.Services.csproj">
+      <Project>{B3BB6125-CBBA-4B3B-B895-E39DA5C49BF1}</Project>
+      <Name>KMT.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49332</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:49332/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

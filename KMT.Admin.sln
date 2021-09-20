@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMT.API_DATA", "KMT.API_DAT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMT.DATA_MODEL", "KMT.DATA_MODEL\KMT.DATA_MODEL.csproj", "{11C88469-5070-4CE9-940C-6D65F9AF82BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMT.WEB_FRONTEND", "KMT.WEB_FRONTEND\KMT.WEB_FRONTEND.csproj", "{1B0E5DF9-04B0-45D1-BA7C-CFBF18D4771D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{11C88469-5070-4CE9-940C-6D65F9AF82BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11C88469-5070-4CE9-940C-6D65F9AF82BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11C88469-5070-4CE9-940C-6D65F9AF82BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B0E5DF9-04B0-45D1-BA7C-CFBF18D4771D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B0E5DF9-04B0-45D1-BA7C-CFBF18D4771D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B0E5DF9-04B0-45D1-BA7C-CFBF18D4771D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B0E5DF9-04B0-45D1-BA7C-CFBF18D4771D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

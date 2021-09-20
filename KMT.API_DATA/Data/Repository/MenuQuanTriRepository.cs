@@ -20,5 +20,19 @@ namespace KMT.API_DATA.Data.Repository
                         }).ToList() ?? new List<MenuQuanTriInfo>();
             return dataReturn;
         }
+
+        public List<MenuQuanTriInfo> GetListMenuByType(int type)
+        {
+            var dataReturn = (from a in DbContext.MENUQUANTRIs
+                              where a.TYPE==type
+                              select new MenuQuanTriInfo
+                              {
+                                  Id = a.Id,
+                                  URL = a.URL,
+                                  IsActive = false,
+                                  NAME = a.NAME
+                              }).ToList() ?? new List<MenuQuanTriInfo>();
+            return dataReturn;
+        }
     }
 }

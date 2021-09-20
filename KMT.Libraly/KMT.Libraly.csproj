@@ -127,6 +127,8 @@
     <Compile Include="Infrastructure\Utils\TypeConverter.cs" />
     <Compile Include="Infrastructure\Utils\TypeFinder.cs" />
     <Compile Include="Infrastructure\WebAppTypeFinder.cs" />
+    <Compile Include="LibEnum\ENUM_PERMISSION.cs" />
+    <Compile Include="LibEnum\ENUM_ROLE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
