@@ -1,0 +1,35 @@
+﻿@model KMT.DATA_MODEL.SanPham.SanPhamInfo
+@{
+    ViewBag.Title = "Trang chủ";
+    Layout = "~/Views/Shared/Base.cshtml";
+    ViewBag.Page = "CHITIETSANPHAM";
+}
+<style>
+    #Content img {
+        width: 100%;
+    }
+</style>
+<link href="~/cssSanPham/115412a366cccbd694c76421cd50a42c.opt.css" rel="stylesheet" />
+<div class="col-sm-8 col-md-8 col-sm-3">
+    <div class="container">
+        <p style="font-weight: bold;text-align: justify;font-style: italic;">@Model.TENMATHANG</p>
+        <img alt="@Model.MOTA" src="/Content/AnhSanPham/@Model.HINHANH" width="200" class="img-thumbnail pull-left imghome" />
+        <div id="Content">
+            <p class="text-justify">Giá:  @Model.GIA </p>
+            <p class="text-justify">@Model.MOTA </p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        let data = htmlDecode(`@Html.Raw(Model.NOIDUNG)`);
+        $('#Content').html(data);
+    })
+
+    function htmlDecode(input) {
+        var doc = new DOMParser().parseFromString(input, "text/html");
+        return doc.documentElement.textContent;
+    }
+</script>

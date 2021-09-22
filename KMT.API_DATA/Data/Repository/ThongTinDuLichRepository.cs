@@ -35,7 +35,7 @@ namespace KMT.API_DATA.Data.Repository
                 oTHONGTINDULICHes.TIEUDE = model.TIEUDE;
                 oTHONGTINDULICHes.NOIDUNG = model.NOIDUNG;
                 oTHONGTINDULICHes.MOTA = model.MOTA;
-                oTHONGTINDULICHes.HINHANH = model.HINHANH;
+                oTHONGTINDULICHes.HINHANH = model.HINHANH.Replace(@"C:\fakepath\", "");
                 oTHONGTINDULICHes.NGUOITAO = "test";
                 oTHONGTINDULICHes.NGAYTAO = DateTime.Now;
                 oTHONGTINDULICHes.NGUOISUA = string.Empty;
@@ -51,7 +51,7 @@ namespace KMT.API_DATA.Data.Repository
                 data.TIEUDE = model.TIEUDE;
                 data.NOIDUNG = model.NOIDUNG;
                 data.MOTA = model.MOTA;
-                data.HINHANH = model.HINHANH;
+                data.HINHANH = model.HINHANH.Replace(@"C:\fakepath\", "");
                 data.NGAYSUA = DateTime.Now;
                 data.TRANGTHAI = 0;
                 return DbContext.SaveChanges();
