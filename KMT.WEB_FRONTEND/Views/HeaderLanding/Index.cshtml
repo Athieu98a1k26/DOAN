@@ -2,6 +2,7 @@
 @model List<MenuQuanTriInfo>
 @{
     Layout = null;
+    string Name = (string)ViewBag.Name;
 }
 <div class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu-site-default"><span class="sr-only">&nbsp;</span> <span class="icon-bar">&nbsp;</span> <span class="icon-bar">&nbsp;</span> <span class="icon-bar">&nbsp;</span></button></div>
@@ -14,8 +15,17 @@
             
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="/Login" id="login">Đăng nhập</a></li>
-            <li><a href="/Register" id="register">Đăng kí</a></li>
+            @if (string.IsNullOrEmpty(Name))
+            {
+                <li><a href="/Login" id="login">Đăng nhập</a></li>
+                <li><a href="/Register" id="register">Đăng kí</a></li>
+            }
+            else
+            {
+                 <li><a href="#" id="register">@Name</a></li>
+                <li><a href="/Login/Logout" id="login">Đăng xuất</a></li>
+            }
+
             <li><a href="#" id="digclock"></a></li>
         </ul>
     </div>

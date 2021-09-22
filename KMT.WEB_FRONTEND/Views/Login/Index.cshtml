@@ -1,26 +1,60 @@
-﻿@{ 
+﻿@{
     Layout = "~/Views/Shared/Base.cshtml";
     ViewBag.Page = "DANGNHAP";
 }
 <link href="~/cssSanPham/115412a366cccbd694c76421cd50a42c.opt.css" rel="stylesheet" />
 <div class="col-sm-8 col-md-8 col-sm-3">
     <h2>Đăng kí</h2>
-    <form id="loginForm">
+    <form id="loginForm" class="form-signin">
         <p><em class="fa fa-quote-left">&nbsp;</em> Hãy điền đầy đủ thông tin vào những ô dưới đây <em class="fa fa-quote-right">&nbsp;</em></p>
         <div class="form-group">
             <label for="login_iavim" class="col-sm-3 control-label">Tên đăng nhập <span class="text-danger">(*)</span>:</label>
-            <div class="col-sm-9"><input type="text" id="login_iavim" name="nv_login" value="" class="required form-control"></div>
+            <div class="col-sm-9"><input type="text" id="UserName" name="nv_login" value="" class="required form-control"></div>
         </div>
         <div class="form-group">
             <label for="password_iavim" class="col-sm-3 control-label">Mật khẩu <span class="text-danger">(*)</span>:</label>
-            <div class="col-sm-9"><input type="password" id="password_iavim" name="nv_password" value="" class="required form-control password"></div>
+            <div class="col-sm-9"><input type="password" id="PassWord" name="nv_password" value="" class="required form-control password"></div>
         </div>
         <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-9"><input name="nv_redirect" value="" type="hidden"> <input name="nv_header" value="" type="hidden"> <input type="submit" value="Đăng nhập" class="btn btn-primary"></div>
+            <div class="col-sm-offset-3 col-sm-9"><input name="nv_redirect" value="" type="hidden"><input type="button" value="Đăng nhập" class="btn btn-primary btn-signin"></div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9"><a title="Đăng ký thành viên" href="/Register">Đăng ký thành viên</a></div>
         </div>
-        
+
     </form>
 </div>
+<script>
+    $(document).ready(function () {
+        $('.form-signin').on('keypress', function (e) {
+            if (e.which == 13) {
+                $('.btn-signin').click();
+            }
+        });
+
+        $('.btn-signin').click(function () {
+            var UserName = $("#UserName").val();
+            var PassWord = $('#PassWord').val();
+            if (UserName == '') {
+                toastr.warning('Vui lòng nhập tên tài khoản!');
+                return false;
+            }
+            if (PassWord == '') {
+                toastr.warning('Vui lòng nhập mật khẩu!');
+                return false;
+            }
+            var data = {
+                UserName: UserName.trim(),
+                PassWord: PassWord.trim(),
+            }
+            $.post('/Login/Login', data, function (data) {
+                if (data.status == 500) {
+                    toastr.success(data.message);
+                }
+                else {
+                    window.location.href = '/TrangChu';
+                }
+            })
+        })
+    })
+</script>

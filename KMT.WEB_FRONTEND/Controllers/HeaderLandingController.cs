@@ -16,7 +16,14 @@ namespace KMT.WEB_FRONTEND.Controllers
             //UserIdentity  userIdentity = (UserIdentity)Session["userIdentity"];
             List<MenuQuanTriInfo> data = Task.Run(async ()=> await ApiService.menuQuanTriService.GetListMenuByType(1)).Result;
 
-
+            if (CurrentUser!=null)
+            {
+                ViewBag.Name = string.IsNullOrEmpty(CurrentUser.Name)?CurrentUser.UserName: CurrentUser.Name;
+            }
+            else
+            {
+                ViewBag.Name = "";
+            }
             //if (string.IsNullOrEmpty(Request.QueryString["IDMENU"]))
             //{
             //    data[0].IsActive = true;

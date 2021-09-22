@@ -81,7 +81,7 @@ namespace KMT.WEB_FRONTEND.Controllers
 
             //Adding Cookie in Browser
             Response.Cookies.Add(new HttpCookie("AuthenticationToken", guid));
-            return Json(new MessageResponse(200, model.ReturnUrl, null)); ;
+            return Json(new MessageResponse(200,"Đăng nhập thành công", null)); ;
         }
         private bool IsLocalUrl(string url)
         {
@@ -91,6 +91,34 @@ namespace KMT.WEB_FRONTEND.Controllers
                                      url[1] != '/' && url[1] != '\\') || // "/" or "/foo" but not "//" or "/\"
                    url.Length > 1 &&
                    url[0] == '~' && url[1] == '/'; // "~/" or "~/foo"
+        }
+
+
+        public ActionResult Logout()
+        {
+            AuthenticationManager().SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+
+            //Removing Session
+            Session.Abandon();
+            Session.Clear();
+            Session.RemoveAll();
+            System.Web.HttpContext.Current.Session.Clear();
+            System.Web.HttpContext.Current.Session.Abandon();
+            System.Web.HttpContext.Current.Session.RemoveAll();
+            //Removing ASP.NET_SessionId Cookie
+            if (Request.Cookies["ASP.NET_SessionId"] != null)
+            {
+                Response.Cookies["ASP.NET_SessionId"].Value = string.Empty;
+                Response.Cookies["ASP.NET_SessionId"].Expires = DateTime.Now.AddMonths(-10);
+            }
+
+            if (Request.Cookies["AuthenticationToken"] != null)
+            {
+                Response.Cookies["AuthenticationToken"].Value = string.Empty;
+                Response.Cookies["AuthenticationToken"].Expires = DateTime.Now.AddMonths(-10);
+            }
+
+            return RedirectToAction("Index", "TrangChu");
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿
+using KMT.DATA_MODEL.Users;
 using KMT.Services;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -13,41 +15,41 @@ namespace KMT.WEB_FRONTEND.Controllers
 {
     public class BaseController : Controller
     {
-        //private UserInfo _currentUser;
+        private UserInfo _currentUser;
         public BaseController()
         {
             
         }
 
-        //public UserInfo CurrentUser
-        //{
-        //    get
-        //    {
-        //        if (!User.Identity.IsAuthenticated)
-        //        {
-        //            _currentUser = null;
-        //            return _currentUser;
-        //        }
+        public UserInfo CurrentUser
+        {
+            get
+            {
+                if (!User.Identity.IsAuthenticated)
+                {
+                    _currentUser = null;
+                    return _currentUser;
+                }
 
-        //        if (_currentUser != null)
-        //            return _currentUser;
+                if (_currentUser != null)
+                    return _currentUser;
 
-        //        var identity = User.Identity as ClaimsIdentity;
+                var identity = User.Identity as ClaimsIdentity;
 
-        //        var Name = identity.FindFirstValue("Name");
-        //        var UserId = identity.FindFirstValue("UserId");
-        //        var UserName = identity.FindFirstValue("UserName");
+                var Name = identity.FindFirstValue("Name");
+                var UserId = identity.FindFirstValue("UserId");
+                var UserName = identity.FindFirstValue("UserName");
 
-        //        _currentUser = new UserInfo
-        //        {
-        //            Name = Name,
-        //            Id = int.Parse(UserId),
-        //            UserName= UserName
-        //        };
-        //        return _currentUser;
-        //    }
-        //    set => _currentUser = value;
-        //}
+                _currentUser = new UserInfo
+                {
+                    Name = Name,
+                    Id = int.Parse(UserId),
+                    UserName = UserName
+                };
+                return _currentUser;
+            }
+            set => _currentUser = value;
+        }
 
         private ApiServiceFactory _apiServiceFactory;
         public ApiServiceFactory ApiService

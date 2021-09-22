@@ -139,56 +139,60 @@ namespace KMT.API_DATA.Data.Repository
             {
                 userIdentity.lstRole = null;
             }
-            List<int> LstIdRole = user_Role.ROLE.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(s=>int.Parse(s)).ToList();
-            userIdentity.lstRole = DbContext.Roles.Where(s => LstIdRole.Contains(s.Id) && s.IsDelete == false).Select(s => new RoleInfo()
+            else
             {
-                Id = s.Id,
-                MA = s.MA,
-                TEN = s.TEN
-            }).ToList() ?? new List<RoleInfo>();
-
-            if (userIdentity.lstRole.Count>0)
-            {
-                //lấy danh sách quyền
-                List<ROLE_PERMISSON> LstRolePermission = DbContext.ROLE_PERMISSON.Where(s => LstIdRole.Contains(s.ROLEID.Value) && s.IsDelete == false).ToList();
-                if (LstRolePermission!=null && LstRolePermission.Count>0)
+                List<int> LstIdRole = user_Role.ROLE.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(s => int.Parse(s)).ToList();
+                userIdentity.lstRole = DbContext.Roles.Where(s => LstIdRole.Contains(s.Id) && s.IsDelete == false).Select(s => new RoleInfo()
                 {
-                    List<int> LstPermisson = new List<int>();
-                    foreach (var item in LstRolePermission)
+                    Id = s.Id,
+                    MA = s.MA,
+                    TEN = s.TEN
+                }).ToList() ?? new List<RoleInfo>();
+
+                if (userIdentity.lstRole.Count > 0)
+                {
+                    //lấy danh sách quyền
+                    List<ROLE_PERMISSON> LstRolePermission = DbContext.ROLE_PERMISSON.Where(s => LstIdRole.Contains(s.ROLEID.Value) && s.IsDelete == false).ToList();
+                    if (LstRolePermission != null && LstRolePermission.Count > 0)
                     {
-                        foreach (var per in item.PERMISSON.Split(new char[] { ','},StringSplitOptions.RemoveEmptyEntries))
+                        List<int> LstPermisson = new List<int>();
+                        foreach (var item in LstRolePermission)
                         {
-                            LstPermisson.Add(int.Parse(per));
+                            foreach (var per in item.PERMISSON.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                            {
+                                LstPermisson.Add(int.Parse(per));
+                            }
                         }
-                    }
 
-                    userIdentity.lstPermission = DbContext.PERMISSIONs.Where(s => LstPermisson.Contains(s.Id) && s.IsDelete == false).Select(s => new PermissonInfo()
-                    {
-                        Id = s.Id,
-                        MAQUYEN = s.MAQUYEN,
-                        TENQUYEN = s.TENQUYEN
-                    }).ToList() ?? new List<PermissonInfo>();
-
-
-                    List<int> LstMenu = new List<int>();
-                    var ListPermissionMenu = DbContext.PERMISSION_MENUQUANTRI.Where(s => LstPermisson.Contains(s.PERMISSIONID.Value) && s.IsDelete == false).ToList();
-                    foreach (var item in ListPermissionMenu)
-                    {
-                        foreach (var menu in item.MENU.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                        userIdentity.lstPermission = DbContext.PERMISSIONs.Where(s => LstPermisson.Contains(s.Id) && s.IsDelete == false).Select(s => new PermissonInfo()
                         {
-                            LstMenu.Add(int.Parse(menu));
+                            Id = s.Id,
+                            MAQUYEN = s.MAQUYEN,
+                            TENQUYEN = s.TENQUYEN
+                        }).ToList() ?? new List<PermissonInfo>();
+
+
+                        List<int> LstMenu = new List<int>();
+                        var ListPermissionMenu = DbContext.PERMISSION_MENUQUANTRI.Where(s => LstPermisson.Contains(s.PERMISSIONID.Value) && s.IsDelete == false).ToList();
+                        foreach (var item in ListPermissionMenu)
+                        {
+                            foreach (var menu in item.MENU.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                            {
+                                LstMenu.Add(int.Parse(menu));
+                            }
                         }
+
+                        userIdentity.lstMenuQuanTri = DbContext.MENUQUANTRIs.Where(s => LstMenu.Contains(s.Id)).Select(s => new MenuQuanTriInfo()
+                        {
+                            Id = s.Id,
+                            URL = s.URL,
+                            NAME = s.NAME
+                        }).ToList() ?? new List<MenuQuanTriInfo>();
+
                     }
-
-                    userIdentity.lstMenuQuanTri = DbContext.MENUQUANTRIs.Where(s => LstMenu.Contains(s.Id) ).Select(s => new MenuQuanTriInfo()
-                    {
-                        Id = s.Id,
-                        URL = s.URL,
-                        NAME = s.NAME
-                    }).ToList() ?? new List<MenuQuanTriInfo>();
-
                 }
             }
+           
 
             return userIdentity;
         }    

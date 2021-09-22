@@ -8,12 +8,20 @@
     <form id="loginForm">
         <p><em class="fa fa-quote-left">&nbsp;</em> Hãy điền đầy đủ thông tin vào những ô dưới đây <em class="fa fa-quote-right">&nbsp;</em></p>
         <div class="form-group">
+            <label for="login_iavim" class="col-sm-3 control-label">Tên người dùng <span class="text-danger">(*)</span>:</label>
+            <div class="col-sm-9"><input type="text" id="Name" name="nv_login" value="" class="required form-control"></div>
+        </div>
+        <div class="form-group">
             <label for="login_iavim" class="col-sm-3 control-label">Tên đăng nhập <span class="text-danger">(*)</span>:</label>
-            <div class="col-sm-9"><input type="text" id="login_iavim" name="nv_login" value="" class="required form-control"></div>
+            <div class="col-sm-9"><input type="text" id="UserName" name="nv_login" value="" class="required form-control"></div>
         </div>
         <div class="form-group">
             <label for="password_iavim" class="col-sm-3 control-label">Mật khẩu <span class="text-danger">(*)</span>:</label>
-            <div class="col-sm-9"><input type="password" id="password_iavim" name="nv_password" value="" class="required form-control password"></div>
+            <div class="col-sm-9"><input type="password" id="PassWord" name="nv_password" value="" class="required form-control password"></div>
+        </div>
+        <div class="form-group">
+            <label for="password_iavim" class="col-sm-3 control-label">Nhập lại mật khẩu <span class="text-danger">(*)</span>:</label>
+            <div class="col-sm-9"><input type="password" id="RePassWord" name="nv_password" value="" class="required form-control password"></div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9"><input name="nv_redirect" value="" type="hidden"> <input name="nv_header" value="" type="hidden"> <input id="btnRegister" type="button" value="Đăng kí" class="btn btn-primary"></div>
@@ -26,7 +34,39 @@
 <script>
     $(document).ready(function () {
         $('#btnRegister').click(function () {
+            var Name = $('#Name').val();
+            var Id = $('#Id').val();
+            var UserName = $('#UserName').val();
+            var PassWord = $('#PassWord').val();
+            var RePassWord = $('#RePassWord').val();
 
+            if (UserName == '') {
+                toastr.warning('Vui lòng nhập tên tài khoản');
+                return false;
+            }
+            if (PassWord == '') {
+                toastr.warning('Vui lòng nhập mật khẩu');
+                return false;
+            }
+            if (PassWord != RePassWord) {
+                toastr.warning('Mật khẩu không trùng nhau, vui lòng nhập lại!');
+                return false;
+            }
+            var data = {
+                Id: Id,
+                Name: Name.trim(),
+                UserName: UserName.trim(),
+                PassWord: PassWord.trim(),
+                RePassWord: RePassWord.trim(),
+            }
+            $.post('/Register/Register', data, function (data) {
+                if (data.status==500) {
+                    toastr.success(data.message);
+                }
+                else {
+                    window.location.href = '/TrangChu';
+                }
+            })
         })
     })
 </script>

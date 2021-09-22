@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-[assembly: OwinStartup("Admin", typeof(KMT.WEB_FRONTEND.Startup))]
+[assembly: OwinStartup(typeof(KMT.WEB_FRONTEND.Startup))]
 namespace KMT.WEB_FRONTEND
 {
     public partial class Startup
