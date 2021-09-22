@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace KMT.WEB_FRONTEND.Controllers
 {
-    public class ProductController : BaseController
+    public class SanPhamController : BaseController
     {
         // GET: SanPham
         public ActionResult Index()
@@ -17,7 +17,7 @@ namespace KMT.WEB_FRONTEND.Controllers
             {
                 Response.Redirect("/Login");
                 Response.End();
-            }
+            }    
             return View();
         }
 

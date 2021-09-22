@@ -53,13 +53,32 @@ namespace KMT.Services.Services
 
             return response;
         }
+        //public List<BinhLuanInfo> GetListBinhLuan(int IDSANPHAM)
+        public async Task<List<BinhLuanInfo>> GetListBinhLuan(int IDSANPHAM)
+        {
+            var dataString =
+                await _apiClient.GetStringAsync(string.Format("{0}/GetListBinhLuan?IDSANPHAM={1}", _remoteServiceBaseUrl, IDSANPHAM));
 
+            var response = JsonConvert.DeserializeObject<List<BinhLuanInfo>>(dataString);
+
+            return response;
+        }
         public async Task<BinhLuanInfo> GetById(int Id)
         {
             var dataString =
                 await _apiClient.GetStringAsync(string.Format("{0}/GetById?Id={1}", _remoteServiceBaseUrl, Id));
 
             var response = JsonConvert.DeserializeObject<BinhLuanInfo>(dataString);
+
+            return response;
+        }
+        //bool IsBinhLuan(int IDUSER, int IDSANPHAM)
+        public async Task<bool> IsBinhLuan(int IDUSER, int IDSANPHAM)
+        {
+            var dataString =
+                await _apiClient.GetStringAsync(string.Format("{0}/IsBinhLuan?IDUSER={1}&IDSANPHAM={2}", _remoteServiceBaseUrl, IDUSER, IDSANPHAM));
+
+            var response = JsonConvert.DeserializeObject<bool>(dataString);
 
             return response;
         }

@@ -9,8 +9,11 @@ namespace KMT.DATA_MODEL.BinhLuan
     {
         public int Id { get; set; }
         public string NOIDUNG { get; set; }
+        public string IDSANPHAM { get; set; }
         public bool? IsDelete { get; set; }
         public int? IDUSER { get; set; }
+        public string NGUOITAO { get; set; }
+
         public int page { get; set; }
         public int take { get; set; }
     }

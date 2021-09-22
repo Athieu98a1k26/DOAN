@@ -56,7 +56,7 @@ namespace KMT.API_DATA.Data.Repository
             MuaHangResponse dt = new MuaHangResponse();
             List<MuaHangInfo> q = (from a in DbContext.MUAHANGs
                                     where
-                                    (!model.IDSanPham.HasValue || a.IDSANPHAM == model.IDSanPham) &&
+                                    (!model.IDSANPHAM.HasValue || a.IDSANPHAM == model.IDSANPHAM) &&
                                     (!model.IDUSER.HasValue || a.IDUSER == model.IDUSER)
                                     select new MuaHangInfo()
                                     {

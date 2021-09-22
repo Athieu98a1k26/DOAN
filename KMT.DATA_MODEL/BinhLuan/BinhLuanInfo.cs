@@ -15,6 +15,7 @@ namespace KMT.DATA_MODEL.BinhLuan
         public DateTime NGAYTAO { get; set; }
         public string NGUOISUA { get; set; }
         public DateTime NGAYSUA { get; set; }
+        public string strNGAYTAO {  get{ return NGAYTAO.ToString("dd/MM/yyyy"); } set => NGAYTAO = DateTime.ParseExact(value, "dd/MM/yyyy", null); }
         public bool IsDelete { get; set; }
     }
 }
