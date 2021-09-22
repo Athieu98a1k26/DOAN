@@ -1,17 +1,25 @@
-﻿using System;
+﻿using KMT.DATA_MODEL.ThongTinDuLich;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
 namespace KMT.WEB_FRONTEND.Controllers
 {
-    public class ChiTietTinTucController : Controller
+    public class ChiTietTinTucController : BaseController
     {
         // GET: ChiTietTinTuc
-        public ActionResult Index()
+        public async Task<ActionResult> Index(int? Id)
         {
-            return View();
+            if (!Id.HasValue)
+            {
+                Response.Redirect("/");
+                Response.End();
+            }
+            ThongTinDuLichInfo data = await ApiService.thongTinDuLichService.GetById(Id.Value);
+            return View(data);
         }
     }
 }

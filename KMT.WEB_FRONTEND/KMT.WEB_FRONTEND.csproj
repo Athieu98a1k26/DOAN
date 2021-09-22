@@ -120,7 +120,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\ChiTietTinTucController.cs" />
-    <Compile Include="Controllers\GioiThieuController.cs" />
+    <Compile Include="Controllers\TinTucController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HeaderLandingController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
@@ -294,7 +294,7 @@
     <Content Include="Views\Booking\Index.cshtml" />
     <Content Include="Views\SanPham\Index.cshtml" />
     <Content Include="Views\ChiTietTinTuc\Index.cshtml" />
-    <Content Include="Views\GioiThieu\Index.cshtml" />
+    <Content Include="Views\TinTuc\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

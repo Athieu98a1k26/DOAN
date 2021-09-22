@@ -1,7 +1,4 @@
 ﻿using System;
-using  Collections.Generic;
-using  Linq;
-using  Web;
 
 namespace KMT.DATA_MODEL.Phong
 {

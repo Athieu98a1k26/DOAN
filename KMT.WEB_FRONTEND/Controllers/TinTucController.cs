@@ -8,9 +8,9 @@ using System.Web.Mvc;
 
 namespace KMT.WEB_FRONTEND.Controllers
 {
-    public class TrangChuController : BaseController
+    public class TinTucController : BaseController
     {
-        // GET: TrangChu
+        // GET: GioiThieu
         public ActionResult Index()
         {
             //ThongTinDuLichRequest thongTinDuLichRequest = new ThongTinDuLichRequest();
@@ -26,6 +26,5 @@ namespace KMT.WEB_FRONTEND.Controllers
             var resutl = await ApiService.thongTinDuLichService.search(model);
             return Json(resutl, JsonRequestBehavior.AllowGet);
         }
-
     }
 }
