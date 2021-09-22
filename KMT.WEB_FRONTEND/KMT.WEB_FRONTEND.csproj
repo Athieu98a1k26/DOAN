@@ -45,7 +45,34 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -117,18 +144,23 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\ChiTietTinTucController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\TinTucController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HeaderLandingController.cs" />
-    <Compile Include="Controllers\SanPhamController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\TrangChuController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\MessageResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\all.css" />
@@ -147,6 +179,8 @@
     <Content Include="Content\style.css" />
     <Content Include="Content\StyleSheet1.css" />
     <Content Include="Content\themify-icons.css" />
+    <Content Include="Content\toastr.min.css" />
+    <Content Include="Content\toastr.min.js" />
     <Content Include="cssDatPhong\937af88e1c6af296f5fa8cd19616839d.opt.css" />
     <Content Include="cssSanPham\115412a366cccbd694c76421cd50a42c.opt.css" />
     <Content Include="CỔNG DU LỊCH THÁI NGUYÊN_files\1%281%29.png" />
@@ -292,14 +326,15 @@
     <Content Include="Views\MenuRight\Index.cshtml" />
     <Content Include="Views\Footer\Index.cshtml" />
     <Content Include="Views\Booking\Index.cshtml" />
-    <Content Include="Views\SanPham\Index.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\ChiTietTinTuc\Index.cshtml" />
     <Content Include="Views\TinTuc\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Register\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Assets\Banner\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -318,6 +353,10 @@
     <ProjectReference Include="..\KMT.DATA_MODEL\KMT.DATA_MODEL.csproj">
       <Project>{11C88469-5070-4CE9-940C-6D65F9AF82BB}</Project>
       <Name>KMT.DATA_MODEL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KMT.Libraly\KMT.Libraly.csproj">
+      <Project>{A9F2BF65-21A1-4283-B12C-9DC725406DA0}</Project>
+      <Name>KMT.Libraly</Name>
     </ProjectReference>
     <ProjectReference Include="..\KMT.Services\KMT.Services.csproj">
       <Project>{B3BB6125-CBBA-4B3B-B895-E39DA5C49BF1}</Project>

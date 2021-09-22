@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace KMT.WEB_FRONTEND.Controllers
 {
-    public class SanPhamController : Controller
+    public class ProductController : BaseController
     {
         // GET: SanPham
         public ActionResult Index()

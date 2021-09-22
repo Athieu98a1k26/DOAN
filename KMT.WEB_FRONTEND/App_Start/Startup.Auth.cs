@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Helpers;
 
-namespace KMT.Admin
+namespace KMT.WEB_FRONTEND
 {
     public partial class Startup
     {
@@ -19,7 +19,7 @@ namespace KMT.Admin
         {
             if (ConfigurationManager.AppSettings["ExpireTimeMinutes"] == null ||
                 !int.TryParse(ConfigurationManager.AppSettings.Get("ExpireTimeMinutes"), out var expireTimeSpan))
-                expireTimeSpan = 1;
+                expireTimeSpan = 60;
 
             // Enable the application to use a cookie to store information for the signed in user
             app.UseCookieAuthentication(new CookieAuthenticationOptions

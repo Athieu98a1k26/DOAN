@@ -10,13 +10,13 @@ namespace KMT.DATA_MODEL.Phong
         public string DIACHI { get; set; }
         public string SODIENTHOAI { get; set; }
         public string CHUNGMINHTHUNHANDAN { get; set; }
-        public int  LOAIPHONG { get; set; }
-        public int  SOKHACH { get; set; }
-        public  DateTime  NGAYDEN { get; set; }
-        public  DateTime  NGAYDI { get; set; }
+        public Nullable<int> LOAIPHONG { get; set; }
+        public Nullable<int> SOKHACH { get; set; }
+        public Nullable<System.DateTime> NGAYDEN { get; set; }
+        public Nullable<System.DateTime> NGAYDI { get; set; }
         public string QUOCTICH { get; set; }
         public string GIOITINH { get; set; }
-        public int  BOPHANGUIDEN { get; set; }
+        public Nullable<int> BOPHANGUIDEN { get; set; }
         public string NOIDUNG { get; set; }
     }
 }
