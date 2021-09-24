@@ -190,5 +190,22 @@ namespace KMT.Services
             }
         }
 
+        private MuaHangService _MuaHangService;
+        
+        public MuaHangService muaHangService
+        {
+            get
+            {
+                if (_MuaHangService == null)
+                    lock (SyncRoot)
+                    {
+                        if (_MuaHangService == null)
+                            _MuaHangService = new MuaHangService(Url, HttpClient);
+                    }
+                return _MuaHangService;
+
+            }
+        }
+
     }
 }
