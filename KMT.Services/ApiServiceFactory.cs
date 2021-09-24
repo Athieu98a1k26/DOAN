@@ -35,7 +35,7 @@ namespace KMT.Services
         //MuaHangService
         private MuaHangService _muaHangService;
 
-        public MuaHangService muaHangService
+        public MuaHangService MuaHangService
         {
             get
             {
