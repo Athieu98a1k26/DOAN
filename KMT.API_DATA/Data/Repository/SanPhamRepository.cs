@@ -99,7 +99,8 @@ namespace KMT.API_DATA.Data.Repository
                             GIA = a.GIA.Value,
                             HINHANH = a.HINHANH,
                             MOTA = a.MOTA,
-                            IsDelete = a.IsDelete.Value
+                            IsDelete = a.IsDelete.Value,
+                            NGAYTAO=a.NGAYTAO.Value
                         }
                         ).FirstOrDefault();
             return data;

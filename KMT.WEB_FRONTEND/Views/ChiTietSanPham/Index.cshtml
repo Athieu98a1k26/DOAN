@@ -3,33 +3,154 @@
     ViewBag.Title = "Trang chủ";
     Layout = "~/Views/Shared/Base.cshtml";
     ViewBag.Page = "CHITIETSANPHAM";
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+    bool IsBinhLuan=(bool)ViewBag.IsBinhLuan;
 }
-<style>
-    #Content img {
-        width: 100%;
-    }
-</style>
+<script src="~/Scripts/tabresponsive.js"></script>
 <link href="~/cssSanPham/115412a366cccbd694c76421cd50a42c.opt.css" rel="stylesheet" />
+<input type="hidden"  id="IDSANPHAM" value="@Model.Id"/>
 <div class="col-sm-8 col-md-8 col-sm-3">
-    <div class="container">
-        <p style="font-weight: bold;text-align: justify;font-style: italic;">@Model.TENMATHANG</p>
-        <img alt="@Model.MOTA" src="/Content/AnhSanPham/@Model.HINHANH" width="200" class="img-thumbnail pull-left imghome" />
-        <div id="Content">
-            <p class="text-justify">Giá:  @Model.GIA </p>
-            <p class="text-justify">@Model.MOTA </p>
+    <div id="detail">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="col-md-3 text-center">
+                    <a href="#" title="Kẹo lạc Trà xanh" rel="shadowbox"><img src="/Content/AnhSanPham/@Model.HINHANH" alt="" width="140px" class="img-thumbnail"></a>
+                </div>
+                <div class="col-md-9">
+                    <ul class="product_info">
+                        <li>
+                            <h2>@Model.TENMATHANG</h2>
+                        </li>
+                        <li class="text-muted">Đăng ngày @Model.NGAYTAO.ToString("dd/MM/yyyy hh:mm:ss")</li>
+                        <li>Giá: @String.Format(info, "{0:c}", Model.GIA)</li>
+
+                    </ul>
+
+                    <hr>
+                    <div id="ratedata">
+                        <div class="clearfix">
+                            <button id="btnMuaHang" class="btn btn-primary">Mua Hàng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="tabs" class="tabs">
+            <nav>
+                <ul>
+                    <li class="tab-current"><a href="http://thainguyentourism.vn/vi/shops/San-pham-Tra/Keo-lac-Tra-xanh-16.html#section-1"><em class="fa fa-bars">&nbsp;</em><span>Chi tiết sản phẩm</span></a></li>
+                    <li class=""><a href="/Product"><em class="fa fa-picture-o">&nbsp;</em><span>Hình ảnh khác</span></a></li>
+                    <li class=""><a href="http://thainguyentourism.vn/vi/shops/San-pham-Tra/Keo-lac-Tra-xanh-16.html#section-3"><em class="fa fa-comments-o">&nbsp;</em><span>Bình luận</span></a></li>
+                </ul>
+            </nav>
+            <div class="content">
+                <section id="section-1" class="content-current">
+                   @Model.MOTA
+                </section>
+                <section id="section-2" class="">
+                    <div class="clear">&nbsp;</div>
+                    Sản phẩm này không có hình ảnh khác
+                </section>
+                <section id="section-3" class="">
+                    <div id="LstBinhLuan">
+
+                    </div>
+                    @if (!IsBinhLuan)
+                    {
+                        <textarea name="comments" id="NOIDUNG" style="width:96%;height:90px;padding:2%;font:1.4em/1.6em cursive;"></textarea>
+                        <input type="button" id="btnBinhLuan" value="Bình luận" style="font-size: 14px;border:5px solid orange;background-color:gold;color:olive;">
+                    }
+
+
+                </section>
+            </div>
         </div>
     </div>
+    <script type="text/javascript">
 
+        $(document).ready(function () {
+            let IDSANPHAM = $('#IDSANPHAM').val();
+            GetBinhLuan(IDSANPHAM);
+            $('#btnBinhLuan').click(function () {
+                let NOIDUNG = $('#NOIDUNG').val();
+                
+                if (NOIDUNG == '') {
+                    toastr.warning('Vui lòng nhập bình luận');
+                }
+                let data = {
+                    IDSANPHAM: IDSANPHAM,
+                    NOIDUNG: NOIDUNG
+                }
+                $.post('/ChiTietSanPham/AddOrUpdate', data, function (data) {
+                    if (data.status == 500) {
+                        toastr.error('Lỗi trong quá trình bình luận');
+                    }
+                    else {
+                        toastr.success(data.message);
+                        $('#NOIDUNG').css('display', 'none');
+                        $('#btnBinhLuan').css('display', 'none');
+                        GetBinhLuan(IDSANPHAM);
+                    }
+                })
+            })
+            $('#btnMuaHang').click(function () {
+
+                $.get('/ChiTietSanPham/MuaSanPham?IDSANPHAM=' + IDSANPHAM, function (data) {
+                    if (data.status == 500) {
+                        toastr.error(data.message);
+                    }
+                    else {
+                        toastr.success(data.message);
+                    }
+                })
+            })
+        })
+
+        function GetBinhLuan(IDSANPHAM) {
+            $.get('/ChiTietSanPham/GetListBinhLuan?IDSANPHAM=' + IDSANPHAM, function (data) {
+                if (data.status == 500) {
+                    toastr.error(data.message);
+                }
+                else {
+                    $('#LstBinhLuan').empty();
+                    let html = '';
+                    for (var i = 0; i < data.length; i++) {
+                        html += '<span> Ngày: ' + data[i].strNGAYTAO + '</span> <span>Người dùng tên: ' + data[i].NGUOITAO + '</span><br/>Nội dung bình luận: ' + data[i].NOIDUNG+'<hr/>'
+                    }
+                    $('#LstBinhLuan').append(html);
+                }
+            })
+        }
+
+        //<![CDATA[
+        new CBPFWTabs(document.getElementById('tabs'));
+        $(function () {
+            $('#click_print').click(function (event) {
+                var href = $(this).attr("href");
+                event.preventDefault();
+                nv_open_browse(href, '', 640, 500, 'resizable=no,scrollbars=yes,toolbar=no,location=no,status=no');
+                return false;
+            });
+            $(".width-star-bg").click(function (event) {
+                event.preventDefault();
+                var val = $(this).attr("value-data");
+                if (confirm('Bạn có chắc muốn đánh giá')) {
+                    $.ajax({
+                        type: "POST",
+                        url: '/index.php?language=vi&nv=shops&op=rate&id=16' + '&nocache=' + new Date().getTime(),
+                        data: 'val=' + val,
+                        success: function (data) {
+                            var s = data.split('_');
+                            if (s[0] == 'OK') {
+                                $("#ratedata").load('/index.php?language=vi&nv=shops&op=rate&id=16&showdata=1');
+                            }
+                            alert(s[1]);
+                        }
+                    });
+                }
+                return false;
+            });
+        });
+                //]]>
+    </script>
 </div>
-
-<script>
-    @*$(document).ready(function () {
-        let data = htmlDecode(`@Html.Raw(Model.NOIDUNG)`);
-        $('#Content').html(data);
-    })
-
-    function htmlDecode(input) {
-        var doc = new DOMParser().parseFromString(input, "text/html");
-        return doc.documentElement.textContent;
-    }*@
-</script>

@@ -32,7 +32,44 @@ namespace KMT.Services
 
             }
         }
-        //PermissonMenuService
+        //MuaHangService
+        private MuaHangService _muaHangService;
+
+        public MuaHangService muaHangService
+        {
+            get
+            {
+                if (_muaHangService == null)
+                    lock (SyncRoot)
+                    {
+                        if (_muaHangService == null)
+                            _muaHangService = new MuaHangService(Url, HttpClient);
+                    }
+                return _muaHangService;
+
+            }
+        }
+
+
+
+
+        private BinhLuanService _binhLuanService;
+
+        public BinhLuanService binhLuanService
+        {
+            get
+            {
+                if (_binhLuanService == null)
+                    lock (SyncRoot)
+                    {
+                        if (_binhLuanService == null)
+                            _binhLuanService = new BinhLuanService(Url, HttpClient);
+                    }
+                return _binhLuanService;
+
+            }
+        }
+
         private PermissonMenuService _permissonMenuService;
 
         public PermissonMenuService permissonMenuService

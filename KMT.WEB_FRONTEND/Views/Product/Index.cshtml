@@ -111,7 +111,7 @@
             page: page,
             take: take
         }
-        $.post('/SanPham/search', data, function (data) {
+        $.post('/Product/search', data, function (data) {
             RenderData(data, "#DataSanPham");
         })
     }

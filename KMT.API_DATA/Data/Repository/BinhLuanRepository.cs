@@ -37,7 +37,7 @@ namespace KMT.API_DATA.Data.Repository
                 oBINHLUANs.NGUOITAO = model.NGUOITAO;
                 oBINHLUANs.NOIDUNG = model.NOIDUNG;
                 oBINHLUANs.IDUSER = model.IDUSER;
-                oBINHLUANs.NGAYTAO = model.NGAYTAO;
+                oBINHLUANs.NGAYTAO = DateTime.Now;
                 oBINHLUANs.IsDelete = false;
                 DbContext.BINHLUANs.Add(oBINHLUANs);
                 return DbContext.SaveChanges();
@@ -84,7 +84,16 @@ namespace KMT.API_DATA.Data.Repository
             dt.take = model.take;
             return dt;
         }
-
+        public bool IsBinhLuan(int IDUSER, int IDSANPHAM)
+        {
+            int count = DbContext.BINHLUANs.Count(s => s.IDSANPHAM == IDSANPHAM && s.IDUSER == IDUSER);
+            if (count==0)
+            {
+                //chua bình luận
+                return false;
+            }
+            return true;
+        }
         public int Delete(int Id)
         {
             var data = DbContext.BINHLUANs.FirstOrDefault(s => s.Id == Id);
@@ -111,5 +120,26 @@ namespace KMT.API_DATA.Data.Repository
                         ).FirstOrDefault();
             return data;
         }
+
+        public List<BinhLuanInfo> GetListBinhLuan(int IDSANPHAM)
+        {
+            var data = (from a in DbContext.BINHLUANs.Where(s => !s.IsDelete.Value)
+                        join b in DbContext.SANPHAMs.Where(s => !s.IsDelete.Value) on a.IDSANPHAM equals b.Id into bs
+                        from b in bs.DefaultIfEmpty()
+                        where a.IDSANPHAM == IDSANPHAM
+                        orderby a.NGAYTAO descending
+                        select new BinhLuanInfo()
+                        {
+                            Id = a.Id,
+                            IDSANPHAM = a.IDSANPHAM.Value,
+                            NOIDUNG = a.NOIDUNG,
+                            NGUOITAO = a.NGUOITAO,
+                            NGAYTAO=a.NGAYTAO.Value,
+                            IDUSER = a.IDUSER.Value,
+                            IsDelete = a.IsDelete.Value
+                        }).ToList() ?? new List<BinhLuanInfo>();
+            return data;
+        }
+
     }
 }

@@ -45,5 +45,21 @@ namespace KMT.API_DATA.Controllers
             var dt = BinhLuanRepository.GetById(Id);
             return dt;
         }
+        //List<BinhLuanInfo> GetListBinhLuan(int IDSANPHAM)
+        [Route("GetListBinhLuan")]
+        [HttpGet]
+        public List<BinhLuanInfo> GetListBinhLuan(int IDSANPHAM)
+        {
+            var dt = BinhLuanRepository.GetListBinhLuan(IDSANPHAM);
+            return dt;
+        }
+        //bool IsBinhLuan(int IDUSER, int IDSANPHAM)
+        [Route("IsBinhLuan")]
+        [HttpGet]
+        public bool IsBinhLuan(int IDUSER, int IDSANPHAM)
+        {
+            var dt = BinhLuanRepository.IsBinhLuan(IDUSER, IDSANPHAM);
+            return dt;
+        }
     }
 }
