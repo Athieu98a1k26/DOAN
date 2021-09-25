@@ -27,7 +27,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="panel-body">
                         <form action="#" method="post">
-                            <p class="input-group"><span class="input-group-addon"><em class="fa fa-search">&nbsp;</em></span> <input type="text" name="q" id="Keyword" value="" class="form-control" placeholder="Từ khóa" /></p>
+                            <p class="input-group"><span class="input-group-addon"><em class="fa fa-search">&nbsp;</em></span> <input type="text" name="q" id="Keywordd" value="" class="form-control" placeholder="Từ khóa" /></p>
                             <p>
                                 <select class="form-control" name="cat" id="TypeTheme">
                                     <option value="">Hãy chọn chủ đề</option>
@@ -47,7 +47,7 @@
     $(document).ready(function () {
         $('#brnSearch').click(function () {
             let type = $('#TypeTheme').val();
-            let Keyword = $('#Keyword').val();
+            let Keyword = $('#Keywordd').val();
             if (Keyword=='') {
                 toastr.warning('Vui lòng nhập từ khóa tìm kiếm');
             }
