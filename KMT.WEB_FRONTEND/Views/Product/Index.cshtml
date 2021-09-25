@@ -2,8 +2,9 @@
     ViewBag.Title = "Trang chủ";
     Layout = "~/Views/Shared/Base.cshtml";
     ViewBag.Page = "SANPHAM";
+    string Keyword = ViewBag.Keyword;
 }
-
+<input type="hidden" value="@Keyword" id="Keyword"/>
 <link href="~/cssSanPham/115412a366cccbd694c76421cd50a42c.opt.css" rel="stylesheet" />
 <div class="col-sm-8 col-md-8 col-sm-3">
 
@@ -109,7 +110,8 @@
     function LoadData(page, take) {
         let data = {
             page: page,
-            take: take
+            take: take,
+            Keyword: $('#Keyword').val()
         }
         $.post('/Product/search', data, function (data) {
             RenderData(data, "#DataSanPham");
@@ -120,29 +122,9 @@
         console.log(data);
         $(strElement).empty();
         let htmlRender = ``;
-        for (var i = 0; i < data.length; i++) {
-            //htmlRender += `<div class="news_column">
-            //    <div class="panel panel-default">
-            //        <div class="panel-body">
-            //            <a href="/ChiTietTinTuc?Id=`+ data[i].Id + `" title="` + data[i].MOTA + `"><img alt="` + data[i].MOTA + `" src="` + data[i].HINHANH + `" width="200" class="img-thumbnail pull-left imghome" /></a>
-            //            <h3><a href="/ChiTietTinTuc?Id=`+ data[i].Id + `" title="` + data[i].MOTA + `">` + data[i].TIEUDE + `</a> <span class="icon_new">&nbsp;</span></h3>
-            //            <p class="text-justify">` + data[i].MOTA + `</p>
-            //        </div>
-            //    </div>
-            //</div>`;
-            //
-            //<div class="col-sm-6 col-md-3">
-            //    <div class="thumbnail">
-            //        <div style="height: 100px"><a href="http://thainguyentourism.vn/vi/shops/San-pham-Tra/Tra-moc-cau-7.html" title="Trà móc câu"><img src="./Mua sắm du lịch - CỔNG DU LỊCH THÁI NGUYÊN_files/moc-cau.jpg" alt="Trà móc câu" data-toggle="tooltip" data-placement="bottom" data-rel="tooltip" data-html="true" title="" class="img-thumbnail custom_tooltip" style="max-width:150px;" data-original-title="&lt;img class=&#39;img-thumbnail pull-left&#39; style=&#39;margin: 0 5px 5px 0;&#39; src=&#39;/files/shops/2017_10/moc-cau.jpg&#39; width=&#39;150&#39; /&gt;&lt;p class=&#39;text-justify&#39;&gt;&lt;strong&gt;Trà móc câu&lt;/strong&gt;&lt;br /&gt;Là loại chè được hái một tôm hai lá, cánh chè xoăn và cong như móc câu&lt;/p&gt;&lt;div class=&#39;clearfix&#39;&gt;&lt;/div&gt;"></a></div>
-            //            <div class="caption text-center">
-            //                <h3><a href="http://thainguyentourism.vn/vi/shops/San-pham-Tra/Tra-moc-cau-7.html" title="Trà móc câu">Trà móc câu</a></h3>
-            //                <p class="price">Giá: <span class="money">Liên hệ</span></p>
-            //                <p><input type="checkbox" value="7" onclick="nv_compare(7);" id="compare_7"><a href="javascript:void(0);" onclick="nv_compare_click();">&nbsp;So sánh</a></p>
-            //                    <div class="clearfix"><a href="http://thainguyentourism.vn/vi/shops/San-pham-Tra/Tra-moc-cau-7.html" title="Trà móc câu"></a><button type="button" class="btn btn-primary btn-xs"><a href="http://thainguyentourism.vn/vi/shops/San-pham-Tra/Tra-moc-cau-7.html" title="Trà móc câu"></a><a href="http://thainguyentourism.vn/vi/shops/San-pham-Tra/Tra-moc-cau-7.html" title="Trà móc câu">Chi tiết</a></button></div>
-            //        </div>
-            //            </div>
-            //        </div>
-            htmlRender += `<div class="col-sm-6 col-md-3">
+        if (data.length>0) {
+            for (var i = 0; i < data.length; i++) {
+                htmlRender += `<div class="col-sm-6 col-md-3">
                 <div class="thumbnail">
                     <div class="panel-body">
                         <a href="/ChiTietSanPham?Id=`+ data[i].Id + `" title="` + data[i].MOTA + `"><img alt="` + data[i].MOTA + `" src="/Content/AnhSanPham/` + data[i].HINHANH + `" width="200" class="img-thumbnail pull-left imghome" /></a>
@@ -152,6 +134,10 @@
                     </div>
                 </div>
             </div>`;
+            }
+        }
+        else {
+            htmlRender += '<div>Không tìm thấy sản phẩm</div>';
         }
         $(strElement).append(htmlRender);
         PaginationData(response);

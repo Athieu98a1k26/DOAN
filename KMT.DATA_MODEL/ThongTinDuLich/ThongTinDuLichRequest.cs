@@ -10,6 +10,7 @@ namespace KMT.DATA_MODEL.ThongTinDuLich
         public int Id { get; set; }
         public string TIEUDE { get; set; }
         public int? TRANGTHAI { get; set; }
+        public string Keyword { get; set; }
         public int page { get; set; }
         public int take { get; set; }
     }

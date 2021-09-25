@@ -11,13 +11,14 @@ namespace KMT.WEB_FRONTEND.Controllers
     public class ProductController : BaseController
     {
         // GET: SanPham
-        public ActionResult Index()
+        public ActionResult Index(string Keyword="")
         {
             if (CurrentUser == null)
             {
                 Response.Redirect("/Login");
                 Response.End();
             }
+            ViewBag.Keyword = Keyword;
             return View();
         }
 

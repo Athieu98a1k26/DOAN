@@ -65,6 +65,8 @@ namespace KMT.API_DATA.Data.Repository
             List<ThongTinDuLichInfo> q = (from a in DbContext.THONGTINDULICHes.Where(s => s.TRANGTHAI == 0)
                                    where
                                    (string.IsNullOrEmpty(model.TIEUDE) || a.TIEUDE.Contains(model.TIEUDE))
+                                   &&
+                                   (string.IsNullOrEmpty(model.Keyword) || a.TIEUDE.Contains(model.Keyword) || a.NOIDUNG.Contains(model.Keyword))
                                    select new ThongTinDuLichInfo()
                                    {
                                        Id = a.Id,
