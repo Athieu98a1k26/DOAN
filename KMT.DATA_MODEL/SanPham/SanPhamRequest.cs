@@ -13,6 +13,7 @@ namespace KMT.DATA_MODEL.SanPham
         public int? GIA { get; set; }
         public int? GIAMIN { get; set; }
         public int? GIAMAX { get; set; }
+        public string Keyword { get; set; }
         public int page { get; set; }
         public int take { get; set; }
     }

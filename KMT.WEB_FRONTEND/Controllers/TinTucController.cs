@@ -11,8 +11,9 @@ namespace KMT.WEB_FRONTEND.Controllers
     public class TinTucController : BaseController
     {
         // GET: GioiThieu
-        public ActionResult Index()
+        public ActionResult Index(string Keyword="")
         {
+            ViewBag.Keyword = Keyword;
             //ThongTinDuLichRequest thongTinDuLichRequest = new ThongTinDuLichRequest();
             //thongTinDuLichRequest.page = 1;
             //thongTinDuLichRequest.take = 10;

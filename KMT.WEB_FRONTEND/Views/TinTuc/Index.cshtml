@@ -1,8 +1,10 @@
 ﻿@{
     ViewBag.Title = "Trang chủ";
     Layout = "~/Views/Shared/Base.cshtml";
-    ViewBag.Page = "GIOITHIEU";
+    ViewBag.Page = "TINTUC";
+    string Keyword = ViewBag.Keyword;
 }
+<input type="hidden" id="Keyword" value="@Keyword"/>
 <link href="~/CỔNG DU LỊCH THÁI NGUYÊN_files/ce2ef6deb98210c34d168c454170101b.opt.css" rel="stylesheet" />
 <div class="col-sm-8 col-md-8 col-sm-3">
     <div id="DataThongTinDuLich">
@@ -30,9 +32,10 @@
     function LoadData(page, take) {
         let data = {
             page: page,
-            take: take
+            take: take,
+            Keyword: $('#Keyword').val().trim()
         }
-        $.post('/TrangChu/search', data, function (data) {
+        $.post('/TinTuc/search', data, function (data) {
             RenderData(data, "#DataThongTinDuLich");
         })
     }
@@ -41,17 +44,23 @@
         console.log(data);
         $(strElement).empty();
         let htmlRender = ``;
-        for (var i = 0; i < data.length; i++) {
-            htmlRender += `<div class="news_column">
+        if (data.length>0) {
+            for (var i = 0; i < data.length; i++) {
+                htmlRender += `<div class="news_column">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <a href="/ChiTietTinTuc?Id=`+ data[i].Id + `" title="` + data[i].MOTA + `"><img alt="` + data[i].MOTA + `" src="/Content/HinhAnh/` + data[i].HINHANH +`" width="200" class="img-thumbnail pull-left imghome" /></a>
+                        <a href="/ChiTietTinTuc?Id=`+ data[i].Id + `" title="` + data[i].MOTA + `"><img alt="` + data[i].MOTA + `" src="/Content/HinhAnh/` + data[i].HINHANH + `" width="200" class="img-thumbnail pull-left imghome" /></a>
                         <h3><a href="/ChiTietTinTuc?Id=`+ data[i].Id + `" title="` + data[i].MOTA + `">` + data[i].TIEUDE + `</a> <span class="icon_new">&nbsp;</span></h3>
                         <p class="text-justify">` + data[i].MOTA + `</p>
                     </div>
                 </div>
             </div>`;
+            }
         }
+        else {
+            htmlRender += '<div>Không tìm thấy sản phẩm</div>';
+        }
+        
         $(strElement).append(htmlRender);
         PaginationData(response);
     }

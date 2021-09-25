@@ -64,6 +64,8 @@ namespace KMT.API_DATA.Data.Repository
                                    (!model.GIAMIN.HasValue || a.GIA >= model.GIAMIN.Value)
                                    &&
                                    (!model.GIAMAX.HasValue || a.GIA <= model.GIAMAX.Value)
+                                   &&
+                                   (string.IsNullOrEmpty(model.Keyword) || a.TENMATHANG.Contains(model.Keyword) || a.MOTA.Contains(model.Keyword))
                                    select new SanPhamInfo()
                                    {
                                        Id = a.Id,

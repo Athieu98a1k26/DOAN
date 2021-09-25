@@ -26,31 +26,16 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="panel-body">
-                        <ul class="menu">
-                            <li><a href="/vi/statistics/" class="current">Thống kê truy nhập</a></li>
-                            <li><span>|</span> <a href="/vi/voting/">Thăm dò ý kiến</a></li>
-                            <li><span>|</span> <a href="/vi/seek/">Tìm kiếm</a></li>
-                            <li><span>|</span> <a href="/vi/feeds/">Rss Feeds</a></li>
-                            <li><span>|</span> <a href="/vi/page/">Page</a></li>
-                            <li><span>|</span> <a href="/vi/comment/">Bình luận</a></li>
-                            <li><span>|</span> <a href="/vi/download/">Tài liệu, dữ liệu về Du lịch Thái Nguyên</a></li>
-                            <li><span>|</span> <a href="/vi/nvvideo/">Thư viện Video</a></li>
-                            <li><span>|</span> <a href="/vi/albums/">albums</a></li>
-                            <li><span>|</span> <a href="/vi/redday/">Ngày này năm xưa</a></li>
-                            <li><span>|</span> <a href="/vi/du-dia-chi-thai-nguyen/">Dư địa chí Thái Nguyên</a></li>
-                            <li class="top"><a href="#" id="bttop"><em class="fa fa-angle-up">&nbsp;</em></a></li>
-                        </ul>
-                        <form action="/vi/download/search/" method="post">
-                            <p class="input-group"><span class="input-group-addon"><em class="fa fa-search">&nbsp;</em></span> <input type="text" name="q" value="" class="form-control" placeholder="Từ khóa" /></p>
+                        <form action="#" method="post">
+                            <p class="input-group"><span class="input-group-addon"><em class="fa fa-search">&nbsp;</em></span> <input type="text" name="q" id="Keyword" value="" class="form-control" placeholder="Từ khóa" /></p>
                             <p>
-                                <select class="form-control" name="cat">
+                                <select class="form-control" name="cat" id="TypeTheme">
                                     <option value="">Hãy chọn chủ đề</option>
-                                    <option value="1">Các Bản đồ du lịch Thái Nguyên</option>
-                                    <option value="2">Địa lý tỉnh Thái Nguyên</option>
-                                    <option value="3">Tài liệu về Chè, Trà Thái Nguyên</option>
+                                    <option value="1">Tin tức bài viết</option>
+                                    <option value="2">Sản phẩm</option>
                                 </select>
                             </p>
-                            <p><input type="submit" value="Search" class="btn btn-primary center-block" name="submit" /></p>
+                            <p><input type="button" value="Search" class="btn btn-primary center-block" id="brnSearch" name="submit" /></p>
                         </form>
                     </div>
                 </div>
@@ -58,3 +43,25 @@
         </div>
     </div>
 </footer>
+<script>
+    $(document).ready(function () {
+        $('#brnSearch').click(function () {
+            let type = $('#TypeTheme').val();
+            let Keyword = $('#Keyword').val();
+            if (Keyword=='') {
+                toastr.warning('Vui lòng nhập từ khóa tìm kiếm');
+            }
+            if (type == '') {
+                toastr.warning('Vui lòng chọn chủ đề');
+            }
+            else if (type == '1') {
+                //tìm kiếm theo tin tức
+                window.location.href = '/TinTuc?Keyword=' + Keyword;
+            }
+            else if (type == '2') {
+                //tìm kiếm theo sản phẩm
+                window.location.href = '/Product?Keyword=' + Keyword;
+            }
+        })
+    })
+</script>
