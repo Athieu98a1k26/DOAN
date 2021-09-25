@@ -4,20 +4,23 @@
     ViewBag.Page = "SANPHAM";
     string Keyword = ViewBag.Keyword;
 }
-<input type="hidden" value="@Keyword" id="Keyword"/>
+<input type="hidden" value="@Keyword" id="Keyword" />
 <link href="~/cssSanPham/115412a366cccbd694c76421cd50a42c.opt.css" rel="stylesheet" />
 <div class="col-sm-8 col-md-8 col-sm-3">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="DataSanPham">
 
-    <div id="DataSanPham">
-
+            </div>
+        </div>
     </div>
+    
 
     <hr />
     <div id="Page_pg" class="text-center">
         <ul class="pagination">
         </ul>
     </div>
- 
 </div>
 
 <script>
@@ -45,7 +48,7 @@
         console.log(data);
         $(strElement).empty();
         let htmlRender = ``;
-        if (data.length>0) {
+        if (data.length > 0) {
             for (var i = 0; i < data.length; i++) {
                 htmlRender += `<div class="col-sm-6 col-md-3">
                 <div class="thumbnail">
