@@ -35,7 +35,7 @@ namespace KMT.Services
         //MuaHangService
         private MuaHangService _muaHangService;
 
-        public MuaHangService muaHangService
+        public MuaHangService MuaHangService
         {
             get
             {
@@ -223,6 +223,23 @@ namespace KMT.Services
                             _menuQuanTriService = new MenuQuanTriService(Url, HttpClient);
                     }
                 return _menuQuanTriService;
+
+            }
+        }
+
+        private MuaHangService _MuaHangService;
+        
+        public MuaHangService muaHangService
+        {
+            get
+            {
+                if (_MuaHangService == null)
+                    lock (SyncRoot)
+                    {
+                        if (_MuaHangService == null)
+                            _MuaHangService = new MuaHangService(Url, HttpClient);
+                    }
+                return _MuaHangService;
 
             }
         }
