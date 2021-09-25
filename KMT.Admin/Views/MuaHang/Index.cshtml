@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Base.cshtml";
+}
+
+<div class="container-fluid">
+    
+    <div id="DataSanPham" class="row">
+
+
+    </div>
+</div>
+
+<div class="container-fluid mt-5">
+    <nav id="Page_pg" aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+        </ul>
+    </nav>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        getDataPage(1);
+    })
+
+    function PaginationData(response) {
+        let page = response.page;
+        let take = response.take;
+        let total = response.total;
+        let elHtml = '';
+        if (page == 1) {
+            elHtml += '<li class="page-item disabled">' +
+                '<a class="page-link disabled" href="#" tabindex="-1"><<</a>' +
+                '</li>' +
+                '<li class="page-item disabled">' +
+                '<a class="page-link" href="#" tabindex="-1"><</a>' +
+                '</li>';
+        }
+        else {
+            elHtml += '<li onclick="getDataPage(1)" class="page-item">' +
+                '<a class="page-link" href="#" tabindex="-1"><<</a>' +
+                '</li>' +
+                '<li onclick="getDataPage(' + (page - 1) + ')" class="page-item">' +
+                '<a class="page-link" href="#" tabindex="-1"><</a>' +
+                '</li>'
+                ;
+        }
+        let numberMaxpage = page + 2 > Math.ceil(total / take) ? Math.ceil(total / take) : page + 2;
+        let numberMinpage = page - 2 < 1 ? 1 : page - 2;
+        for (var i = numberMinpage; i <= numberMaxpage; i++) {
+            if (i == page) {
+                elHtml += '<li onclick="getDataPage(' + i + ')" class="page-item active"><a class="page-link" href="#">' + i + '</a></li>';
+            }
+            else {
+                elHtml += '<li onclick="getDataPage(' + i + ')" class="page-item"><a class="page-link" href="#">' + i + '</a></li>';
+            }
+
+        }
+        if (page == Math.ceil(total / take)) {
+            elHtml += '<li class="page-item disabled">' +
+                '<a class="page-link" href="#">></a>' +
+                '</li>' +
+                '<li class="page-item disabled">' +
+                '<a class="page-link" href="#">>></a>' +
+                '</li>';
+        }
+        else {
+            elHtml += '<li onclick="getDataPage(' + (page + 1) + ')" class="page-item">' +
+                ' <a class="page-link" href="#">></a>' +
+                '</li>' +
+                '<li  onclick="getDataPage(' + (Math.ceil(total / take)) + ')" class="page-item">' +
+                '<a class="page-link" href="#">>></a>' +
+                '</li>';
+        }
+        $('#Page_pg .pagination').empty();
+        $('#Page_pg .pagination').append(elHtml);
+    }
+
+    function getDataPage(page) {
+        let take = 5;
+        LoadData(page, take);
+    }
+
+    function LoadData(page, take) {
+        let data = {
+            page: page,
+            take:take
+        }
+        $.post('/MuaHang/search', data, function (data) {
+            RenderData(data, "#DataSanPham");
+        })
+    }
+    function RenderData(response, strElement) {
+        let data = response.data;
+        $(strElement).empty();
+            //TENMATHANG, GIA, MOTA, HINHANH
+        let htmlRender = `<table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">ID sản phẩm</th>
+                    <th scope="col">ID user</th>
+                </tr>
+            </thead>
+
+            <tbody>`;
+        for (var i = 0; i < data.length; i++) {
+            htmlRender += `<tr>
+                    <th scope="row">`+(i+1)+`</th>
+                    <td>`+ data[i].IDSANPHAM+`</td>
+                    <td>`+ data[i].IDUSER +`</td>
+                </tr>`;
+        }
+        htmlRender += `</tbody>
+        </table>`;
+        $(strElement).append(htmlRender);
+        PaginationData(response);
+    }
+</script>
+

@@ -56,16 +56,16 @@ namespace KMT.API_DATA.Data.Repository
             MuaHangResponse dt = new MuaHangResponse();
             List<MuaHangInfo> q = (from a in DbContext.MUAHANGs
                                     where
-                                    (!model.IDSANPHAM.HasValue || a.IDSANPHAM == model.IDSANPHAM) &&
+                                    ( !model.IDSANPHAM.HasValue || a.IDSANPHAM == model.IDSANPHAM) &&
                                     (!model.IDUSER.HasValue || a.IDUSER == model.IDUSER)
                                     select new MuaHangInfo()
                                     {
                                         Id = a.Id,
                                         IDSANPHAM = a.IDSANPHAM.Value,
-                                        NGUOITAO = a.NGUOITAO,
-                                        NGAYTAO = a.NGAYTAO,
-                                        NGUOISUA = a.NGUOISUA,
-                                        NGAYSUA = a.NGAYSUA.Value,
+                                        //NGUOITAO = a.NGUOITAO,
+                                        //NGAYTAO = a.NGAYTAO,
+                                        //NGUOISUA = a.NGUOISUA,
+                                        //NGAYSUA = a.NGAYSUA.Value,
                                         IDUSER = a.IDUSER.Value
                                     }).ToList() ?? new List<MuaHangInfo>();
 
