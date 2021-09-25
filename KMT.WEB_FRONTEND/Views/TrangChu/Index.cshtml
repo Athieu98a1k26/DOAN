@@ -4,12 +4,18 @@
     ViewBag.Page = "TRANGCHU";
 }
 <link href="~/CỔNG DU LỊCH THÁI NGUYÊN_files/ce2ef6deb98210c34d168c454170101b.opt.css" rel="stylesheet" />
-<div  class="col-sm-8 col-md-8 col-sm-3">
-    <div id="DataThongTinDuLich">
+<div  class="col-sm-8 col-md-8 col-sm-4">
+    <div>
+        <div  id="DataThongTinDuLich">
 
+        </div>
+
+        <hr />
+        <div  id="Page_pg" class="text-center">
+            <ul class="pagination">
+            </ul>
+        </div>
     </div>
-    
-    <hr />
     @*<h4>Các tin khác</h4>
     <ul class="related">
         <li><i class="fas fa-list-ul"></i>&nbsp;<a href="/vi/news/Tin-tuc/Gao-nep-vai-On-Luong-va-nhung-thuc-qua-hap-dan-du-khach-1011.html" title="Gạo nếp vải Ôn Lương và những thức quà hấp dẫn du khách">Gạo nếp vải Ôn Lương và những thức quà hấp dẫn du khách <em>(22/08/2021)</em></a></li>
@@ -23,11 +29,6 @@
         <li><i class="fas fa-list-ul"></i>&nbsp;<a href="/vi/news/Tin-tuc/Trai-nghiem-tuyen-du-lich-lich-su-ket-hop-tam-linh-sinh-thai-tai-ATK-Dinh-Hoa-1003.html" title="Trải nghiệm tuyến du lịch lịch sử kết hợp tâm linh, sinh thái tại ATK Định Hóa">Trải nghiệm tuyến du lịch lịch sử kết hợp tâm linh, sinh thái tại ATK Định Hóa <em>(01/08/2021)</em></a></li>
         <li><i class="fas fa-list-ul"></i>&nbsp;<a href="/vi/news/Tin-tuc/Son-La-Phat-dong-Cuoc-thi-sang-tac-bieu-trung-va-khau-hieu-du-lich-1002.html" title="Sơn La&#x3A; Phát động Cuộc thi sáng tác biểu trưng và khẩu hiệu du lịch">Sơn La&#x3A; Phát động Cuộc thi sáng tác biểu trưng và khẩu hiệu du lịch <em>(29/07/2021)</em></a></li>
     </ul>*@
-    <div id="Page_pg" class="text-center">
-        <ul class="pagination">
-            
-        </ul>
-    </div>
 
 </div>
 
@@ -56,12 +57,21 @@
         $(strElement).empty();
         let htmlRender = ``;
         for (var i = 0; i < data.length; i++) {
-            htmlRender += `<div class="news_column">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <a href="/ChiTietTinTuc?Id=`+ data[i].Id + `" title="` + data[i].MOTA + `"><img alt="` + data[i].MOTA + `" src="/Content/HinhAnh/` + data[i].HINHANH +`" width="200" class="img-thumbnail pull-left imghome" /></a>
+            //htmlRender += `<div class="news_column">
+            //    <div class="panel panel-default">
+            //        <div class="panel-body">
+            //            <a href="/ChiTietTinTuc?Id=`+ data[i].Id + `" title="` + data[i].MOTA + `"><img alt="` + data[i].MOTA + `" src="/Content/HinhAnh/` + data[i].HINHANH +`" width="200" class="img-thumbnail pull-left imghome" /></a>
+            //            <h3><a href="/ChiTietTinTuc?Id=`+ data[i].Id + `" title="` + data[i].MOTA + `">` + data[i].TIEUDE + `</a> <span class="icon_new">&nbsp;</span></h3>
+            //            <p class="text-justify">` + data[i].MOTA + `</p>
+            //        </div>
+            //    </div>
+            //</div>`;
+            htmlRender += `<div class="col-sm-6 col-md-3">
+                <div style="max-height: 270px; min-height: 270px;" class="thumbnail">
+                    <div  class="panel-body">
+                        <a href="/ChiTietTinTuc?Id=`+ data[i].Id + `" title="` + data[i].MOTA + `"><img alt="` + data[i].MOTA + `" src="/Content/HinhAnh/` + data[i].HINHANH + `" width="200" class="img-thumbnail pull-left imghome" /></a>
                         <h3><a href="/ChiTietTinTuc?Id=`+ data[i].Id + `" title="` + data[i].MOTA + `">` + data[i].TIEUDE + `</a> <span class="icon_new">&nbsp;</span></h3>
-                        <p class="text-justify">` + data[i].MOTA + `</p>
+                        <p  style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" class="text-justify">` + data[i].MOTA + `</p>
                     </div>
                 </div>
             </div>`;
